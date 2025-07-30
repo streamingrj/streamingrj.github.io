@@ -44,7 +44,7 @@
         }
         
         .btn {
-            display: inline-block;
+            display: block;
             background-color: var(--primary);
             color: var(--light);
             padding: 15px 35px;
@@ -54,6 +54,12 @@
             font-size: 1.1rem;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(255,107,0,0.3);
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+            margin: 0 auto;
+            border: none;
+            outline: none;
         }
         
         .btn:hover {
@@ -88,10 +94,13 @@
         .plan {
             background: var(--light);
             border-radius: 15px;
-            overflow: hidden;
+            overflow: visible; /* Permite badges saírem sem cortar */
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
             position: relative;
+            display: flex;
+            flex-direction: column;
+            min-height: 100%; /* Garante altura igual na grid */
         }
         
         .plan:hover {
@@ -104,6 +113,10 @@
             color: var(--light);
             padding: 25px;
             text-align: center;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            position: relative;
+            z-index: 2;
         }
         
         .plan-header h3 {
@@ -128,6 +141,10 @@
         
         .plan-body {
             padding: 30px;
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
         }
         
         .plan-features {
@@ -160,8 +177,8 @@
         
         .highlight-badge {
             position: absolute;
-            top: -15px;
-            right: 20px;
+            top: 12px;
+            right: 12px;
             background-color: #FFCC00;
             color: var(--dark);
             padding: 8px 20px;
@@ -169,9 +186,24 @@
             font-weight: 700;
             font-size: 0.9rem;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            z-index: 1;
+            z-index: 10;
+            /* Evita que badge fique fora do card em telas pequenas */
+            max-width: 85%;
+            text-align: center;
+            overflow-wrap: break-word;
         }
         
+        .promo-tag,
+        .economy-tag {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 15px;
+            margin-top: 0;
+            text-align: center;
+            width: fit-content;
+            max-width: 100%;
+        }
         .promo-tag {
             background-color: var(--primary);
             color: white;
@@ -179,8 +211,6 @@
             border-radius: 5px;
             font-size: 0.9rem;
             font-weight: 600;
-            display: inline-block;
-            margin-bottom: 15px;
         }
         
         .economy-tag {
@@ -190,8 +220,13 @@
             border-radius: 5px;
             font-size: 0.9rem;
             font-weight: 600;
-            display: inline-block;
+            margin-bottom: 0;
             margin-top: 10px;
+        }
+        
+        /* Garante que o botão fique no fim do card */
+        .plan-body .btn {
+            margin-top: auto;
         }
         
         .whatsapp-float {
@@ -229,6 +264,12 @@
             .plans {
                 grid-template-columns: 1fr;
             }
+            .highlight-badge {
+                top: 8px;
+                right: 8px;
+                padding: 7px 10px;
+                font-size: 0.8rem;
+            }
         }
     </style>
 </head>
@@ -236,7 +277,7 @@
     <section class="hero">
         <h1>TV Premium HD</h1>
         <p>Assista todos os canais de TV, filmes, séries e esportes em alta qualidade por um preço que cabe no seu bolso</p>
-        <a href="#planos" class="btn">VER PLANOS</a>
+        <a href="#planos" class="btn" style="max-width: 300px;">VER PLANOS</a>
     </section>
 
     <div class="container">
@@ -261,7 +302,7 @@
                             <li>Suporte 24h</li>
                             <li>Teste 3h Grátis</li>
                         </ul>
-                        <a href="https://wa.me/5521977317084?text=Quero%20assinar%20o%20plano%20de%201%20mês" class="btn" style="display: block; text-align: center; width: 100%;">ASSINAR</a>
+                        <a href="https://wa.me/5521977317084?text=Quero%20assinar%20o%20plano%20de%201%20mês" class="btn">ASSINAR</a>
                     </div>
                 </div>
                 
@@ -273,7 +314,7 @@
                     </div>
                     <div class="plan-body">
                         <div class="plan-price">R$75<small>/3 meses</small></div>
-                        <div class="promo-tag">Cada mês sai por R$25 + 15 DIAS GRÁTIS</div>
+                        <span class="promo-tag">Cada mês sai por R$25 + 15 DIAS GRÁTIS</span>
                         <ul class="plan-features">
                             <li>+1000 Canais HD</li>
                             <li>Filmes e Séries</li>
@@ -282,7 +323,7 @@
                             <li>Teste 3h Grátis</li>
                             <li>+15 dias de bônus</li>
                         </ul>
-                        <a href="https://wa.me/5521977317084?text=Quero%20assinar%20o%20plano%20de%203%20meses" class="btn" style="display: block; text-align: center; width: 100%; background-color: var(--primary);">ASSINAR</a>
+                        <a href="https://wa.me/5521977317084?text=Quero%20assinar%20o%20plano%20de%203%20meses" class="btn">ASSINAR</a>
                     </div>
                 </div>
                 
@@ -293,7 +334,7 @@
                     </div>
                     <div class="plan-body">
                         <div class="plan-price">R$159,90<small>/6 meses</small></div>
-                        <div class="promo-tag">Cada mês sai por R$26,65</div>
+                        <span class="promo-tag">Cada mês sai por R$26,65</span>
                         <ul class="plan-features">
                             <li>+1000 Canais HD</li>
                             <li>Filmes e Séries</li>
@@ -302,8 +343,8 @@
                             <li>Teste 3h Grátis</li>
                             <li>Prioridade no suporte</li>
                         </ul>
-                        <div class="economy-tag">Economize R$50,10</div>
-                        <a href="https://wa.me/5521977317084?text=Quero%20assinar%20o%20plano%20de%206%20meses" class="btn" style="display: block; text-align: center; width: 100%; margin-top: 15px;">ASSINAR</a>
+                        <span class="economy-tag">Economize R$50,10</span>
+                        <a href="https://wa.me/5521977317084?text=Quero%20assinar%20o%20plano%20de%206%20meses" class="btn">ASSINAR</a>
                     </div>
                 </div>
                 
@@ -315,7 +356,7 @@
                     </div>
                     <div class="plan-body">
                         <div class="plan-price">R$249,90<small>/ano</small></div>
-                        <div class="promo-tag">Cada mês sai por R$20,82 + 2 MESES GRÁTIS</div>
+                        <span class="promo-tag">Cada mês sai por R$20,82 + 2 MESES GRÁTIS</span>
                         <ul class="plan-features">
                             <li>+1000 Canais HD</li>
                             <li>Filmes e Séries</li>
@@ -325,8 +366,8 @@
                             <li>+2 meses de bônus</li>
                             <li>Atualizações gratuitas</li>
                         </ul>
-                        <div class="economy-tag">Economize R$170,10</div>
-                        <a href="https://wa.me/5521977317084?text=Quero%20assinar%20o%20plano%20de%2012%20meses" class="btn" style="display: block; text-align: center; width: 100%; margin-top: 15px; background-color: var(--primary);">ASSINAR</a>
+                        <span class="economy-tag">Economize R$170,10</span>
+                        <a href="https://wa.me/5521977317084?text=Quero%20assinar%20o%20plano%20de%2012%20meses" class="btn">ASSINAR</a>
                     </div>
                 </div>
             </div>
