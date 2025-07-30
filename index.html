@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TV Premium HD - Assinatura Digital</title>
+    <style>
+        :root {
+            --primary: #FF6B00;
+            --secondary: #333333;
+            --light: #f8f9fa;
+            --dark: #212529;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        .header {
+            background: linear-gradient(rgba(0,0,0,0.8), url('images/banner.jpg');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            padding: 100px 20px;
+            color: white;
+            position: relative;
+        }
+        .header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        }
+        .header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255,107,0,0.3);
+        }
+        .btn:hover {
+            background-color: #e05d00;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255,107,0,0.4);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--secondary);
+        }
+        .section-title h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+        .plans {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        .plan {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 280px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .plan:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        .plan-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .plan-header h3 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        .plan-price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        .plan-price small {
+            font-size: 1rem;
+            font-weight: normal;
+        }
+        .plan-body {
+            padding: 25px;
+        }
+        .plan-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 25px;
+        }
+        .plan-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .plan-features li:last-child {
+            border-bottom: none;
+        }
+        .highlight {
+            border: 3px solid var(--primary);
+            position: relative;
+        }
+        .highlight .plan-header {
+            background-color: var(--secondary);
+        }
+        .highlight-badge {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background-color: #ffcc00;
+            color: var(--dark);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        .feature {
+            text-align: center;
+            width: 250px;
+        }
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        .footer {
+            background-color: var(--secondary);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+        }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 20px rgba(37,211,102,0.3);
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(37,211,102,0.4);
+        }
+        @media (max-width: 768px) {
+            .plans {
+                flex-direction: column;
+                align-items: center;
+            }
+            .plan {
+                width: 100%;
+                max-width: 350px;
+            }
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>TV Premium HD</h1>
+        <p>Assista todos os canais de TV, filmes, séries e esportes em alta qualidade por um preço que cabe no seu bolso</p>
+        <a href="#planos" class="btn">VER PLANOS</a>
+    </header>
+
+    <div class="container">
+        <section id="planos">
+            <div class="section-title">
+                <h2>Nossos Planos</h2>
+                <p>Escolha o que melhor se adapta às suas necessidades</p>
+            </div>
+            
+            <div class="plans">
+                <!-- Plano 1 Mês -->
+                <div class="plan">
+                    <div class="plan-header">
+                        <h3>1 MÊS</h3>
+                    </div>
+                    <div class="plan-body">
+                        <div class="plan-price">R$35<small>/mês</small></div>
+                        <ul class="plan-features">
+                            <li>+1000 Canais HD</li>
+                            <li>Filmes e Séries</li>
+                            <li>Canais Adultos</li>
+                            <li>Suporte 24h</li>
+                            <li>Teste 3h Grátis</li>
+                        </ul>
+                        <a href="#" class="btn" style="display: block; text-align: center;">ASSINAR</a>
+                    </div>
+                </div>
+                
+                <!-- Plano 3 Meses (Destaque) -->
+                <div class="plan highlight">
+                    <div class="highlight-badge">PROMOÇÃO</div>
+                    <div class="plan-header">
+                        <h3>3 MESES</h3>
+                    </div>
+                    <div class="plan-body">
+                        <div class="plan-price">R$75<small>/3 meses</small></div>
+                        <div style="color: var(--primary); font-weight: bold; margin-bottom: 15px;">
+                            Cada mês sai por R$25 + 15 DIAS GRÁTIS
+                        </div>
+                        <ul class="plan-features">
+                            <li>+1000 Canais HD</li>
+                            <li>Filmes e Séries</li>
+                            <li>Canais Adultos</li>
+                            <li>Suporte 24h</li>
+                            <li>Teste 3h Grátis</li>
+                            <li>+15 dias de bônus</li>
+                        </ul>
+                        <a href="#" class="btn" style="display: block; text-align: center; background-color: var(--secondary);">ASSINAR</a>
+                    </div>
+                </div>
+                
+                <!-- Plano 6 Meses -->
+                <div class="plan">
+                    <div class="plan-header">
+                        <h3>6 MESES</h3>
+                    </div>
+                    <div class="plan-body">
+                        <div class="plan-price">R$159,90<small>/6 meses</small></div>
+                        <div style="color: var(--primary); font-weight: bold; margin-bottom: 15px;">
+                            Cada mês sai por R$26,65
+                        </div>
+                        <ul class="plan-features">
+                            <li>+1000 Canais HD</li>
+                            <li>Filmes e Séries</li>
+                            <li>Canais Adultos</li>
+                            <li>Suporte 24h</li>
+                            <li>Teste 3h Grátis</li>
+                            <li>Economize R$50,10</li>
+                        </ul>
+                        <a href="#" class="btn" style="display: block; text-align: center;">ASSINAR</a>
+                    </div>
+                </div>
+                
+                <!-- Plano 12 Meses (Destaque) -->
+                <div class="plan highlight">
+                    <div class="highlight-badge">MELHOR OFERTA</div>
+                    <div class="plan-header">
+                        <h3>12 MESES</h3>
+                    </div>
+                    <div class="plan-body">
+                        <div class="plan-price">R$249,90<small>/ano</small></div>
+                        <div style="color: var(--primary); font-weight: bold; margin-bottom: 15px;">
+                            Cada mês sai por R$20,82 + 2 MESES GRÁTIS
+                        </div>
+                        <ul class="plan-features">
+                            <li>+1000 Canais HD</li>
+                            <li>Filmes e Séries</li>
+                            <li>Canais Adultos</li>
+                            <li>Suporte 24h</li>
+                            <li>Teste 3h Grátis</li>
+                            <li>+2 meses de bônus</li>
+                            <li>Economize R$170,10</li>
+                        </ul>
+                        <a href="#" class="btn" style="display: block; text-align: center; background-color: var(--secondary);">ASSINAR</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-title">
+                <h2>O Que Você Vai Assistir</h2>
+                <p>Todos os melhores conteúdos em um só lugar</p>
+            </div>
+            
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">⚽</div>
+                    <h3>Esportes</h3>
+                    <p>Jogos ao vivo do Brasileirão, Libertadores, Premier League e muito mais</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🎬</div>
+                    <h3>Filmes</h3>
+                    <p>Lançamentos do cinema e clássicos em qualidade HD</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📺</div>
+                    <h3>Séries</h3>
+                    <p>Todas as temporadas das melhores séries nacionais e internacionais</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔞</div>
+                    <h3>Adultos</h3>
+                    <p>Canais adultos com conteúdo exclusivo</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <p>© 2025 TV Premium HD - Todos os direitos reservados</p>
+        <p>Este é um serviço de streaming digital independente</p>
+    </footer>
+
+    <a href="https://wa.me/SEUNUMERO" class="whatsapp-float" target="_blank">
+        <span style="font-size: 1.5rem;">📱</span>
+    </a>
+
+    <script>
+        // Efeito de rolagem suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
