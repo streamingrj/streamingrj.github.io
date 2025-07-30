@@ -7,205 +7,237 @@
     <style>
         :root {
             --primary: #FF6B00;
-            --secondary: #333333;
-            --light: #f8f9fa;
-            --dark: #212529;
+            --dark: #1A1A1A;
+            --light: #FFFFFF;
+            --gray: #F5F5F5;
         }
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', system-ui, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f5f5f5;
+            background-color: var(--gray);
             color: var(--dark);
             line-height: 1.6;
         }
-        .header {
-            background: linear-gradient(rgba(0,0,0,0.8), url('images/banner.jpg');
+        
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1571330735066-03aaa9429d89?ixlib=rb-4.0.3');
             background-size: cover;
             background-position: center;
+            color: var(--light);
             text-align: center;
             padding: 100px 20px;
-            color: white;
-            position: relative;
         }
-        .header h1 {
+        
+        .hero h1 {
             font-size: 2.8rem;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+            font-weight: 800;
         }
-        .header p {
+        
+        .hero p {
             font-size: 1.2rem;
-            max-width: 800px;
+            max-width: 700px;
             margin: 0 auto 30px;
+            opacity: 0.9;
         }
+        
         .btn {
             display: inline-block;
             background-color: var(--primary);
-            color: white;
-            padding: 12px 30px;
+            color: var(--light);
+            padding: 15px 35px;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 600;
             font-size: 1.1rem;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(255,107,0,0.3);
         }
+        
         .btn:hover {
-            background-color: #e05d00;
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(255,107,0,0.4);
         }
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 60px 20px;
         }
+        
         .section-title {
             text-align: center;
             margin-bottom: 50px;
-            color: var(--secondary);
         }
+        
         .section-title h2 {
             font-size: 2.2rem;
             margin-bottom: 15px;
+            color: var(--dark);
         }
+        
         .plans {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin-bottom: 60px;
         }
+        
         .plan {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            width: 280px;
+            background: var(--light);
+            border-radius: 15px;
             overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
+            position: relative;
         }
+        
         .plan:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
         }
+        
         .plan-header {
             background-color: var(--primary);
-            color: white;
-            padding: 20px;
+            color: var(--light);
+            padding: 25px;
             text-align: center;
         }
+        
         .plan-header h3 {
             margin: 0;
             font-size: 1.5rem;
+            font-weight: 700;
         }
+        
         .plan-price {
             font-size: 2.5rem;
-            font-weight: bold;
-            margin: 15px 0;
+            font-weight: 800;
+            margin: 20px 0;
+            text-align: center;
+            color: var(--dark);
         }
+        
         .plan-price small {
             font-size: 1rem;
-            font-weight: normal;
+            font-weight: 500;
+            opacity: 0.8;
         }
+        
         .plan-body {
-            padding: 25px;
+            padding: 30px;
         }
+        
         .plan-features {
             list-style: none;
             padding: 0;
-            margin: 0 0 25px;
+            margin: 0 0 30px;
         }
+        
         .plan-features li {
-            padding: 8px 0;
-            border-bottom: 1px solid #eee;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
         }
-        .plan-features li:last-child {
-            border-bottom: none;
+        
+        .plan-features li:before {
+            content: "✓";
+            color: var(--primary);
+            font-weight: bold;
+            margin-right: 10px;
         }
+        
         .highlight {
             border: 3px solid var(--primary);
-            position: relative;
         }
+        
         .highlight .plan-header {
-            background-color: var(--secondary);
+            background-color: var(--dark);
         }
+        
         .highlight-badge {
             position: absolute;
-            top: -10px;
+            top: -15px;
             right: 20px;
-            background-color: #ffcc00;
+            background-color: #FFCC00;
             color: var(--dark);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 0.8rem;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            z-index: 1;
         }
-        .features {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-        .feature {
-            text-align: center;
-            width: 250px;
-        }
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
+        
+        .promo-tag {
+            background-color: var(--primary);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
             margin-bottom: 15px;
         }
-        .footer {
-            background-color: var(--secondary);
+        
+        .economy-tag {
+            background-color: #25D366;
             color: white;
-            text-align: center;
-            padding: 30px 20px;
-            margin-top: 60px;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 10px;
         }
+        
         .whatsapp-float {
             position: fixed;
             bottom: 30px;
             right: 30px;
             background-color: #25D366;
             color: white;
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
-            box-shadow: 0 4px 20px rgba(37,211,102,0.3);
+            font-size: 2rem;
+            box-shadow: 0 5px 25px rgba(37,211,102,0.3);
             z-index: 100;
             transition: all 0.3s ease;
         }
+        
         .whatsapp-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 25px rgba(37,211,102,0.4);
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 8px 30px rgba(37,211,102,0.4);
         }
+        
         @media (max-width: 768px) {
+            .hero {
+                padding: 80px 20px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
             .plans {
-                flex-direction: column;
-                align-items: center;
-            }
-            .plan {
-                width: 100%;
-                max-width: 350px;
-            }
-            .header h1 {
-                font-size: 2rem;
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <header class="header">
+    <section class="hero">
         <h1>TV Premium HD</h1>
         <p>Assista todos os canais de TV, filmes, séries e esportes em alta qualidade por um preço que cabe no seu bolso</p>
         <a href="#planos" class="btn">VER PLANOS</a>
-    </header>
+    </section>
 
     <div class="container">
         <section id="planos">
@@ -229,7 +261,7 @@
                             <li>Suporte 24h</li>
                             <li>Teste 3h Grátis</li>
                         </ul>
-                        <a href="#" class="btn" style="display: block; text-align: center;">ASSINAR</a>
+                        <a href="https://wa.me/5521977317084?text=Quero%20assinar%20o%20plano%20de%201%20mês" class="btn" style="display: block; text-align: center; width: 100%;">ASSINAR</a>
                     </div>
                 </div>
                 
@@ -241,9 +273,7 @@
                     </div>
                     <div class="plan-body">
                         <div class="plan-price">R$75<small>/3 meses</small></div>
-                        <div style="color: var(--primary); font-weight: bold; margin-bottom: 15px;">
-                            Cada mês sai por R$25 + 15 DIAS GRÁTIS
-                        </div>
+                        <div class="promo-tag">Cada mês sai por R$25 + 15 DIAS GRÁTIS</div>
                         <ul class="plan-features">
                             <li>+1000 Canais HD</li>
                             <li>Filmes e Séries</li>
@@ -252,7 +282,7 @@
                             <li>Teste 3h Grátis</li>
                             <li>+15 dias de bônus</li>
                         </ul>
-                        <a href="#" class="btn" style="display: block; text-align: center; background-color: var(--secondary);">ASSINAR</a>
+                        <a href="https://wa.me/5521977317084?text=Quero%20assinar%20o%20plano%20de%203%20meses" class="btn" style="display: block; text-align: center; width: 100%; background-color: var(--dark);">ASSINAR</a>
                     </div>
                 </div>
                 
@@ -263,18 +293,17 @@
                     </div>
                     <div class="plan-body">
                         <div class="plan-price">R$159,90<small>/6 meses</small></div>
-                        <div style="color: var(--primary); font-weight: bold; margin-bottom: 15px;">
-                            Cada mês sai por R$26,65
-                        </div>
+                        <div class="promo-tag">Cada mês sai por R$26,65</div>
                         <ul class="plan-features">
                             <li>+1000 Canais HD</li>
                             <li>Filmes e Séries</li>
                             <li>Canais Adultos</li>
                             <li>Suporte 24h</li>
                             <li>Teste 3h Grátis</li>
-                            <li>Economize R$50,10</li>
+                            <li>Prioridade no suporte</li>
                         </ul>
-                        <a href="#" class="btn" style="display: block; text-align: center;">ASSINAR</a>
+                        <div class="economy-tag">Economize R$50,10</div>
+                        <a href="https://wa.me/5521977317084?text=Quero%20assinar%20o%20plano%20de%206%20meses" class="btn" style="display: block; text-align: center; width: 100%; margin-top: 15px;">ASSINAR</a>
                     </div>
                 </div>
                 
@@ -286,62 +315,26 @@
                     </div>
                     <div class="plan-body">
                         <div class="plan-price">R$249,90<small>/ano</small></div>
-                        <div style="color: var(--primary); font-weight: bold; margin-bottom: 15px;">
-                            Cada mês sai por R$20,82 + 2 MESES GRÁTIS
-                        </div>
+                        <div class="promo-tag">Cada mês sai por R$20,82 + 2 MESES GRÁTIS</div>
                         <ul class="plan-features">
                             <li>+1000 Canais HD</li>
                             <li>Filmes e Séries</li>
                             <li>Canais Adultos</li>
-                            <li>Suporte 24h</li>
+                            <li>Suporte 24h VIP</li>
                             <li>Teste 3h Grátis</li>
                             <li>+2 meses de bônus</li>
-                            <li>Economize R$170,10</li>
+                            <li>Atualizações gratuitas</li>
                         </ul>
-                        <a href="#" class="btn" style="display: block; text-align: center; background-color: var(--secondary);">ASSINAR</a>
+                        <div class="economy-tag">Economize R$170,10</div>
+                        <a href="https://wa.me/5521977317084?text=Quero%20assinar%20o%20plano%20de%2012%20meses" class="btn" style="display: block; text-align: center; width: 100%; margin-top: 15px; background-color: var(--dark);">ASSINAR</a>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <div class="section-title">
-                <h2>O Que Você Vai Assistir</h2>
-                <p>Todos os melhores conteúdos em um só lugar</p>
-            </div>
-            
-            <div class="features">
-                <div class="feature">
-                    <div class="feature-icon">⚽</div>
-                    <h3>Esportes</h3>
-                    <p>Jogos ao vivo do Brasileirão, Libertadores, Premier League e muito mais</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">🎬</div>
-                    <h3>Filmes</h3>
-                    <p>Lançamentos do cinema e clássicos em qualidade HD</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">📺</div>
-                    <h3>Séries</h3>
-                    <p>Todas as temporadas das melhores séries nacionais e internacionais</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">🔞</div>
-                    <h3>Adultos</h3>
-                    <p>Canais adultos com conteúdo exclusivo</p>
                 </div>
             </div>
         </section>
     </div>
 
-    <footer class="footer">
-        <p>© 2025 TV Premium HD - Todos os direitos reservados</p>
-        <p>Este é um serviço de streaming digital independente</p>
-    </footer>
-
-    <a href="https://wa.me/5521977317084?text=Ol%C3%A1,%20gostaria%20de%20saber%20mais%20sobre%20seus%20planos" class="whatsapp-float" target="_blank">
-        <span style="font-size: 1.5rem;">📱</span>
+    <a href="https://wa.me/5521977317084" class="whatsapp-float" target="_blank">
+        <span style="font-size: 1.8rem;">💬</span>
     </a>
 
     <script>
