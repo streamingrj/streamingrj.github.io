@@ -94,13 +94,13 @@
         .plan {
             background: var(--light);
             border-radius: 15px;
-            overflow: visible; /* Permite badges saírem sem cortar */
+            overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
             position: relative;
             display: flex;
             flex-direction: column;
-            min-height: 100%; /* Garante altura igual na grid */
+            min-height: 100%;
         }
         
         .plan:hover {
@@ -111,12 +111,12 @@
         .plan-header {
             background-color: var(--primary);
             color: var(--light);
-            padding: 25px;
+            padding: 50px 25px 25px 25px; /* espaço extra para o badge */
             text-align: center;
             border-top-left-radius: 15px;
             border-top-right-radius: 15px;
             position: relative;
-            z-index: 2;
+            z-index: 1;
         }
         
         .plan-header h3 {
@@ -177,20 +177,19 @@
         
         .highlight-badge {
             position: absolute;
-            top: 12px;
-            right: 12px;
+            top: 18px;
+            right: 28px;
             background-color: #FFCC00;
             color: var(--dark);
-            padding: 8px 20px;
-            border-radius: 50px;
+            padding: 6px 20px;
+            border-radius: 16px;
             font-weight: 700;
-            font-size: 0.9rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            z-index: 10;
-            /* Evita que badge fique fora do card em telas pequenas */
-            max-width: 85%;
-            text-align: center;
-            overflow-wrap: break-word;
+            font-size: 0.89rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            z-index: 2;
+            border: 2px solid var(--primary);
+            /* Para evitar corte por border-radius do card */
+            pointer-events: none;
         }
         
         .promo-tag,
@@ -224,7 +223,6 @@
             margin-top: 10px;
         }
         
-        /* Garante que o botão fique no fim do card */
         .plan-body .btn {
             margin-top: auto;
         }
@@ -265,9 +263,9 @@
                 grid-template-columns: 1fr;
             }
             .highlight-badge {
-                top: 8px;
-                right: 8px;
-                padding: 7px 10px;
+                top: 10px;
+                right: 12px;
+                padding: 7px 12px;
                 font-size: 0.8rem;
             }
         }
