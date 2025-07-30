@@ -28,6 +28,22 @@
             color: var(--light);
             text-align: center;
             padding: 100px 20px;
+            position: relative;
+        }
+        .hero-images-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 40px;
+            margin-bottom: 0;
+        }
+        .hero-images-row img {
+            max-width: 220px;
+            width: 100%;
+            border-radius: 14px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+            background: #fff;
         }
         
         .hero h1 {
@@ -84,6 +100,22 @@
             color: var(--dark);
         }
         
+        .promo-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 40px;
+        }
+        .promo-gallery img {
+            max-width: 350px;
+            width: 100%;
+            border-radius: 18px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.11);
+            background: #fff;
+            margin-bottom: 0;
+        }
+
         .plans {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -188,7 +220,6 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.08);
             z-index: 2;
             border: 2px solid var(--primary);
-            /* Para evitar corte por border-radius do card */
             pointer-events: none;
         }
         
@@ -250,15 +281,24 @@
             box-shadow: 0 8px 30px rgba(37,211,102,0.4);
         }
         
+        @media (max-width: 1024px) {
+            .promo-gallery img {
+                max-width: 48vw;
+            }
+        }
         @media (max-width: 768px) {
             .hero {
                 padding: 80px 20px;
             }
-            
+            .hero-images-row img {
+                max-width: 150px;
+            }
+            .promo-gallery img {
+                max-width: 90vw;
+            }
             .hero h1 {
                 font-size: 2.2rem;
             }
-            
             .plans {
                 grid-template-columns: 1fr;
             }
@@ -276,9 +316,21 @@
         <h1>TV Premium HD</h1>
         <p>Assista todos os canais de TV, filmes, séries e esportes em alta qualidade por um preço que cabe no seu bolso</p>
         <a href="#planos" class="btn" style="max-width: 300px;">VER PLANOS</a>
+        <div class="hero-images-row">
+            <!-- Imagem 2: Futebol / Esportes -->
+            <img src="https://user-images.githubusercontent.com/streamingrj/2.jpg" alt="Banner Futebol TurboX" loading="lazy">
+            <!-- Imagem 3: TV Canais -->
+            <img src="https://user-images.githubusercontent.com/streamingrj/3.jpg" alt="Banner TV TurboX" loading="lazy">
+        </div>
     </section>
 
     <div class="container">
+        <section class="promo-gallery">
+            <!-- Imagem 4: Canais incríveis -->
+            <img src="https://user-images.githubusercontent.com/streamingrj/4.jpg" alt="Canais incríveis TurboX" loading="lazy">
+            <!-- Imagem 5: Assine nossos planos -->
+            <img src="https://user-images.githubusercontent.com/streamingrj/5.jpg" alt="Assine nossos planos TurboX" loading="lazy">
+        </section>
         <section id="planos">
             <div class="section-title">
                 <h2>Nossos Planos</h2>
