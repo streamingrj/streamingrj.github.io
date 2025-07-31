@@ -53,7 +53,9 @@
             text-shadow: 0 1px 10px rgba(0,0,0,0.14);
         }
         .btn {
-            display: inline-block;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             background-color: var(--primary);
             color: var(--bg);
             padding: 16px 38px;
@@ -66,13 +68,17 @@
             letter-spacing: 1px;
             border: none;
             outline: none;
+            width: 100%;
+            max-width: 320px;
+            margin: 0 auto;
+            text-align: center;
         }
         .btn:hover { background: var(--primary-dark); color: var(--text); }
 
         /* CAROUSEL */
         .carousel-container {
             width: 100%;
-            max-width: 420px;
+            max-width: 650px;
             margin: 0 auto 56px auto;
             position: relative;
             z-index: 10;
@@ -80,7 +86,7 @@
         .carousel {
             position: relative;
             overflow: hidden;
-            border-radius: 22px;
+            border-radius: 28px;
             box-shadow: 0 8px 32px rgba(0,0,0,0.22);
             background: rgba(24,28,34,0.65);
         }
@@ -91,10 +97,13 @@
         }
         .carousel-slide img {
             width: 100%;
-            height: auto;
-            border-radius: 22px;
-            max-height: 350px;
+            height: 410px;
+            border-radius: 28px;
             object-fit: cover;
+            object-position: center;
+            /* Para garantir que não deforme: */
+            aspect-ratio: 16/9;
+            background: #181c22;
         }
         .carousel-slide.active {
             display: block;
@@ -106,26 +115,26 @@
             background: rgba(30,30,36,0.62);
             color: #fff;
             border: none;
-            font-size: 2rem;
-            padding: 10px 16px;
+            font-size: 2.4rem;
+            padding: 12px 18px;
             border-radius: 50%;
             cursor: pointer;
             z-index: 2;
             transition: background 0.2s;
         }
-        .carousel-arrow.left { left: -32px; }
-        .carousel-arrow.right { right: -32px; }
+        .carousel-arrow.left { left: -36px; }
+        .carousel-arrow.right { right: -36px; }
         .carousel-arrow:hover { background: var(--primary); color: var(--bg);}
         .carousel-dots {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 18px 0 10px 0;
+            margin: 22px 0 14px 0;
         }
         .carousel-dot {
-            height: 10px;
-            width: 10px;
-            margin: 0 6px;
+            height: 13px;
+            width: 13px;
+            margin: 0 7px;
             background: #555a65;
             border-radius: 50%;
             display: inline-block;
@@ -135,10 +144,17 @@
         .carousel-dot.active {
             background: var(--primary);
         }
-        @media (max-width: 700px) {
-            .carousel-container { max-width: 96vw; }
+        @media (max-width: 900px) {
+            .carousel-container { max-width: 98vw; }
+            .carousel-slide img { height: 250px; }
             .carousel-arrow.left { left: 8px; }
             .carousel-arrow.right { right: 8px; }
+        }
+        @media (max-width: 600px) {
+            .hero { padding-bottom: 120px;}
+            .hero h1 { font-size: 1.7rem;}
+            .carousel-container { max-width: 100vw; }
+            .carousel-slide img { height: 170px; aspect-ratio: 16/9; }
         }
 
         .container { max-width: 1150px; margin: 0 auto; padding: 0 16px 30px 16px; }
@@ -250,7 +266,13 @@
         }
         .promo-tag { background-color: var(--primary); color: var(--bg2); padding: 8px 15px; border-radius: 5px; font-size: 0.98rem; font-weight: 600;}
         .economy-tag { background-color: var(--economy); color: var(--bg2); padding: 8px 15px; border-radius: 5px; font-size: 0.98rem; font-weight: 600; margin-bottom: 0; margin-top: 10px;}
-        .plan-body .btn { margin-top: auto;}
+        .plan-body .btn {
+            margin-top: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
         .whatsapp-float {
             position: fixed;
             bottom: 30px;
@@ -272,13 +294,29 @@
             transform: scale(1.08) rotate(8deg);
             box-shadow: 0 8px 30px rgba(37,211,102,0.45);
         }
-        @media (max-width: 900px) {
-            .carousel-container { max-width: 99vw; }
-            .carousel-slide img { max-height: 220px; }
-        }
-        @media (max-width: 600px) {
-            .hero { padding-bottom: 120px;}
-            .hero h1 { font-size: 1.7rem;}
+        /* Centralizar o card de 12 meses */
+        @media (min-width: 900px) {
+            .plans {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 28px;
+                justify-content: center;
+            }
+            .plan {
+                flex: 1 1 310px;
+                max-width: 350px;
+                min-width: 310px;
+            }
+            .plan.centralizado {
+                order: 4;
+                margin-left: auto;
+                margin-right: auto;
+                max-width: 370px;
+                min-width: 330px;
+                z-index: 2;
+                box-shadow: 0 0 0 3px var(--primary), 0 12px 32px rgba(0,0,0,0.19);
+                transform: scale(1.07);
+            }
         }
     </style>
 </head>
@@ -373,8 +411,8 @@
                         <a href="https://wa.me/5521977317084?text=Quero%20assinar%20o%20plano%20de%206%20meses" class="btn">ASSINAR</a>
                     </div>
                 </div>
-                <!-- Plano 12 Meses (Destaque) -->
-                <div class="plan highlight">
+                <!-- Plano 12 Meses (Destaque, CENTRALIZADO) -->
+                <div class="plan highlight centralizado">
                     <div class="highlight-badge">MELHOR OFERTA</div>
                     <div class="plan-header">
                         <h3>12 MESES</h3>
