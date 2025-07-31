@@ -25,7 +25,6 @@
             margin: 0;
             padding: 0;
         }
-        /* HERO BANNER COM IMAGEM DE FUNDO */
         .hero {
             background: linear-gradient(rgba(24,28,34,0.82), rgba(24,28,34,0.93)), url('images/jogosemtravar.jpeg') center/cover no-repeat;
             color: var(--text);
@@ -56,24 +55,51 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: var(--primary);
+            background: linear-gradient(90deg, #ffa600 0%, #ff9000 100%);
             color: var(--bg);
-            padding: 16px 38px;
-            border-radius: 32px;
+            padding: 18px 0;
+            border-radius: 40px;
             text-decoration: none;
-            font-weight: 700;
-            font-size: 1.15rem;
-            transition: background 0.2s, box-shadow 0.2s, color 0.2s;
-            box-shadow: 0 4px 15px rgba(255,153,0,0.14);
-            letter-spacing: 1px;
+            font-weight: 800;
+            font-size: 1.23rem;
+            letter-spacing: 1.5px;
             border: none;
             outline: none;
             width: 100%;
-            max-width: 320px;
+            max-width: 340px;
             margin: 0 auto;
             text-align: center;
+            box-shadow: 0 6px 32px rgba(255,153,0,0.18), 0 2px 6px rgba(0,0,0,0.08);
+            transition: 
+                background 0.2s, 
+                box-shadow 0.22s, 
+                transform 0.18s, 
+                color 0.2s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
-        .btn:hover { background: var(--primary-dark); color: var(--text); }
+        .btn::after {
+            content: "";
+            position: absolute;
+            left: -60%;
+            top: 0;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(120deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.04) 100%);
+            transform: skewX(-24deg);
+            transition: left 0.33s;
+            pointer-events: none;
+        }
+        .btn:hover, .btn:focus {
+            background: linear-gradient(90deg, #ffb347 0%, #ffa600 100%);
+            color: #1a1a1a;
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 12px 40px rgba(255,153,0,0.23), 0 4px 12px rgba(0,0,0,0.10);
+        }
+        .btn:hover::after, .btn:focus::after {
+            left: 120%;
+        }
 
         /* CAROUSEL */
         .carousel-container {
@@ -101,7 +127,6 @@
             border-radius: 28px;
             object-fit: cover;
             object-position: center;
-            /* Para garantir que não deforme: */
             aspect-ratio: 16/9;
             background: #181c22;
         }
@@ -208,19 +233,62 @@
             color: var(--primary);
             text-shadow: none;
         }
-        .plan-price { font-size: 2.3rem; font-weight: 800; margin: 20px 0 10px 0; text-align: center; color: var(--accent);}
-        .plan-price small { font-size: 1rem; font-weight: 500; opacity: 0.8; color: var(--muted);}
+        .plan-price { 
+            font-size: 2.3rem; 
+            font-weight: 800; 
+            margin: 40px 0 24px 0; /* mais espaço para tag promo */
+            text-align: center; 
+            color: var(--accent);
+        }
+        .plan-price small { 
+            font-size: 1rem; 
+            font-weight: 500; 
+            opacity: 0.8; 
+            color: var(--muted);
+        }
         .plan-body {
             padding: 28px;
             flex: 1 1 auto;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+        }
+        .promo-tag, .economy-tag {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            width: fit-content;
+            max-width: 100%;
+        }
+        .promo-tag { 
+            background-color: var(--primary); 
+            color: var(--bg2); 
+            padding: 8px 15px; 
+            border-radius: 5px; 
+            font-size: 0.98rem; 
+            font-weight: 600;
+            margin-bottom: 24px; /* espaço abaixo */
+            margin-top: -2px; /* espaço acima */
+        }
+        .economy-tag { 
+            background-color: var(--economy); 
+            color: var(--bg2); 
+            padding: 8px 15px; 
+            border-radius: 5px; 
+            font-size: 0.98rem; 
+            font-weight: 600; 
+            margin-bottom: 28px; /* MAIS espaço abaixo da economia */
+            margin-top: 10px;
         }
         .plan-features {
             list-style: none;
             padding: 0;
-            margin: 0 0 22px;
+            margin: 0 0 22px 0;
+            text-align: left;
+            display: inline-block;
         }
         .plan-features li {
             padding: 11px 0;
@@ -237,10 +305,19 @@
             margin-right: 10px;
             font-size: 1.2em;
         }
+        .plan-body .btn {
+            margin-top: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+            max-width: 340px;
+        }
         .highlight { border: 2.5px solid var(--primary);}
         .highlight-badge {
             position: absolute;
-            top: 16px;
+            top: 12px;
             right: 22px;
             background-color: var(--highlight-badge);
             color: var(--bg2);
@@ -253,25 +330,6 @@
             border: 2px solid var(--primary);
             pointer-events: none;
             letter-spacing: 1px;
-        }
-        .promo-tag, .economy-tag {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            margin-bottom: 12px;
-            margin-top: 0;
-            text-align: center;
-            width: fit-content;
-            max-width: 100%;
-        }
-        .promo-tag { background-color: var(--primary); color: var(--bg2); padding: 8px 15px; border-radius: 5px; font-size: 0.98rem; font-weight: 600;}
-        .economy-tag { background-color: var(--economy); color: var(--bg2); padding: 8px 15px; border-radius: 5px; font-size: 0.98rem; font-weight: 600; margin-bottom: 0; margin-top: 10px;}
-        .plan-body .btn {
-            margin-top: auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
         }
         .whatsapp-float {
             position: fixed;
@@ -294,7 +352,6 @@
             transform: scale(1.08) rotate(8deg);
             box-shadow: 0 8px 30px rgba(37,211,102,0.45);
         }
-        /* Centralizar o card de 12 meses */
         @media (min-width: 900px) {
             .plans {
                 display: flex;
@@ -361,6 +418,8 @@
                     </div>
                     <div class="plan-body">
                         <div class="plan-price">R$35<small>/mês</small></div>
+                        <!-- Espaço para manter alinhamento visual -->
+                        <span class="promo-tag" style="visibility: hidden;">---</span>
                         <ul class="plan-features">
                             <li>+1000 Canais HD</li>
                             <li>Filmes e Séries</li>
@@ -368,6 +427,7 @@
                             <li>Suporte 24h</li>
                             <li>Teste 3h Grátis</li>
                         </ul>
+                        <span class="economy-tag" style="visibility: hidden;">---</span>
                         <a href="https://wa.me/5521977317084?text=Quero%20assinar%20o%20plano%20de%201%20mês" class="btn">ASSINAR</a>
                     </div>
                 </div>
@@ -388,6 +448,7 @@
                             <li>Teste 3h Grátis</li>
                             <li>+15 dias de bônus</li>
                         </ul>
+                        <span class="economy-tag" style="visibility: hidden;">---</span>
                         <a href="https://wa.me/5521977317084?text=Quero%20assinar%20o%20plano%20de%203%20meses" class="btn">ASSINAR</a>
                     </div>
                 </div>
