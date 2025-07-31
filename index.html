@@ -377,6 +377,132 @@
                 margin-top: 40px; /* ADICIONADO: espaço extra acima para separar */
             }
         }
+
+        /* Depoimento em vídeo */
+        .testimonial-section {
+            background: var(--bg2);
+            border-radius: 18px;
+            margin: 48px auto 32px auto;
+            max-width: 650px;
+            padding: 38px 18px 28px 18px;
+            box-shadow: 0 6px 32px rgba(0,0,0,0.13);
+            text-align: center;
+        }
+        .testimonial-title h2 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+        .testimonial-title p {
+            color: var(--muted);
+            font-size: 1.05rem;
+            margin-bottom: 18px;
+        }
+        .testimonial-video-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .testimonial-video {
+            width: 100%;
+            max-width: 540px;
+            border-radius: 15px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+            background: #121418;
+        }
+
+        /* Comentários */
+        .comments-section {
+            background: var(--card-bg);
+            border-radius: 18px;
+            margin: 48px auto 24px auto;
+            max-width: 650px;
+            padding: 38px 18px 34px 18px;
+            box-shadow: 0 6px 32px rgba(0,0,0,0.09);
+            text-align: center;
+        }
+        .comments-title h2 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+        .comments-title p {
+            color: var(--muted);
+            font-size: 1.05rem;
+            margin-bottom: 18px;
+        }
+        .comment-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 26px;
+        }
+        .comment-form input, .comment-form textarea {
+            width: 100%;
+            max-width: 430px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: 1.5px solid var(--primary);
+            background: var(--bg2);
+            color: var(--text);
+            font-size: 1rem;
+            outline: none;
+            resize: none;
+        }
+        .comment-form textarea {
+            min-height: 60px;
+            max-height: 160px;
+        }
+        .comment-form button {
+            background: var(--primary);
+            color: var(--bg);
+            border-radius: 30px;
+            border: none;
+            font-weight: 700;
+            font-size: 1.08rem;
+            padding: 12px 36px;
+            margin-top: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .comment-form button:hover {
+            background: var(--primary-dark);
+            color: #fff;
+        }
+        .comments-list {
+            margin-top: 16px;
+            text-align: left;
+            max-width: 430px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .comment-item {
+            background: var(--bg2);
+            border-radius: 8px;
+            margin-bottom: 18px;
+            padding: 12px 16px 10px 16px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.09);
+        }
+        .comment-item .comment-author {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 3px;
+            font-size: 1.02rem;
+        }
+        .comment-item .comment-date {
+            color: var(--muted);
+            font-size: 0.92rem;
+            float: right;
+            margin-top: 1px;
+        }
+        .comment-item .comment-text {
+            margin-top: 2px;
+            color: var(--text);
+            font-size: 1.07rem;
+        }
     </style>
 </head>
 <body>
@@ -500,6 +626,37 @@
         </section>
     </div>
 
+    <!-- Depoimento em Vídeo -->
+    <div class="testimonial-section" id="depoimento">
+        <div class="testimonial-title">
+            <h2>O que nossos clientes dizem</h2>
+            <p>Veja o depoimento de quem já é assinante:</p>
+        </div>
+        <div class="testimonial-video-wrapper">
+            <!-- Substitua o src pelo seu vídeo real -->
+            <video class="testimonial-video" controls poster="images/poster-video.jpg">
+                <source src="images/videoCliente.mp4" type="video/mp4">
+                Seu navegador não suporta a reprodução de vídeo.
+            </video>
+        </div>
+    </div>
+
+    <!-- Comentários -->
+    <div class="comments-section" id="comentarios">
+        <div class="comments-title">
+            <h2>Deixe seu comentário</h2>
+            <p>Sua opinião é muito importante para nós:</p>
+        </div>
+        <form class="comment-form" onsubmit="return addComment(event)">
+            <input type="text" id="nome-comentario" placeholder="Seu nome" required>
+            <textarea id="texto-comentario" placeholder="Deixe seu comentário aqui" required></textarea>
+            <button type="submit">Enviar comentário</button>
+        </form>
+        <div class="comments-list" id="comments-list">
+            <!-- Comentários aparecerão aqui -->
+        </div>
+    </div>
+
     <a href="https://wa.me/5521977317084" class="whatsapp-float" target="_blank">
         <span style="font-size: 1.8rem;">💬</span>
     </a>
@@ -566,6 +723,45 @@
             });
         });
     });
+
+    // Comentários em LocalStorage (simples para demonstração)
+    function addComment(e) {
+        e.preventDefault();
+        const nome = document.getElementById('nome-comentario').value.trim();
+        const texto = document.getElementById('texto-comentario').value.trim();
+        if (!nome || !texto) return false;
+        const data = new Date();
+        const comentario = {
+            nome,
+            texto,
+            data: data.toLocaleDateString('pt-BR') + ' ' + data.toLocaleTimeString('pt-BR', {hour: '2-digit', minute: '2-digit'})
+        };
+        let comentarios = JSON.parse(localStorage.getItem('comentariosStreaming')) || [];
+        comentarios.push(comentario);
+        localStorage.setItem('comentariosStreaming', JSON.stringify(comentarios));
+        document.getElementById('nome-comentario').value = '';
+        document.getElementById('texto-comentario').value = '';
+        renderComments();
+        return false;
+    }
+    function renderComments() {
+        const div = document.getElementById('comments-list');
+        let comentarios = JSON.parse(localStorage.getItem('comentariosStreaming')) || [];
+        div.innerHTML = '';
+        if (comentarios.length === 0) {
+            div.innerHTML = '<p style="color:var(--muted);text-align:center;">Nenhum comentário ainda. Seja o primeiro!</p>';
+            return;
+        }
+        comentarios.slice().reverse().forEach(c => {
+            const el = document.createElement('div');
+            el.className = 'comment-item';
+            el.innerHTML = `<div class="comment-author">${c.nome}</div>
+                            <div class="comment-date">${c.data}</div>
+                            <div class="comment-text">${c.texto}</div>`;
+            div.appendChild(el);
+        });
+    }
+    window.addEventListener('DOMContentLoaded', renderComments);
     </script>
 </body>
 </html>
