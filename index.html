@@ -18,7 +18,6 @@
             --highlight-badge: #ffe066;
             --economy: #27c47b;
         }
-
         html, body {
             background: var(--bg);
             color: var(--text);
@@ -26,14 +25,11 @@
             margin: 0;
             padding: 0;
         }
-
         .hero {
-            background: linear-gradient(rgba(24,28,34,0.90), rgba(24,28,34,0.95)), url('images/jogosemtravar');
-            background-size: cover;
-            background-position: center;
+            background: linear-gradient(rgba(24,28,34,0.90), rgba(24,28,34,0.95));
             color: var(--text);
             text-align: center;
-            padding: 80px 20px 60px 20px;
+            padding: 80px 20px 50px 20px;
             position: relative;
         }
         .hero h1 {
@@ -48,21 +44,6 @@
             max-width: 700px;
             margin: 0 auto 28px;
             opacity: 0.9;
-        }
-        .hero-images-row {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 18px;
-            margin-top: 38px;
-            margin-bottom: 0;
-        }
-        .hero-images-row img {
-            max-width: 210px;
-            width: 100%;
-            border-radius: 16px;
-            box-shadow: 0 2px 16px rgba(0,0,0,0.19);
-            background: var(--card-bg);
         }
         .btn {
             display: block;
@@ -82,50 +63,27 @@
             border: none;
             outline: none;
             letter-spacing: 1px;
+            max-width: 300px;
         }
-        .btn:hover {
-            background: var(--primary-dark);
-            color: var(--text);
-            box-shadow: 0 8px 22px rgba(255,153,0,0.20);
-        }
-
-        .container {
-            max-width: 1150px;
-            margin: 0 auto;
-            padding: 48px 16px 30px 16px;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 38px;
-        }
-        .section-title h2 {
-            font-size: 2.0rem;
-            margin-bottom: 10px;
-            color: var(--primary);
-            font-weight: 800;
-            letter-spacing: 1px;
-        }
-        .section-title p {
-            color: var(--muted);
-            margin: 0;
-            font-size: 1.05rem;
-        }
-        .promo-gallery {
+        .btn:hover { background: var(--primary-dark); color: var(--text); }
+        .container { max-width: 1150px; margin: 0 auto; padding: 48px 16px 30px 16px; }
+        .section-title { text-align: center; margin-bottom: 38px; }
+        .section-title h2 { font-size: 2.0rem; margin-bottom: 10px; color: var(--primary); font-weight: 800; letter-spacing: 1px; }
+        .section-title p { color: var(--muted); margin: 0; font-size: 1.05rem; }
+        .promo-gallery, .feature-row {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 30px;
             margin-bottom: 38px;
         }
-        .promo-gallery img {
+        .promo-gallery img, .feature-row img {
             max-width: 340px;
             width: 100%;
             border-radius: 16px;
             box-shadow: 0 6px 18px rgba(0,0,0,0.13);
             background: var(--card-bg);
         }
-
         .plans {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
@@ -157,29 +115,10 @@
             position: relative;
             z-index: 1;
         }
-        .highlight .plan-header {
-            background-color: var(--plan-highlight);
-        }
-        .plan-header h3 {
-            margin: 0;
-            font-size: 1.4rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: var(--primary);
-        }
-        .plan-price {
-            font-size: 2.3rem;
-            font-weight: 800;
-            margin: 20px 0 10px 0;
-            text-align: center;
-            color: var(--accent);
-        }
-        .plan-price small {
-            font-size: 1rem;
-            font-weight: 500;
-            opacity: 0.8;
-            color: var(--muted);
-        }
+        .highlight .plan-header { background-color: var(--plan-highlight);}
+        .plan-header h3 { margin: 0; font-size: 1.4rem; font-weight: 700; letter-spacing: 2px; color: var(--primary);}
+        .plan-price { font-size: 2.3rem; font-weight: 800; margin: 20px 0 10px 0; text-align: center; color: var(--accent);}
+        .plan-price small { font-size: 1rem; font-weight: 500; opacity: 0.8; color: var(--muted);}
         .plan-body {
             padding: 28px;
             flex: 1 1 auto;
@@ -207,9 +146,7 @@
             margin-right: 10px;
             font-size: 1.2em;
         }
-        .highlight {
-            border: 2.5px solid var(--primary);
-        }
+        .highlight { border: 2.5px solid var(--primary);}
         .highlight-badge {
             position: absolute;
             top: 16px;
@@ -226,8 +163,7 @@
             pointer-events: none;
             letter-spacing: 1px;
         }
-        .promo-tag,
-        .economy-tag {
+        .promo-tag, .economy-tag {
             display: block;
             margin-left: auto;
             margin-right: auto;
@@ -237,27 +173,9 @@
             width: fit-content;
             max-width: 100%;
         }
-        .promo-tag {
-            background-color: var(--primary);
-            color: var(--bg2);
-            padding: 8px 15px;
-            border-radius: 5px;
-            font-size: 0.98rem;
-            font-weight: 600;
-        }
-        .economy-tag {
-            background-color: var(--economy);
-            color: var(--bg2);
-            padding: 8px 15px;
-            border-radius: 5px;
-            font-size: 0.98rem;
-            font-weight: 600;
-            margin-bottom: 0;
-            margin-top: 10px;
-        }
-        .plan-body .btn {
-            margin-top: auto;
-        }
+        .promo-tag { background-color: var(--primary); color: var(--bg2); padding: 8px 15px; border-radius: 5px; font-size: 0.98rem; font-weight: 600;}
+        .economy-tag { background-color: var(--economy); color: var(--bg2); padding: 8px 15px; border-radius: 5px; font-size: 0.98rem; font-weight: 600; margin-bottom: 0; margin-top: 10px;}
+        .plan-body .btn { margin-top: auto;}
         .whatsapp-float {
             position: fixed;
             bottom: 30px;
@@ -280,15 +198,14 @@
             box-shadow: 0 8px 30px rgba(37,211,102,0.45);
         }
         @media (max-width: 1024px) {
-            .promo-gallery img { max-width: 48vw; }
+            .promo-gallery img, .feature-row img { max-width: 48vw;}
         }
         @media (max-width: 768px) {
-            .hero { padding: 60px 10px 30px 10px; }
-            .hero-images-row img { max-width: 120px; }
-            .promo-gallery img { max-width: 90vw; }
-            .hero h1 { font-size: 1.6rem; }
-            .plans { grid-template-columns: 1fr; }
-            .highlight-badge { top: 10px; right: 8px; font-size: 0.8rem; padding: 7px 10px; }
+            .hero { padding: 60px 10px 30px 10px;}
+            .promo-gallery img, .feature-row img { max-width: 90vw;}
+            .hero h1 { font-size: 1.6rem;}
+            .plans { grid-template-columns: 1fr;}
+            .highlight-badge { top: 10px; right: 8px; font-size: 0.8rem; padding: 7px 10px;}
         }
     </style>
 </head>
@@ -296,18 +213,28 @@
     <section class="hero">
         <h1>TV Premium HD</h1>
         <p>Assista todos os canais de TV, filmes, séries e esportes em alta qualidade por um preço que cabe no seu bolso</p>
-        <a href="#planos" class="btn" style="max-width: 300px;">VER PLANOS</a>
-        <div class="hero-images-row">
-            <img src="https://user-images.githubusercontent.com/streamingrj/2.jpg" alt="Banner Futebol TurboX" loading="lazy">
-            <img src="https://user-images.githubusercontent.com/streamingrj/3.jpg" alt="Banner TV TurboX" loading="lazy">
-        </div>
+        <a href="#planos" class="btn">VER PLANOS</a>
+        <!-- LOCAL 1: Banner principal, imagem de futebol/esporte -->
+        <!-- COLOQUE A IMAGEM "FUTEBOL" AQUI -->
+        <img src="images/jogosemtravar.jpeg" alt="Assista Futebol TurboX" style="margin:32px auto 0 auto; max-width:340px; width:100%; border-radius:16px; box-shadow:0 6px 18px rgba(0,0,0,0.13); background:var(--card-bg); display:block;">
     </section>
 
     <div class="container">
-        <section class="promo-gallery">
-            <img src="https://user-images.githubusercontent.com/streamingrj/4.jpg" alt="Canais incríveis TurboX" loading="lazy">
-            <img src="https://user-images.githubusercontent.com/streamingrj/5.jpg" alt="Assine nossos planos TurboX" loading="lazy">
+
+        <!-- LOCAL 2: Destaques dos serviços logo após o hero -->
+        <section class="feature-row" style="margin-bottom: 38px;">
+            <!-- COLOQUE A IMAGEM "CANAIS TV" AQUI -->
+            <img src="images/+de1000canais.jpeg" alt="Mais de 1000 canais TurboX">
+            <!-- COLOQUE A IMAGEM "CANAIS INCRÍVEIS" AQUI -->
+            <img src="images/canais+incriveis.jpeg" alt="Canais incríveis TurboX">
         </section>
+
+        <!-- LOCAL 3: Antes dos planos, chamada para assinatura -->
+        <section class="promo-gallery">
+            <!-- COLOQUE A IMAGEM "ASSINE NOSSOS PLANOS" AQUI -->
+            <img src="images/assinenossosplanos.jpeg" alt="Assine nossos planos TurboX">
+        </section>
+
         <section id="planos">
             <div class="section-title">
                 <h2>Nossos Planos</h2>
