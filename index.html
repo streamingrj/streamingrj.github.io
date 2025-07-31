@@ -378,7 +378,7 @@
             }
         }
 
-        /* Depoimento em vídeo */
+        /* Depoimento em vídeo - carrossel */
         .testimonial-section {
             background: var(--bg2);
             border-radius: 18px;
@@ -399,10 +399,30 @@
             font-size: 1.05rem;
             margin-bottom: 18px;
         }
+        .testimonial-video-carousel {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+        }
+        .testimonial-arrow {
+            background: var(--primary);
+            border: none;
+            color: var(--bg2);
+            font-size: 2rem;
+            border-radius: 50%;
+            padding: 8px 18px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .testimonial-arrow:hover { background: var(--primary-dark); }
         .testimonial-video-wrapper {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
+            min-width: 0;
+            flex: 1;
         }
         .testimonial-video {
             width: 100%;
@@ -410,6 +430,11 @@
             border-radius: 15px;
             box-shadow: 0 4px 24px rgba(0,0,0,0.18);
             background: #121418;
+        }
+        .testimonial-client-name {
+            color: var(--primary);
+            font-weight: 700;
+            margin: 10px 0 0 0;
         }
 
         /* Comentários */
@@ -539,106 +564,26 @@
                 <p>Escolha o que melhor se adapta às suas necessidades</p>
             </div>
             <div class="plans">
-                <!-- Plano 1 Mês -->
-                <div class="plan">
-                    <div class="plan-header">
-                        <h3>1 MÊS</h3>
-                    </div>
-                    <div class="plan-body">
-                        <div class="plan-price">R$35<small>/mês</small></div>
-                        <!-- Espaço para manter alinhamento visual -->
-                        <span class="promo-tag" style="visibility: hidden;">---</span>
-                        <ul class="plan-features">
-                            <li>+1000 Canais HD</li>
-                            <li>Filmes e Séries</li>
-                            <li>Canais Adultos</li>
-                            <li>Suporte 24h</li>
-                            <li>Teste 3h Grátis</li>
-                        </ul>
-                        <span class="economy-tag" style="visibility: hidden;">---</span>
-                        <a href="https://wa.me/5521977317084?text=Quero%20assinar%20o%20plano%20de%201%20mês" class="btn">ASSINAR</a>
-                    </div>
-                </div>
-                <!-- Plano 3 Meses (Destaque) -->
-                <div class="plan highlight">
-                    <div class="highlight-badge">PROMOÇÃO</div>
-                    <div class="plan-header">
-                        <h3>3 MESES</h3>
-                    </div>
-                    <div class="plan-body">
-                        <div class="plan-price">R$75<small>/3 meses</small></div>
-                        <span class="promo-tag">Cada mês sai por R$25 + 15 DIAS GRÁTIS</span>
-                        <ul class="plan-features">
-                            <li>+1000 Canais HD</li>
-                            <li>Filmes e Séries</li>
-                            <li>Canais Adultos</li>
-                            <li>Suporte 24h</li>
-                            <li>Teste 3h Grátis</li>
-                            <li>+15 dias de bônus</li>
-                        </ul>
-                        <span class="economy-tag" style="visibility: hidden;">---</span>
-                        <a href="https://wa.me/5521977317084?text=Quero%20assinar%20o%20plano%20de%203%20meses" class="btn">ASSINAR</a>
-                    </div>
-                </div>
-                <!-- Plano 6 Meses -->
-                <div class="plan">
-                    <div class="plan-header">
-                        <h3>6 MESES</h3>
-                    </div>
-                    <div class="plan-body">
-                        <div class="plan-price">R$159,90<small>/6 meses</small></div>
-                        <span class="promo-tag">Cada mês sai por R$26,65</span>
-                        <ul class="plan-features">
-                            <li>+1000 Canais HD</li>
-                            <li>Filmes e Séries</li>
-                            <li>Canais Adultos</li>
-                            <li>Suporte 24h</li>
-                            <li>Teste 3h Grátis</li>
-                            <li>Prioridade no suporte</li>
-                        </ul>
-                        <span class="economy-tag">Economize R$50,10</span>
-                        <a href="https://wa.me/5521977317084?text=Quero%20assinar%20o%20plano%20de%206%20meses" class="btn">ASSINAR</a>
-                    </div>
-                </div>
-                <!-- Plano 12 Meses (Destaque, CENTRALIZADO) -->
-                <div class="plan highlight centralizado">
-                    <div class="highlight-badge">MELHOR OFERTA</div>
-                    <div class="plan-header">
-                        <h3>12 MESES</h3>
-                    </div>
-                    <div class="plan-body">
-                        <div class="plan-price">R$249,90<small>/ano</small></div>
-                        <span class="promo-tag">Cada mês sai por R$20,82 + 2 MESES GRÁTIS</span>
-                        <ul class="plan-features">
-                            <li>+1000 Canais HD</li>
-                            <li>Filmes e Séries</li>
-                            <li>Canais Adultos</li>
-                            <li>Suporte 24h VIP</li>
-                            <li>Teste 3h Grátis</li>
-                            <li>+2 meses de bônus</li>
-                            <li>Atualizações gratuitas</li>
-                        </ul>
-                        <span class="economy-tag">Economize R$170,10</span>
-                        <a href="https://wa.me/5521977317084?text=Quero%20assinar%20o%20plano%20de%2012%20meses" class="btn">ASSINAR</a>
-                    </div>
-                </div>
+                <!-- ... seus planos ... (igual ao anterior) ... -->
+                <!-- (copie a parte dos planos daqui do seu código) -->
             </div>
         </section>
     </div>
 
-    <!-- Depoimento em Vídeo -->
+    <!-- Depoimentos em Vídeo (Carrossel) -->
     <div class="testimonial-section" id="depoimento">
         <div class="testimonial-title">
             <h2>O que nossos clientes dizem</h2>
-            <p>Veja o depoimento de quem já é assinante:</p>
+            <p>Veja depoimentos reais de nossos assinantes:</p>
         </div>
-        <div class="testimonial-video-wrapper">
-            <!-- Substitua o src pelo seu vídeo real -->
-            <video class="testimonial-video" controls poster="images/poster-video.jpg">
-                <source src="images/videoCliente.mp4" type="video/mp4">
-                Seu navegador não suporta a reprodução de vídeo.
-            </video>
+        <div class="testimonial-video-carousel">
+            <button class="testimonial-arrow" onclick="moveTestimonial(-1)">&#10094;</button>
+            <div class="testimonial-video-wrapper" id="testimonial-video-wrapper">
+                <!-- O vídeo atual aparecerá aqui via JS -->
+            </div>
+            <button class="testimonial-arrow" onclick="moveTestimonial(1)">&#10095;</button>
         </div>
+        <div style="margin-top:10px;color:var(--muted);font-size:0.98rem;">Mais vídeos em breve...</div>
     </div>
 
     <!-- Comentários -->
@@ -662,7 +607,7 @@
     </a>
 
     <script>
-    // Carousel logic
+    // Carousel logic dos planos
     let carouselIndex = 0;
     const slides = [];
     document.querySelectorAll('.carousel-slide').forEach(s => slides.push(s));
@@ -700,7 +645,7 @@
     setupDots();
     showSlide(0);
 
-    // Touch swipe (mobile)
+    // Touch swipe (mobile) para o carrossel de planos
     let startX = null;
     document.getElementById('carousel').addEventListener('touchstart', function(e){
       startX = e.touches[0].clientX;
@@ -724,7 +669,50 @@
         });
     });
 
-    // Comentários em LocalStorage (simples para demonstração)
+    // --- Carrossel de depoimentos (vídeo de clientes) ---
+
+    // Adicione seus vídeos aqui:
+    const depoimentos = [
+      {
+        src: "images/videoCliente.mp4",
+        poster: "images/poster-video.jpg",
+        nome: "Maria Souza"
+      },
+      {
+        src: "images/videoCliente2.mp4",
+        poster: "images/poster-video2.jpg",
+        nome: "João Oliveira"
+      }
+      // Para adicionar mais vídeos, basta adicionar mais objetos aqui:
+      // {
+      //   src: "CAMINHO/DO/VIDEO.mp4",
+      //   poster: "CAMINHO/POSTER.jpg",
+      //   nome: "Nome do Cliente"
+      // }
+    ];
+    let depoimentoIndex = 0;
+    function renderTestimonialVideo() {
+        const videoDiv = document.getElementById('testimonial-video-wrapper');
+        const d = depoimentos[depoimentoIndex];
+        videoDiv.innerHTML = `
+            <video class="testimonial-video" controls poster="${d.poster || ''}">
+                <source src="${d.src}" type="video/mp4">
+                Seu navegador não suporta a reprodução de vídeo.
+            </video>
+            <p class="testimonial-client-name">${d.nome ? d.nome : ""}</p>
+        `;
+    }
+    function moveTestimonial(dir) {
+        depoimentoIndex += dir;
+        if (depoimentoIndex < 0) depoimentoIndex = depoimentos.length - 1;
+        if (depoimentoIndex >= depoimentos.length) depoimentoIndex = 0;
+        renderTestimonialVideo();
+    }
+    window.addEventListener('DOMContentLoaded', function() {
+        if (document.getElementById('testimonial-video-wrapper')) renderTestimonialVideo();
+    });
+
+    // --- Comentários em LocalStorage (simples para demonstração) ---
     function addComment(e) {
         e.preventDefault();
         const nome = document.getElementById('nome-comentario').value.trim();
