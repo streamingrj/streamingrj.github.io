@@ -6,229 +6,232 @@
     <title>TV Premium HD - Assinatura Digital</title>
     <style>
         :root {
-            --primary: #FF6B00;
-            --dark: #1A1A1A;
-            --light: #FFFFFF;
-            --gray: #F5F5F5;
+            --primary: #FF9900;
+            --primary-dark: #e87e00;
+            --bg: #181c22;
+            --bg2: #232933;
+            --card-bg: #232933;
+            --text: #F2F4F8;
+            --muted: #b0b9c6;
+            --accent: #1DDB7B;
+            --plan-highlight: #252b32;
+            --highlight-badge: #ffe066;
+            --economy: #27c47b;
         }
-        
-        body {
+
+        html, body {
+            background: var(--bg);
+            color: var(--text);
             font-family: 'Segoe UI', system-ui, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: var(--gray);
-            color: var(--dark);
-            line-height: 1.6;
         }
-        
+
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('images/jogosemtravar.jpeg');
+            background: linear-gradient(rgba(24,28,34,0.90), rgba(24,28,34,0.95)), url('images/jogosemtravar');
             background-size: cover;
             background-position: center;
-            color: var(--light);
+            color: var(--text);
             text-align: center;
-            padding: 100px 20px;
+            padding: 80px 20px 60px 20px;
             position: relative;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            font-weight: 800;
+            color: var(--accent);
+            letter-spacing: 2px;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 28px;
+            opacity: 0.9;
         }
         .hero-images-row {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 24px;
-            margin-top: 40px;
+            gap: 18px;
+            margin-top: 38px;
             margin-bottom: 0;
         }
         .hero-images-row img {
-            max-width: 220px;
+            max-width: 210px;
             width: 100%;
-            border-radius: 14px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.19);
+            background: var(--card-bg);
         }
-        
-        .hero h1 {
-            font-size: 2.8rem;
-            margin-bottom: 20px;
-            font-weight: 800;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
-            opacity: 0.9;
-        }
-        
         .btn {
             display: block;
             background-color: var(--primary);
-            color: var(--light);
-            padding: 15px 35px;
-            border-radius: 50px;
+            color: var(--bg);
+            padding: 14px 32px;
+            border-radius: 32px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 1.1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255,107,0,0.3);
+            transition: background 0.2s, box-shadow 0.2s, color 0.2s;
+            box-shadow: 0 4px 15px rgba(255,153,0,0.14);
             text-align: center;
             width: 100%;
             box-sizing: border-box;
             margin: 0 auto;
             border: none;
             outline: none;
+            letter-spacing: 1px;
         }
-        
         .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255,107,0,0.4);
+            background: var(--primary-dark);
+            color: var(--text);
+            box-shadow: 0 8px 22px rgba(255,153,0,0.20);
         }
-        
+
         .container {
-            max-width: 1200px;
+            max-width: 1150px;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 48px 16px 30px 16px;
         }
-        
+
         .section-title {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 38px;
         }
-        
         .section-title h2 {
-            font-size: 2.2rem;
-            margin-bottom: 15px;
-            color: var(--dark);
+            font-size: 2.0rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+            font-weight: 800;
+            letter-spacing: 1px;
         }
-        
+        .section-title p {
+            color: var(--muted);
+            margin: 0;
+            font-size: 1.05rem;
+        }
         .promo-gallery {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 32px;
-            margin-bottom: 40px;
+            gap: 30px;
+            margin-bottom: 38px;
         }
         .promo-gallery img {
-            max-width: 350px;
+            max-width: 340px;
             width: 100%;
-            border-radius: 18px;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.11);
-            background: #fff;
-            margin-bottom: 0;
+            border-radius: 16px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.13);
+            background: var(--card-bg);
         }
 
         .plans {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+            gap: 28px;
             margin-bottom: 60px;
         }
-        
         .plan {
-            background: var(--light);
+            background: var(--card-bg);
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            transition: box-shadow 0.3s, transform 0.3s;
             position: relative;
             display: flex;
             flex-direction: column;
             min-height: 100%;
         }
-        
         .plan:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            transform: translateY(-8px) scale(1.015);
+            box-shadow: 0 16px 44px rgba(0,0,0,0.18);
         }
-        
         .plan-header {
-            background-color: var(--primary);
-            color: var(--light);
-            padding: 50px 25px 25px 25px; /* espaço extra para o badge */
+            background-color: var(--primary-dark);
+            color: var(--text);
+            padding: 50px 25px 25px 25px;
             text-align: center;
             border-top-left-radius: 15px;
             border-top-right-radius: 15px;
             position: relative;
             z-index: 1;
         }
-        
+        .highlight .plan-header {
+            background-color: var(--plan-highlight);
+        }
         .plan-header h3 {
             margin: 0;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--primary);
         }
-        
         .plan-price {
-            font-size: 2.5rem;
+            font-size: 2.3rem;
             font-weight: 800;
-            margin: 20px 0;
+            margin: 20px 0 10px 0;
             text-align: center;
-            color: var(--dark);
+            color: var(--accent);
         }
-        
         .plan-price small {
             font-size: 1rem;
             font-weight: 500;
             opacity: 0.8;
+            color: var(--muted);
         }
-        
         .plan-body {
-            padding: 30px;
+            padding: 28px;
             flex: 1 1 auto;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
         }
-        
         .plan-features {
             list-style: none;
             padding: 0;
-            margin: 0 0 30px;
+            margin: 0 0 22px;
         }
-        
         .plan-features li {
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            padding: 11px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
             display: flex;
             align-items: center;
+            color: var(--text);
+            font-size: 1.02rem;
         }
-        
         .plan-features li:before {
             content: "✓";
             color: var(--primary);
             font-weight: bold;
             margin-right: 10px;
+            font-size: 1.2em;
         }
-        
         .highlight {
-            border: 3px solid var(--primary);
+            border: 2.5px solid var(--primary);
         }
-        
-        .highlight .plan-header {
-            background-color: var(--dark);
-        }
-        
         .highlight-badge {
             position: absolute;
-            top: 18px;
-            right: 28px;
-            background-color: #FFCC00;
-            color: var(--dark);
+            top: 16px;
+            right: 22px;
+            background-color: var(--highlight-badge);
+            color: var(--bg2);
             padding: 6px 20px;
-            border-radius: 16px;
+            border-radius: 15px;
             font-weight: 700;
-            font-size: 0.89rem;
+            font-size: 0.95rem;
             box-shadow: 0 5px 15px rgba(0,0,0,0.08);
             z-index: 2;
             border: 2px solid var(--primary);
             pointer-events: none;
+            letter-spacing: 1px;
         }
-        
         .promo-tag,
         .economy-tag {
             display: block;
             margin-left: auto;
             margin-right: auto;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             margin-top: 0;
             text-align: center;
             width: fit-content;
@@ -236,78 +239,56 @@
         }
         .promo-tag {
             background-color: var(--primary);
-            color: white;
+            color: var(--bg2);
             padding: 8px 15px;
             border-radius: 5px;
-            font-size: 0.9rem;
+            font-size: 0.98rem;
             font-weight: 600;
         }
-        
         .economy-tag {
-            background-color: #25D366;
-            color: white;
+            background-color: var(--economy);
+            color: var(--bg2);
             padding: 8px 15px;
             border-radius: 5px;
-            font-size: 0.9rem;
+            font-size: 0.98rem;
             font-weight: 600;
             margin-bottom: 0;
             margin-top: 10px;
         }
-        
         .plan-body .btn {
             margin-top: auto;
         }
-        
         .whatsapp-float {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            background-color: #25D366;
+            background-color: var(--economy);
             color: white;
-            width: 70px;
-            height: 70px;
+            width: 66px;
+            height: 66px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2rem;
-            box-shadow: 0 5px 25px rgba(37,211,102,0.3);
+            box-shadow: 0 5px 25px rgba(37,211,102,0.32);
             z-index: 100;
             transition: all 0.3s ease;
         }
-        
         .whatsapp-float:hover {
-            transform: scale(1.1) rotate(10deg);
-            box-shadow: 0 8px 30px rgba(37,211,102,0.4);
+            transform: scale(1.08) rotate(8deg);
+            box-shadow: 0 8px 30px rgba(37,211,102,0.45);
         }
-        
         @media (max-width: 1024px) {
-            .promo-gallery img {
-                max-width: 48vw;
-            }
+            .promo-gallery img { max-width: 48vw; }
         }
         @media (max-width: 768px) {
-            .hero {
-                padding: 80px 20px;
-            }
-            .hero-images-row img {
-                max-width: 150px;
-            }
-            .promo-gallery img {
-                max-width: 90vw;
-            }
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            .plans {
-                grid-template-columns: 1fr;
-            }
-            .highlight-badge {
-                top: 10px;
-                right: 12px;
-                padding: 7px 12px;
-                font-size: 0.8rem;
-            }
+            .hero { padding: 60px 10px 30px 10px; }
+            .hero-images-row img { max-width: 120px; }
+            .promo-gallery img { max-width: 90vw; }
+            .hero h1 { font-size: 1.6rem; }
+            .plans { grid-template-columns: 1fr; }
+            .highlight-badge { top: 10px; right: 8px; font-size: 0.8rem; padding: 7px 10px; }
         }
     </style>
 </head>
@@ -317,18 +298,14 @@
         <p>Assista todos os canais de TV, filmes, séries e esportes em alta qualidade por um preço que cabe no seu bolso</p>
         <a href="#planos" class="btn" style="max-width: 300px;">VER PLANOS</a>
         <div class="hero-images-row">
-            <!-- Imagem 2: Futebol / Esportes -->
             <img src="https://user-images.githubusercontent.com/streamingrj/2.jpg" alt="Banner Futebol TurboX" loading="lazy">
-            <!-- Imagem 3: TV Canais -->
             <img src="https://user-images.githubusercontent.com/streamingrj/3.jpg" alt="Banner TV TurboX" loading="lazy">
         </div>
     </section>
 
     <div class="container">
         <section class="promo-gallery">
-            <!-- Imagem 4: Canais incríveis -->
             <img src="https://user-images.githubusercontent.com/streamingrj/4.jpg" alt="Canais incríveis TurboX" loading="lazy">
-            <!-- Imagem 5: Assine nossos planos -->
             <img src="https://user-images.githubusercontent.com/streamingrj/5.jpg" alt="Assine nossos planos TurboX" loading="lazy">
         </section>
         <section id="planos">
@@ -336,7 +313,6 @@
                 <h2>Nossos Planos</h2>
                 <p>Escolha o que melhor se adapta às suas necessidades</p>
             </div>
-            
             <div class="plans">
                 <!-- Plano 1 Mês -->
                 <div class="plan">
@@ -355,7 +331,6 @@
                         <a href="https://wa.me/5521977317084?text=Quero%20assinar%20o%20plano%20de%201%20mês" class="btn">ASSINAR</a>
                     </div>
                 </div>
-                
                 <!-- Plano 3 Meses (Destaque) -->
                 <div class="plan highlight">
                     <div class="highlight-badge">PROMOÇÃO</div>
@@ -376,7 +351,6 @@
                         <a href="https://wa.me/5521977317084?text=Quero%20assinar%20o%20plano%20de%203%20meses" class="btn">ASSINAR</a>
                     </div>
                 </div>
-                
                 <!-- Plano 6 Meses -->
                 <div class="plan">
                     <div class="plan-header">
@@ -397,7 +371,6 @@
                         <a href="https://wa.me/5521977317084?text=Quero%20assinar%20o%20plano%20de%206%20meses" class="btn">ASSINAR</a>
                     </div>
                 </div>
-                
                 <!-- Plano 12 Meses (Destaque) -->
                 <div class="plan highlight">
                     <div class="highlight-badge">MELHOR OFERTA</div>
