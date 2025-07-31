@@ -31,7 +31,7 @@
             color: var(--text);
             text-align: center;
             position: relative;
-            padding: 110px 20px 160px 20px;
+            padding: 110px 20px 180px 20px;
         }
         .hero-content {
             position: relative;
@@ -69,62 +69,82 @@
         }
         .btn:hover { background: var(--primary-dark); color: var(--text); }
 
-        /* CARD SOBREPOSTO AO HERO */
-        .hero-feature-card {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            bottom: -80px;
-            z-index: 3;
-            box-shadow: 0 10px 32px rgba(0,0,0,0.18);
-            border-radius: 18px;
-            overflow: hidden;
-            background: var(--card-bg);
-            max-width: 330px;
-            width: 95vw;
-            padding: 0;
-            transition: box-shadow 0.2s;
+        /* CAROUSEL */
+        .carousel-container {
+            width: 100%;
+            max-width: 420px;
+            margin: 0 auto 56px auto;
+            position: relative;
+            z-index: 10;
         }
-        .hero-feature-card img {
-            display: block;
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 22px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.22);
+            background: rgba(24,28,34,0.65);
+        }
+        .carousel-slide {
+            display: none;
+            transition: opacity 0.5s;
+            text-align: center;
+        }
+        .carousel-slide img {
             width: 100%;
             height: auto;
-            border-radius: 18px;
+            border-radius: 22px;
+            max-height: 350px;
+            object-fit: cover;
         }
-
-        /* SECTION DE FEATURES */
-        .feature-row {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 28px;
-            margin: 120px 0 40px 0;
-        }
-        .feature-card {
-            background: var(--card-bg);
-            border-radius: 18px;
-            box-shadow: 0 6px 22px rgba(0,0,0,0.13);
-            overflow: hidden;
-            max-width: 340px;
-            flex: 1 1 330px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-width: 220px;
-            margin-bottom: 0;
-        }
-        .feature-card img {
-            width: 100%;
+        .carousel-slide.active {
             display: block;
-            border-radius: 18px 18px 0 0;
+        }
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(30,30,36,0.62);
+            color: #fff;
+            border: none;
+            font-size: 2rem;
+            padding: 10px 16px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 2;
+            transition: background 0.2s;
+        }
+        .carousel-arrow.left { left: -32px; }
+        .carousel-arrow.right { right: -32px; }
+        .carousel-arrow:hover { background: var(--primary); color: var(--bg);}
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 18px 0 10px 0;
+        }
+        .carousel-dot {
+            height: 10px;
+            width: 10px;
+            margin: 0 6px;
+            background: #555a65;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background 0.2s;
+            cursor: pointer;
+        }
+        .carousel-dot.active {
+            background: var(--primary);
+        }
+        @media (max-width: 700px) {
+            .carousel-container { max-width: 96vw; }
+            .carousel-arrow.left { left: 8px; }
+            .carousel-arrow.right { right: 8px; }
         }
 
         .container { max-width: 1150px; margin: 0 auto; padding: 0 16px 30px 16px; }
         .section-title { text-align: center; margin-bottom: 38px; }
         .section-title h2 { font-size: 2.0rem; margin-bottom: 10px; color: var(--primary); font-weight: 800; letter-spacing: 1px; }
         .section-title p { color: var(--muted); margin: 0; font-size: 1.05rem; }
-
-        /* PLANOS */
         .plans {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
@@ -231,7 +251,6 @@
         .promo-tag { background-color: var(--primary); color: var(--bg2); padding: 8px 15px; border-radius: 5px; font-size: 0.98rem; font-weight: 600;}
         .economy-tag { background-color: var(--economy); color: var(--bg2); padding: 8px 15px; border-radius: 5px; font-size: 0.98rem; font-weight: 600; margin-bottom: 0; margin-top: 10px;}
         .plan-body .btn { margin-top: auto;}
-
         .whatsapp-float {
             position: fixed;
             bottom: 30px;
@@ -254,13 +273,12 @@
             box-shadow: 0 8px 30px rgba(37,211,102,0.45);
         }
         @media (max-width: 900px) {
-            .feature-row { flex-direction: column; align-items: center; margin-top: 80px;}
-            .hero-feature-card { max-width: 95vw;}
+            .carousel-container { max-width: 99vw; }
+            .carousel-slide img { max-height: 220px; }
         }
         @media (max-width: 600px) {
             .hero { padding-bottom: 120px;}
             .hero h1 { font-size: 1.7rem;}
-            .feature-row { gap: 16px; margin-top: 60px;}
         }
     </style>
 </head>
@@ -271,22 +289,27 @@
             <p>Assista todos os canais de TV, filmes, séries e esportes em alta qualidade por um preço que cabe no seu bolso</p>
             <a href="#planos" class="btn">VER PLANOS</a>
         </div>
-        <!-- CARD SOBREPOSTO, destaque: Mais de 1000 canais -->
-        <div class="hero-feature-card">
-            <img src="images/+de1000canais.jpeg" alt="Mais de 1000 canais TurboX">
-        </div>
     </section>
 
-    <div class="container">
-        <!-- Features/Benefícios -->
-        <section class="feature-row">
-            <div class="feature-card">
+    <!-- CARROSSEL MODERNO LOGO APÓS O BANNER -->
+    <div class="carousel-container">
+        <div class="carousel" id="carousel">
+            <div class="carousel-slide active">
+                <img src="images/+de1000canais.jpeg" alt="Mais de 1000 canais TurboX">
+            </div>
+            <div class="carousel-slide">
                 <img src="images/canais+incriveis.jpeg" alt="Canais incríveis TurboX">
             </div>
-            <div class="feature-card">
+            <div class="carousel-slide">
                 <img src="images/assinenossosplanos.jpeg" alt="Assine nossos planos TurboX">
             </div>
-        </section>
+        </div>
+        <button class="carousel-arrow left" onclick="moveCarousel(-1)">&#10094;</button>
+        <button class="carousel-arrow right" onclick="moveCarousel(1)">&#10095;</button>
+        <div class="carousel-dots" id="carousel-dots"></div>
+    </div>
+
+    <div class="container">
         <section id="planos">
             <div class="section-title">
                 <h2>Nossos Planos</h2>
@@ -381,15 +404,67 @@
     </a>
 
     <script>
-        // Efeito de rolagem suave
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+    // Carousel logic
+    let carouselIndex = 0;
+    const slides = [];
+    document.querySelectorAll('.carousel-slide').forEach(s => slides.push(s));
+    const dotsContainer = document.getElementById('carousel-dots');
+    const totalSlides = slides.length;
+
+    function showSlide(idx) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === idx);
+      });
+      Array.from(dotsContainer.children).forEach((dot, i) => {
+        dot.classList.toggle('active', i === idx);
+      });
+      carouselIndex = idx;
+    }
+    function moveCarousel(dir) {
+      let idx = carouselIndex + dir;
+      if (idx < 0) idx = totalSlides - 1;
+      if (idx >= totalSlides) idx = 0;
+      showSlide(idx);
+    }
+    function goToSlide(idx) {
+      showSlide(idx);
+    }
+    // Dots
+    function setupDots() {
+      dotsContainer.innerHTML = '';
+      for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('span');
+        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        dot.onclick = () => goToSlide(i);
+        dotsContainer.appendChild(dot);
+      }
+    }
+    setupDots();
+    showSlide(0);
+
+    // Touch swipe (mobile)
+    let startX = null;
+    document.getElementById('carousel').addEventListener('touchstart', function(e){
+      startX = e.touches[0].clientX;
+    });
+    document.getElementById('carousel').addEventListener('touchend', function(e){
+      if(startX !== null) {
+        let diff = e.changedTouches[0].clientX - startX;
+        if(diff > 50) moveCarousel(-1);
+        else if(diff < -50) moveCarousel(1);
+        startX = null;
+      }
+    });
+
+    // Efeito de rolagem suave
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
             });
         });
+    });
     </script>
 </body>
 </html>
