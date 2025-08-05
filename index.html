@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="RJ TV Streaming - A melhor IPTV do Rio de Janeiro com mais de 2.000 canais, cobertura local e suporte carioca.">
+    <meta name="keywords" content="IPTV, Rio de Janeiro, streaming, canais, TV online, RJ">
     <title>RJ TV Streaming - A Melhor IPTV do Rio</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -72,10 +77,10 @@
                     <h2><span class="rj">RJ</span> TV <span class="streaming">Streaming</span></h2>
                 </div>
                 <form id="form-assinatura">
-                    <input type="text" placeholder="Nome completo" required>
-                    <input type="email" placeholder="E-mail" required>
-                    <input type="tel" placeholder="WhatsApp (21) XXXXX-XXXX" required>
-                    <select required>
+                    <input type="text" name="nome" placeholder="Nome completo" required aria-label="Nome completo">
+                    <input type="email" name="email" placeholder="E-mail" required aria-label="E-mail">
+                    <input type="tel" name="whatsapp" placeholder="WhatsApp (21) XXXXX-XXXX" required aria-label="WhatsApp" pattern="[0-9\s\(\)\-\+]+">
+                    <select name="plano" required aria-label="Selecione o plano">
                         <option value="">Selecione o plano</option>
                         <option value="mensal">Mensal - R$35</option>
                         <option value="trimestral">Trimestral - R$75</option>
@@ -89,6 +94,6 @@
         </div>
     </div>
 
-    <script src="js/main.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>

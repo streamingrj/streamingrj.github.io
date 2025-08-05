@@ -33,11 +33,19 @@ document.addEventListener('DOMContentLoaded', function() {
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        // Simulação de envio
-        const nome = this.querySelector('input[type="text"]').value;
+        // Validação dos campos
+        const nome = this.querySelector('input[name="nome"]').value.trim();
+        const email = this.querySelector('input[name="email"]').value.trim();
+        const whatsapp = this.querySelector('input[name="whatsapp"]').value.trim();
         const plano = selectPlano.value;
         
-        alert(`Obrigado, ${nome}! Seu plano ${plano} será ativado em breve.`);
+        if (!nome || !email || !whatsapp || !plano) {
+            alert('Por favor, preencha todos os campos obrigatórios.');
+            return;
+        }
+        
+        // Simulação de envio
+        alert(`Obrigado, ${nome}! Seu plano ${plano} será ativado em breve. Entraremos em contato pelo WhatsApp informado.`);
         modal.style.display = 'none';
         form.reset();
     });
