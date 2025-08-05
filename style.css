@@ -35,6 +35,14 @@ body {
     color: var(--branco);
     line-height: 1.6;
     padding-bottom: 50px;
+    /* Melhorias para performance e UX mobile */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    /* Previne zoom indesejado no iOS */
+    -webkit-text-size-adjust: 100%;
+    /* Melhora scroll em dispositivos touch */
+    -webkit-overflow-scrolling: touch;
 }
 
 .container {
@@ -219,6 +227,8 @@ video {
 /* Planos */
 .planos-destaque {
     margin: 60px 0;
+    /* Garante que o conteúdo não fique escondido atrás do footer */
+    margin-bottom: 80px;
 }
 
 .linha-planos {
@@ -286,21 +296,25 @@ video {
 /* SELO "MELHOR OFERTA" MAIS VISÍVEL */
 .selo-premium {
     position: absolute;
-    top: -18px;
+    top: -15px; /* Reduzido de -18px para evitar corte */
     left: 50%;
     transform: translateX(-50%);
     background: linear-gradient(135deg, var(--premium-gold), #FFA500);
     color: #000 !important;
-    padding: 10px 30px;
+    padding: 8px 25px; /* Reduzido padding para mobile */
     border-radius: 25px;
     font-weight: 800;
-    font-size: 1rem;
+    font-size: 0.9rem; /* Reduzido de 1rem */
     z-index: 10;
     box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
     text-transform: uppercase;
     letter-spacing: 1px;
     border: 2px solid #000;
     animation: pulse-gold 2s infinite;
+    white-space: nowrap; /* Evita quebra de linha */
+    max-width: 90%; /* Limita largura em mobile */
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 @keyframes pulse-gold {
@@ -470,6 +484,21 @@ ul li {
     font-weight: bold;
     text-align: center;
     font-size: 1.1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 44px; /* Mínimo para toque em mobile */
+}
+
+.barra-oferta .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 0 10px;
+    width: 100%;
+    max-width: 100%;
 }
 
 .destaque-bar {
@@ -634,6 +663,15 @@ form button:hover {
     .container {
         padding: 15px;
     }
+    
+    /* Melhora espaçamento em tablets */
+    .planos-destaque {
+        margin: 40px 0;
+    }
+    
+    .card.super-destaque {
+        margin-top: 20px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -656,16 +694,31 @@ form button:hover {
     
     .card.super-destaque {
         width: 100%;
+        margin-top: 25px; /* Adiciona espaço para o selo */
     }
     
     .selo-premium {
-        font-size: 0.9rem;
-        padding: 8px 20px;
+        font-size: 0.8rem;
+        padding: 6px 20px;
+        top: -12px; /* Ajuste mais conservador para mobile */
+        max-width: 85%;
     }
     
     .barra-oferta {
         font-size: 0.9rem;
-        padding: 8px 0;
+        padding: 10px 0;
+        min-height: 50px;
+    }
+    
+    .barra-oferta .container {
+        padding: 0 15px;
+        gap: 8px;
+    }
+    
+    .destaque-bar {
+        padding: 4px 12px;
+        font-size: 0.85rem;
+        margin-left: 8px;
     }
     
     .btn-whatsapp {
@@ -673,6 +726,11 @@ form button:hover {
         width: 50px;
         height: 50px;
         font-size: 24px;
+    }
+    
+    /* Ajusta espaçamento inferior para não sobrepor com footer */
+    body {
+        padding-bottom: 60px;
     }
 }
 
@@ -696,6 +754,49 @@ form button:hover {
     .btn-premium {
         font-size: 1rem;
         padding: 14px !important;
+    }
+    
+    .selo-premium {
+        font-size: 0.75rem;
+        padding: 5px 15px;
+        top: -10px;
+        max-width: 80%;
+        border-radius: 20px;
+    }
+    
+    .barra-oferta {
+        font-size: 0.85rem;
+        padding: 8px 0;
+        min-height: 48px;
+    }
+    
+    .barra-oferta .container {
+        flex-direction: column;
+        gap: 4px;
+        text-align: center;
+    }
+    
+    .destaque-bar {
+        margin-left: 0;
+        margin-top: 2px;
+    }
+    
+    /* Espaçamento inferior maior para telas pequenas */
+    body {
+        padding-bottom: 65px;
+    }
+    
+    .btn-whatsapp {
+        bottom: 75px;
+        right: 20px;
+        width: 48px;
+        height: 48px;
+        font-size: 22px;
+    }
+    
+    /* Adiciona margem superior extra para cards com selo */
+    .linha-anual .card.super-destaque {
+        margin-top: 30px;
     }
 }
 
@@ -723,5 +824,90 @@ form button:hover {
     
     .preco {
         font-size: 1.8rem;
+    }
+    
+    /* Selo ainda menor para telas muito pequenas */
+    .selo-premium {
+        font-size: 0.7rem;
+        padding: 4px 12px;
+        top: -8px;
+        max-width: 75%;
+        border-radius: 15px;
+        letter-spacing: 0.5px;
+    }
+    
+    /* Footer otimizado para telas muito pequenas */
+    .barra-oferta {
+        font-size: 0.8rem;
+        padding: 6px 0;
+        min-height: 44px;
+    }
+    
+    .barra-oferta .container {
+        padding: 0 10px;
+        gap: 2px;
+    }
+    
+    .destaque-bar {
+        font-size: 0.75rem;
+        padding: 2px 8px;
+    }
+    
+    /* Margem extra para evitar sobreposição */
+    .linha-anual .card.super-destaque {
+        margin-top: 35px;
+    }
+    
+    /* Container principal com padding mínimo */
+    .container {
+        padding: 10px;
+    }
+    
+    /* Botão WhatsApp menor para não interferir */
+    .btn-whatsapp {
+        bottom: 80px;
+        right: 15px;
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+    }
+}
+
+/* Melhorias adicionais para mobile landscape */
+@media (max-height: 600px) and (orientation: landscape) {
+    .modal-conteudo {
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    
+    .header-premium {
+        padding: 20px 0 15px;
+    }
+    
+    /* Selo mais compacto em landscape */
+    .selo-premium {
+        font-size: 0.8rem;
+        padding: 5px 18px;
+        top: -10px;
+    }
+    
+    /* Footer mais fino em landscape */
+    .barra-oferta {
+        min-height: 40px;
+        padding: 6px 0;
+    }
+}
+
+/* Fixes para iOS Safari e outros navegadores mobile */
+@supports (-webkit-touch-callout: none) {
+    .selo-premium {
+        /* Fix para iOS Safari overflow */
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+    }
+    
+    .barra-oferta {
+        /* Fix para viewport issues no iOS */
+        padding-bottom: env(safe-area-inset-bottom, 8px);
     }
 }
