@@ -4,11 +4,11 @@ Uma landing page profissional para serviços de IPTV com sistema completo de pag
 
 ## 🚀 Funcionalidades Implementadas
 
-### ✅ Gateway de Pagamento (Mercado Pago)
+### ✅ Gateway de Pagamento (InfinitePay)
 - Integração completa com SDK oficial
 - Pagamento via cartão de crédito
 - Parcelamento em até 12x sem juros
-- Processamento seguro
+- Processamento seguro e confiável
 
 ### ✅ Sistema PIX
 - QR Code dinâmico
@@ -19,7 +19,7 @@ Uma landing page profissional para serviços de IPTV com sistema completo de pag
 ### ✅ Checkout Otimizado
 - 3 etapas intuitivas (Dados → Pagamento → Confirmação)
 - Validação em tempo real
-- Máscaras automáticas (CPF, telefone)
+- Máscaras automáticas (CPF, telefone, cartão)
 - UX/UI moderna e responsiva
 
 ### ✅ Upsell Estratégico
@@ -48,18 +48,19 @@ Uma landing page profissional para serviços de IPTV com sistema completo de pag
 
 ## 🛠️ Configuração
 
-### 1. Mercado Pago
+### 1. InfinitePay
 
-1. Acesse o [Mercado Pago Developers](https://www.mercadopago.com.br/developers)
-2. Crie uma aplicação
+1. Acesse o [InfinitePay Dashboard](https://dashboard.infinitepay.io)
+2. Crie uma conta e obtenha suas credenciais
 3. Copie sua chave pública
 4. Edite o arquivo `config.js`:
 
 ```javascript
-mercadoPago: {
-    publicKey: 'TEST-12345678-abcd-1234-abcd-123456789012', // Sua chave aqui
+infinitePay: {
+    publicKey: 'pk_test_12345678-abcd-1234-abcd-123456789012', // Sua chave aqui
     sandbox: false, // true para teste, false para produção
-    currency: 'BRL'
+    currency: 'BRL',
+    environment: 'production' // 'sandbox' ou 'production'
 }
 ```
 
@@ -176,12 +177,22 @@ planos: {
 5. **Confirmação** - Página de sucesso
 6. **WhatsApp** - Entrega do produto
 
+## 💳 Recursos do InfinitePay
+
+- **Cartão de Crédito**: Visa, Mastercard, Elo, American Express
+- **Parcelamento**: Até 12x sem juros
+- **Antifraude**: Sistema robusto integrado
+- **Webhooks**: Notificações automáticas
+- **Dashboard**: Acompanhamento em tempo real
+- **API REST**: Integração simples e segura
+
 ## 📱 Responsividade
 
 - Layout otimizado para mobile
 - Checkout adaptativo
 - Botões touch-friendly
 - Formulários responsivos
+- Máscaras automáticas para cartão
 
 ## 🔧 Arquivos Principais
 
@@ -193,14 +204,21 @@ planos: {
 ## 🚀 Deploy
 
 1. Configure todas as chaves nos arquivos
-2. Teste em ambiente de sandbox
-3. Mude `sandbox: false` no Mercado Pago
+2. Teste em ambiente de sandbox (InfinitePay)
+3. Mude `environment: 'production'` no InfinitePay
 4. Faça upload para seu servidor
 5. Configure SSL (obrigatório para pagamentos)
 
 ## 📞 Suporte
 
 Para dúvidas sobre implementação, entre em contato através do WhatsApp configurado na página.
+
+### 🔗 Links Úteis
+
+- [Documentação InfinitePay](https://docs.infinitepay.io)
+- [Dashboard InfinitePay](https://dashboard.infinitepay.io)
+- [Google Analytics](https://analytics.google.com)
+- [Facebook Business](https://business.facebook.com)
 
 ---
 

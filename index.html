@@ -17,8 +17,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- SDK Mercado Pago -->
-    <script src="https://sdk.mercadopago.com/js/v2"></script>
+    <!-- SDK InfinitePay -->
+    <script src="https://js.infinitepay.io/v1/infinitepay.min.js"></script>
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
     <script>
@@ -347,7 +347,9 @@
                     <div class="payment-area cartao-area">
                         <div class="cartao-container">
                             <h4><i class="fas fa-credit-card"></i> Dados do Cartão</h4>
-                            <div id="form-mp"></div>
+                            <div id="form-infinitepay">
+                                <!-- Formulário será gerado dinamicamente -->
+                            </div>
                             <div class="parcelas-container">
                                 <label for="parcelas">Parcelas:</label>
                                 <select id="parcelas" name="parcelas">

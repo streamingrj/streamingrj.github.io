@@ -1398,8 +1398,59 @@ form button:hover {
     gap: 10px;
 }
 
-#form-mp {
+#form-infinitepay {
     margin-bottom: 20px;
+}
+
+/* Estilos para o formulário do cartão InfinitePay */
+.card-form-group {
+    margin-bottom: 20px;
+}
+
+.card-form-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 15px;
+}
+
+.card-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--branco);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.card-form-group input {
+    width: 100%;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: var(--branco);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.card-form-group input:focus {
+    outline: none;
+    border-color: var(--premium-gold);
+    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.card-form-group input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#card-number {
+    letter-spacing: 2px;
+    font-family: 'Courier New', monospace;
+}
+
+#card-expiry, #card-cvv {
+    text-align: center;
+    font-family: 'Courier New', monospace;
 }
 
 .parcelas-container label {

@@ -2,11 +2,12 @@
 // ⚠️ IMPORTANTE: Substitua os valores de exemplo pelas suas chaves reais
 
 const CONFIG = {
-    // Mercado Pago
-    mercadoPago: {
-        publicKey: 'TEST-your-public-key-here', // Substitua pela sua chave pública
+    // InfinitePay
+    infinitePay: {
+        publicKey: 'pk_test_your-public-key-here', // Substitua pela sua chave pública
         sandbox: true, // Mude para false em produção
-        currency: 'BRL'
+        currency: 'BRL',
+        environment: 'sandbox' // 'sandbox' ou 'production'
     },
     
     // Google Analytics

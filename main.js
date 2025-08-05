@@ -33,10 +33,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    // Configuração do Mercado Pago
-    const mp = new MercadoPago('TEST-your-public-key-here', {
-        locale: 'pt-BR'
-    });
+    // Configuração do InfinitePay
+    let infinitePay;
+    if (typeof InfinitePay !== 'undefined' && CONFIG && CONFIG.infinitePay) {
+        infinitePay = new InfinitePay({
+            publicKey: CONFIG.infinitePay.publicKey,
+            environment: CONFIG.infinitePay.environment
+        });
+    }
     
     // Sistema Anti-Fraude
     const AntiFraude = {
@@ -123,6 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let dadosCliente = {};
     let valorTotal = 0;
     let metodoPagamento = 'pix';
+    let cardToken = null;
     
     // Inicializar sistemas
     AntiFraude.init();
@@ -417,6 +422,11 @@ document.addEventListener('DOMContentLoaded', function() {
         atualizarResumo();
         irParaEtapa(2);
         
+        // Inicializar formulário de cartão quando chegar na etapa de pagamento
+        if (metodoPagamento === 'cartao') {
+            setTimeout(() => inicializarFormularioCartao(), 500);
+        }
+        
         Analytics.trackEvent('proceed_to_payment', {
             plan: plano,
             value: valorTotal
@@ -444,9 +454,9 @@ document.addEventListener('DOMContentLoaded', function() {
     function processarPagamentoPix() {
         const valorFinal = valorTotal * 0.95;
         
-        // Simular criação do PIX
+        // Simular criação do PIX via InfinitePay
         const pixData = {
-            qr_code: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==',
+            qr_code: generateQRCodePlaceholder(),
             qr_code_base64: '00020126330014BR.GOV.BCB.PIX0111123456789875204000053039865802BR5925RJ TV PREMIUM LTDA6009SAO PAULO61080540900062070503***6304',
             payment_id: Math.random().toString(36).substr(2, 9),
             external_reference: `RJ-${Date.now()}`
@@ -457,7 +467,7 @@ document.addEventListener('DOMContentLoaded', function() {
         qrContainer.innerHTML = `
             <div style="background: white; padding: 20px; border-radius: 10px; display: inline-block;">
                 <div style="width: 200px; height: 200px; background: #000; color: white; display: flex; align-items: center; justify-content: center; font-size: 12px; text-align: center;">
-                    QR CODE PIX<br>R$ ${valorFinal.toFixed(2)}
+                    QR CODE PIX<br>R$ ${valorFinal.toFixed(2)}<br><small>InfinitePay</small>
                 </div>
             </div>
         `;
@@ -468,7 +478,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         Analytics.trackEvent('pix_payment_initiated', {
             value: valorFinal,
-            payment_id: pixData.payment_id
+            payment_id: pixData.payment_id,
+            gateway: 'infinitepay'
         });
         
         // Simular confirmação de pagamento após 30 segundos
@@ -477,77 +488,171 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 30000);
     }
 
-    // Pagamento Cartão
-    function processarPagamentoCartao() {
-        // Implementar integração com Mercado Pago
-        const cardForm = mp.cardForm({
-            amount: valorTotal.toString(),
-            autoMount: true,
-            form: {
-                id: "form-mp",
-                cardholderName: {
-                    id: "form-mp__cardholderName",
-                    placeholder: "Titular do cartão",
-                },
-                cardholderEmail: {
-                    id: "form-mp__cardholderEmail",
-                    placeholder: "E-mail",
-                },
-                cardNumber: {
-                    id: "form-mp__cardNumber",
-                    placeholder: "Número do cartão",
-                },
-                expirationDate: {
-                    id: "form-mp__expirationDate",
-                    placeholder: "MM/AAAA",
-                },
-                securityCode: {
-                    id: "form-mp__securityCode",
-                    placeholder: "Código de segurança",
-                },
-                installments: {
-                    id: "form-mp__installments",
-                    placeholder: "Parcelas",
-                },
-                identificationType: {
-                    id: "form-mp__identificationType",
-                    placeholder: "Tipo de documento",
-                },
-                identificationNumber: {
-                    id: "form-mp__identificationNumber",
-                    placeholder: "Número do documento",
-                },
-                issuer: {
-                    id: "form-mp__issuer",
-                    placeholder: "Banco emissor",
-                }
-            },
-            callbacks: {
-                onFormMounted: error => {
-                    if (error) console.warn("Erro ao montar formulário:", error);
-                },
-                onSubmit: event => {
-                    event.preventDefault();
-                    
-                    const cardFormData = cardForm.getCardFormData();
-                    console.log("Dados do cartão:", cardFormData);
-                    
-                    Analytics.trackEvent('card_payment_initiated', {
-                        value: valorTotal,
-                        installments: cardFormData.installments
-                    });
-                    
-                    // Simular processamento
-                    setTimeout(() => {
-                        const paymentId = Math.random().toString(36).substr(2, 9);
-                        confirmarPagamento(paymentId, valorTotal);
-                    }, 3000);
-                },
-                onFetching: (resource) => {
-                    console.log("Buscando recurso:", resource);
-                }
+    function generateQRCodePlaceholder() {
+        return 'data:image/svg+xml;base64,' + btoa(`
+            <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+                <rect width="200" height="200" fill="white"/>
+                <text x="100" y="100" text-anchor="middle" font-family="Arial" font-size="12" fill="black">
+                    QR CODE PIX
+                </text>
+                <text x="100" y="120" text-anchor="middle" font-family="Arial" font-size="10" fill="gray">
+                    InfinitePay
+                </text>
+            </svg>
+        `);
+    }
+
+    // Formulário de cartão com InfinitePay
+    function inicializarFormularioCartao() {
+        if (!infinitePay) {
+            console.error('InfinitePay não foi inicializado');
+            return;
+        }
+
+        const formContainer = document.getElementById('form-infinitepay');
+        if (!formContainer) {
+            // Criar o formulário se não existir
+            const cartaoContainer = document.querySelector('.cartao-container');
+            if (cartaoContainer) {
+                cartaoContainer.innerHTML = `
+                    <h4><i class="fas fa-credit-card"></i> Dados do Cartão</h4>
+                    <div id="form-infinitepay">
+                        <div class="card-form-group">
+                            <label for="card-number">Número do Cartão</label>
+                            <input type="text" id="card-number" placeholder="0000 0000 0000 0000" maxlength="19">
+                        </div>
+                        <div class="card-form-row">
+                            <div class="card-form-group">
+                                <label for="card-expiry">Validade</label>
+                                <input type="text" id="card-expiry" placeholder="MM/AA" maxlength="5">
+                            </div>
+                            <div class="card-form-group">
+                                <label for="card-cvv">CVV</label>
+                                <input type="text" id="card-cvv" placeholder="123" maxlength="4">
+                            </div>
+                        </div>
+                        <div class="card-form-group">
+                            <label for="card-holder">Nome no Cartão</label>
+                            <input type="text" id="card-holder" placeholder="Nome como no cartão">
+                        </div>
+                    </div>
+                    <div class="parcelas-container">
+                        <label for="parcelas">Parcelas:</label>
+                        <select id="parcelas" name="parcelas">
+                            <option value="1">1x sem juros - R$ ${valorTotal.toFixed(2)}</option>
+                            <option value="2">2x sem juros - R$ ${(valorTotal/2).toFixed(2)}</option>
+                            <option value="3">3x sem juros - R$ ${(valorTotal/3).toFixed(2)}</option>
+                            <option value="6">6x sem juros - R$ ${(valorTotal/6).toFixed(2)}</option>
+                            <option value="12">12x sem juros - R$ ${(valorTotal/12).toFixed(2)}</option>
+                        </select>
+                    </div>
+                `;
+
+                // Aplicar máscaras nos campos do cartão
+                aplicarMascarasCartao();
             }
+        }
+    }
+
+    function aplicarMascarasCartao() {
+        const cardNumber = document.getElementById('card-number');
+        const cardExpiry = document.getElementById('card-expiry');
+        const cardCvv = document.getElementById('card-cvv');
+
+        if (cardNumber) {
+            cardNumber.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                value = value.replace(/(\d{4})(?=\d)/g, '$1 ');
+                e.target.value = value;
+            });
+        }
+
+        if (cardExpiry) {
+            cardExpiry.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length >= 2) {
+                    value = value.substring(0, 2) + '/' + value.substring(2, 4);
+                }
+                e.target.value = value;
+            });
+        }
+
+        if (cardCvv) {
+            cardCvv.addEventListener('input', function(e) {
+                e.target.value = e.target.value.replace(/\D/g, '');
+            });
+        }
+    }
+
+    // Pagamento Cartão com InfinitePay
+    function processarPagamentoCartao() {
+        const cardNumber = document.getElementById('card-number')?.value.replace(/\s/g, '');
+        const cardExpiry = document.getElementById('card-expiry')?.value;
+        const cardCvv = document.getElementById('card-cvv')?.value;
+        const cardHolder = document.getElementById('card-holder')?.value;
+        const parcelas = document.getElementById('parcelas')?.value || 1;
+
+        // Validações básicas
+        if (!cardNumber || cardNumber.length < 13) {
+            alert('Digite um número de cartão válido');
+            return;
+        }
+
+        if (!cardExpiry || cardExpiry.length !== 5) {
+            alert('Digite uma data de validade válida (MM/AA)');
+            return;
+        }
+
+        if (!cardCvv || cardCvv.length < 3) {
+            alert('Digite um CVV válido');
+            return;
+        }
+
+        if (!cardHolder || cardHolder.trim().length < 3) {
+            alert('Digite o nome do portador do cartão');
+            return;
+        }
+
+        const [mes, ano] = cardExpiry.split('/');
+        
+        // Dados do pagamento para InfinitePay
+        const paymentData = {
+            amount: Math.round(valorTotal * 100), // InfinitePay usa centavos
+            currency: 'BRL',
+            installments: parseInt(parcelas),
+            customer: {
+                name: dadosCliente.nome,
+                email: dadosCliente.email,
+                document: dadosCliente.cpf,
+                phone: dadosCliente.whatsapp
+            },
+            card: {
+                number: cardNumber,
+                holder_name: cardHolder,
+                exp_month: mes,
+                exp_year: '20' + ano,
+                cvv: cardCvv
+            },
+            metadata: {
+                plano: dadosCliente.plano,
+                upsell: document.getElementById('upsell-adulto')?.checked || false
+            }
+        };
+
+        Analytics.trackEvent('card_payment_initiated', {
+            value: valorTotal,
+            installments: parcelas,
+            gateway: 'infinitepay'
         });
+
+        // Simular processamento do InfinitePay
+        console.log('Processando pagamento InfinitePay:', paymentData);
+        
+        // Em produção, você faria uma chamada real para a API do InfinitePay
+        setTimeout(() => {
+            const paymentId = 'inf_' + Math.random().toString(36).substr(2, 9);
+            confirmarPagamento(paymentId, valorTotal);
+        }, 3000);
     }
 
     function confirmarPagamento(paymentId, valor) {
@@ -567,7 +672,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }]);
         
         // Enviar para WhatsApp
-        const mensagem = `*NOVA ASSINATURA CONFIRMADA*%0A%0A*Pedido:* #RJ-2024-${paymentId}%0A*Nome:* ${dadosCliente.nome}%0A*Email:* ${dadosCliente.email}%0A*WhatsApp:* ${dadosCliente.whatsapp}%0A*CPF:* ${dadosCliente.cpf}%0A*Plano:* ${dadosCliente.plano}%0A*Valor:* R$ ${valor.toFixed(2)}%0A*Método:* ${metodoPagamento.toUpperCase()}%0A%0A*PAGAMENTO APROVADO*`;
+        const mensagem = `*NOVA ASSINATURA CONFIRMADA*%0A%0A*Pedido:* #RJ-2024-${paymentId}%0A*Nome:* ${dadosCliente.nome}%0A*Email:* ${dadosCliente.email}%0A*WhatsApp:* ${dadosCliente.whatsapp}%0A*CPF:* ${dadosCliente.cpf}%0A*Plano:* ${dadosCliente.plano}%0A*Valor:* R$ ${valor.toFixed(2)}%0A*Método:* ${metodoPagamento.toUpperCase()}%0A*Gateway:* InfinitePay%0A%0A*PAGAMENTO APROVADO*`;
         window.open(`https://wa.me/5521977317084?text=${mensagem}`, '_blank');
     }
 
@@ -632,6 +737,11 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelector(`.${method}-area`).classList.add('active');
             
             metodoPagamento = method;
+            
+            // Inicializar formulário de cartão se necessário
+            if (method === 'cartao') {
+                setTimeout(() => inicializarFormularioCartao(), 100);
+            }
             
             Analytics.trackEvent('payment_method_selected', { method: method });
         }
@@ -714,7 +824,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     console.log('RJ TV Premium - Sistema iniciado com sucesso!');
-    console.log('Recursos ativados: Gateway Mercado Pago, PIX, Anti-fraude, Upsell, Analytics');
+    console.log('Recursos ativados: Gateway InfinitePay, PIX, Anti-fraude, Upsell, Analytics');
 });
 
 // Funções globais para compatibilidade
