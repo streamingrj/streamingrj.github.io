@@ -44,8 +44,26 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
-        // Simulação de envio
-        alert(`Obrigado, ${nome}! Seu plano ${plano} será ativado em breve. Entraremos em contato pelo WhatsApp informado.`);
+        // Mensagens personalizadas por plano
+        let mensagem = '';
+        switch(plano) {
+            case 'mensal':
+                mensagem = `Obrigado, ${nome}! Seu plano Mensal (R$35) será ativado em breve. Entraremos em contato pelo WhatsApp informado.`;
+                break;
+            case 'trimestral':
+                mensagem = `Obrigado, ${nome}! Seu plano Trimestral (R$75) com +15 dias grátis será ativado em breve. Entraremos em contato pelo WhatsApp informado.`;
+                break;
+            case 'semestral':
+                mensagem = `Obrigado, ${nome}! Seu plano Semestral (R$159,90) será ativado em breve. Entraremos em contato pelo WhatsApp informado.`;
+                break;
+            case 'anual':
+                mensagem = `Obrigado, ${nome}! Seu plano Anual (R$249,90) com +2 meses grátis será ativado em breve. Entraremos em contato pelo WhatsApp informado.`;
+                break;
+            default:
+                mensagem = `Obrigado, ${nome}! Seu plano será ativado em breve. Entraremos em contato pelo WhatsApp informado.`;
+        }
+        
+        alert(mensagem);
         modal.style.display = 'none';
         form.reset();
     });

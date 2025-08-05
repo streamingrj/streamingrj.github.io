@@ -26,8 +26,24 @@
             </div>
         </header>
 
+        <!-- Seção Hero com Imagens Promocionais -->
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Mais de 2.000 Canais na Palma da Sua Mão!</h2>
+                <p>Canais do Rio de Janeiro, esportes, filmes, séries e muito mais!</p>
+            </div>
+            <div class="galeria-promocional">
+                <img src="img/+de1000canais.jpeg" alt="Mais de 1000 canais disponíveis" class="promo-img">
+                <img src="img/canais+incriveis.jpeg" alt="Canais incríveis" class="promo-img">
+                <img src="img/jogosemtravar.jpeg" alt="Jogos sem travar" class="promo-img">
+                <img src="img/assinenossosplanos.jpeg" alt="Assine nossos planos" class="promo-img">
+            </div>
+        </section>
+
         <!-- Cards de Planos -->
         <section class="planos">
+            <h2 class="titulo-secao">Escolha Seu Plano</h2>
+            
             <!-- Plano Mensal -->
             <div class="card">
                 <h3>PLANO MENSAL</h3>
@@ -37,6 +53,7 @@
                     <li><i class="fas fa-check"></i> Canais do RJ</li>
                     <li><i class="fas fa-check"></i> Séries e Filmes</li>
                     <li><i class="fas fa-check"></i> Teste Grátis</li>
+                    <li><i class="fas fa-check"></i> Suporte 24h</li>
                 </ul>
                 <button class="btn-assinar" data-plano="mensal">ASSINAR AGORA</button>
             </div>
@@ -46,26 +63,114 @@
                 <div class="tag-promo">MAIS VENDIDO</div>
                 <h3>PLANO TRIMESTRAL</h3>
                 <div class="preco">R$75<small>/3 meses</small></div>
-                <p class="info-promo">Economize R$30 • 15 dias grátis</p>
+                <div class="economia">R$25/mês • Economize R$30</div>
+                <p class="info-promo">🎁 +15 dias grátis</p>
                 <ul>
                     <li><i class="fas fa-check"></i> Todos os benefícios</li>
                     <li><i class="fas fa-futbol"></i> Canais Esportivos HD</li>
                     <li><i class="fas fa-map-marker-alt"></i> Cobertura RJ+SP</li>
+                    <li><i class="fas fa-crown"></i> Suporte Priority</li>
                 </ul>
                 <button class="btn-assinar" data-plano="trimestral">ASSINAR AGORA</button>
             </div>
 
-            <!-- Plano Anual -->
+            <!-- Plano Semestral -->
             <div class="card">
+                <h3>PLANO SEMESTRAL</h3>
+                <div class="preco">R$159,90<small>/6 meses</small></div>
+                <div class="economia">R$26,65/mês • Economize R$50</div>
+                <ul>
+                    <li><i class="fas fa-check"></i> Todos os benefícios</li>
+                    <li><i class="fas fa-gem"></i> Qualidade Premium</li>
+                    <li><i class="fas fa-star"></i> Conteúdo Exclusivo</li>
+                    <li><i class="fas fa-headset"></i> Suporte VIP</li>
+                </ul>
+                <button class="btn-assinar" data-plano="semestral">ASSINAR AGORA</button>
+            </div>
+
+            <!-- Plano Anual -->
+            <div class="card premium">
+                <div class="tag-promo">MELHOR OFERTA</div>
                 <h3>PLANO ANUAL</h3>
-                <div class="preco">R$249<small>/ano</small></div>
-                <p class="info-promo">+2 meses grátis</p>
+                <div class="preco">R$249,90<small>/ano</small></div>
+                <div class="economia">R$20,83/mês • Economize R$170</div>
+                <p class="info-promo">🎁 +2 meses grátis (14 meses)</p>
                 <ul>
                     <li><i class="fas fa-check"></i> Todos os benefícios</li>
                     <li><i class="fas fa-crown"></i> VIP Priority</li>
                     <li><i class="fas fa-gem"></i> 4K Ultra HD</li>
+                    <li><i class="fas fa-gift"></i> Bônus Exclusivos</li>
+                    <li><i class="fas fa-shield-alt"></i> Garantia Total</li>
                 </ul>
                 <button class="btn-assinar" data-plano="anual">ASSINAR AGORA</button>
+            </div>
+        </section>
+
+        <!-- Seção de Depoimentos -->
+        <section class="depoimentos">
+            <h2 class="titulo-secao">O Que Nossos Clientes Dizem</h2>
+            <div class="depoimentos-grid">
+                <div class="depoimento-card">
+                    <div class="video-container">
+                        <video controls preload="metadata">
+                            <source src="videos/videoCliente.mp4" type="video/mp4">
+                            Seu navegador não suporta vídeos HTML5.
+                        </video>
+                    </div>
+                    <div class="depoimento-info">
+                        <h4>Cliente Satisfeito</h4>
+                        <p>Depoimento sobre a qualidade do serviço</p>
+                        <div class="estrelas">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="depoimento-card">
+                    <div class="video-container">
+                        <video controls preload="metadata">
+                            <source src="videos/VideoCliente2.mp4" type="video/mp4">
+                            Seu navegador não suporta vídeos HTML5.
+                        </video>
+                    </div>
+                    <div class="depoimento-info">
+                        <h4>Cliente Fidelizado</h4>
+                        <p>Experiência com nossos canais e suporte</p>
+                        <div class="estrelas">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Galeria de Recursos -->
+        <section class="recursos">
+            <h2 class="titulo-secao">Por Que Escolher RJ TV Streaming?</h2>
+            <div class="recursos-grid">
+                <div class="recurso-item">
+                    <img src="img/Um1.jpeg" alt="Recurso 1" class="recurso-img">
+                    <h4>Canais Locais RJ</h4>
+                    <p>Cobertura completa dos canais do Rio de Janeiro</p>
+                </div>
+                <div class="recurso-item">
+                    <img src="img/Dois2.jpeg" alt="Recurso 2" class="recurso-img">
+                    <h4>Esportes em HD</h4>
+                    <p>Todos os jogos com qualidade superior</p>
+                </div>
+                <div class="recurso-item">
+                    <img src="img/Tres3.jpeg" alt="Recurso 3" class="recurso-img">
+                    <h4>Filmes e Séries</h4>
+                    <p>Catálogo sempre atualizado</p>
+                </div>
             </div>
         </section>
 
@@ -83,8 +188,9 @@
                     <select name="plano" required aria-label="Selecione o plano">
                         <option value="">Selecione o plano</option>
                         <option value="mensal">Mensal - R$35</option>
-                        <option value="trimestral">Trimestral - R$75</option>
-                        <option value="anual">Anual - R$249</option>
+                        <option value="trimestral">Trimestral - R$75 (+15 dias grátis)</option>
+                        <option value="semestral">Semestral - R$159,90</option>
+                        <option value="anual">Anual - R$249,90 (+2 meses grátis)</option>
                     </select>
                     <button type="submit">
                         <i class="fas fa-lock"></i> FINALIZAR COMPRA
