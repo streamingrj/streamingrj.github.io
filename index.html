@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RJ TV Premium - Em Manutenção</title>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: #fff;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 600px;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #f8bb00;
+        }
+        
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+        
+        .logo span.rj {
+            color: #f8bb00;
+        }
+        
+        .logo span.tv {
+            color: #00a859;
+        }
+        
+        .logo span.premium {
+            color: #e50914;
+        }
+        
+        .countdown {
+            font-size: 1.5rem;
+            margin: 2rem 0;
+            color: #f8bb00;
+        }
+        
+        .whatsapp-btn {
+            display: inline-block;
+            background: #25D366;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .whatsapp-btn:hover {
+            background: #128C7E;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(18, 140, 126, 0.4);
+        }
+        
+        .social-links {
+            margin-top: 2rem;
+        }
+        
+        .social-links a {
+            color: #fff;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: #f8bb00;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                width: 90%;
+                padding: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <span class="rj">RJ</span> <span class="tv">TV</span> <span class="premium">PREMIUM</span>
+        </div>
+        
+        <h1>Estamos em Manutenção</h1>
+        <p>Estamos melhorando nossa plataforma para oferecer a você uma experiência ainda mais incrível!</p>
+        
+        <div class="countdown">
+            <i class="fas fa-tools"></i> Volte em algumas horas
+        </div>
+        
+        <p>Enquanto isso, siga-nos nas redes sociais ou entre em contato:</p>
+        
+        <a href="https://wa.me/5521977317084" class="whatsapp-btn">
+            <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+        </a>
+        
+        <div class="social-links">
+            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-telegram"></i></a>
+        </div>
+    </div>
+
+    <script>
+        // Contador regressivo opcional
+        function updateCountdown() {
+            const targetDate = new Date();
+            targetDate.setHours(targetDate.getHours() + 6); // 6 horas no futuro
+            
+            const now = new Date();
+            const diff = targetDate - now;
+            
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            
+            document.querySelector('.countdown').innerHTML = `
+                <i class="fas fa-clock"></i> Volte em: ${hours}h ${minutes}m
+            `;
+        }
+        
+        // Atualiza a cada minuto
+        updateCountdown();
+        setInterval(updateCountdown, 60000);
+    </script>
+</body>
+</html>
