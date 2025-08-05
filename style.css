@@ -1,4 +1,16 @@
 /* Reset e Variáveis */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 :root {
     --verde-rj: #00a859;
     --azul-rj: #0055a4;
@@ -613,6 +625,17 @@ form button:hover {
 }
 
 /* Responsivo */
+@media (max-width: 1024px) {
+    .linha-planos {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    
+    .container {
+        padding: 15px;
+    }
+}
+
 @media (max-width: 768px) {
     .logo-premium h1 {
         font-size: 2.5rem;
@@ -673,5 +696,32 @@ form button:hover {
     .btn-premium {
         font-size: 1rem;
         padding: 14px !important;
+    }
+}
+
+/* Melhorias para dispositivos em landscape */
+@media (max-height: 600px) and (orientation: landscape) {
+    .modal-conteudo {
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    
+    .header-premium {
+        padding: 20px 0 15px;
+    }
+}
+
+/* Ajustes para telas muito pequenas */
+@media (max-width: 320px) {
+    .logo-premium h1 {
+        font-size: 1.8rem;
+    }
+    
+    .card {
+        padding: 20px;
+    }
+    
+    .preco {
+        font-size: 1.8rem;
     }
 }

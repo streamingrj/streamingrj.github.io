@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
+    'use strict'; // Modo estrito para melhor performance e segurança
+    
     // Elementos
     const modal = document.getElementById('modal');
     const btnsAssinar = document.querySelectorAll('.btn-assinar');
@@ -22,6 +24,19 @@ document.addEventListener('DOMContentLoaded', function() {
         e.target.value = value.substring(0, 15);
     });
 
+    // Função de debounce para otimização
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+    
     // Contadores (simulação mais realista)
     function formatarNumero(num) {
         return num.toLocaleString('pt-BR');
@@ -189,19 +204,22 @@ document.addEventListener('DOMContentLoaded', function() {
         const whatsapp = this.querySelector('input[name="whatsapp"]').value.replace(/\D/g, '');
         const plano = selectPlano ? selectPlano.value : '';
         
-        // Validação aprimorada
-        if (!nome || nome.split(' ').length < 2) {
-            alert('Por favor, digite seu nome completo.');
+        // Validação aprimorada com segurança
+        if (!nome || nome.trim().length < 3 || nome.split(' ').length < 2) {
+            alert('Por favor, digite seu nome completo (mínimo 2 palavras).');
             return;
         }
         
-        if (!email || !email.includes('@') || !email.includes('.')) {
+        // Validação de email mais robusta
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email || !emailRegex.test(email)) {
             alert('Por favor, digite um e-mail válido.');
             return;
         }
         
-        if (whatsapp.length < 11) {
-            alert('WhatsApp deve conter DDD + número com 9 dígitos.');
+        // Validação de WhatsApp brasileira mais específica
+        if (whatsapp.length < 10 || whatsapp.length > 11) {
+            alert('WhatsApp deve conter 10 ou 11 dígitos (DDD + número).');
             return;
         }
         
@@ -209,6 +227,10 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Por favor, selecione um plano.');
             return;
         }
+        
+        // Sanitização básica dos dados
+        const nomeSanitizado = nome.trim().replace(/[<>]/g, '');
+        const emailSanitizado = email.trim().toLowerCase();
 
         // Mensagem para WhatsApp formatada
         const planoText = {
@@ -218,7 +240,7 @@ document.addEventListener('DOMContentLoaded', function() {
             'anual': 'Anual VIP (+2 meses) - R$249,90'
         }[plano];
 
-        const mensagem = `*NOVA ASSINATURA RJ TV PREMIUM*%0A%0A*Nome:* ${nome}%0A*Email:* ${email}%0A*WhatsApp:* ${whatsapp}%0A*Plano:* ${planoText}%0A%0A*Tecnologia TurboX PRO Ativada*`;
+        const mensagem = `*NOVA ASSINATURA RJ TV PREMIUM*%0A%0A*Nome:* ${nomeSanitizado}%0A*Email:* ${emailSanitizado}%0A*WhatsApp:* ${whatsapp}%0A*Plano:* ${planoText}%0A%0A*Tecnologia TurboX PRO Ativada*`;
         window.open(`https://wa.me/5521977317084?text=${mensagem}`, '_blank');
         
         // Feedback visual
@@ -240,13 +262,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Efeitos visuais suaves
+    // Efeitos visuais suaves - otimizado para performance
     const elementosDestaque = document.querySelectorAll('.fa-bolt, .fa-medal, .fa-crown, .fa-gem, .selo-premium');
-    elementosDestaque.forEach(el => {
-        setInterval(() => {
-            el.style.transform = el.style.transform === 'scale(1.05)' ? 'scale(1)' : 'scale(1.05)';
-            el.style.transition = 'transform 0.3s ease';
-        }, Math.random() * 3000 + 2000);
+    elementosDestaque.forEach((el, index) => {
+        // Evita sobrecarga usando delays diferentes para cada elemento
+        setTimeout(() => {
+            const animateElement = () => {
+                el.style.transform = el.style.transform === 'scale(1.05)' ? 'scale(1)' : 'scale(1.05)';
+                el.style.transition = 'transform 0.3s ease';
+                setTimeout(animateElement, Math.random() * 3000 + 2000);
+            };
+            animateElement();
+        }, index * 200); // Evita execução simultânea
     });
 
     // Animação de slogans (se existir o elemento)
