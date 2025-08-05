@@ -2,10 +2,10 @@
 // ⚠️ IMPORTANTE: Substitua os valores de exemplo pelas suas chaves reais
 
 const CONFIG = {
-    // Mercado Pago
-    mercadoPago: {
-        publicKey: 'TEST-your-public-key-here', // Substitua pela sua chave pública
-        sandbox: true, // Mude para false em produção
+    // InfinitePay
+    infinitePay: {
+        appToken: 'YOUR-INFINITEPAY-APP-TOKEN-HERE', // Substitua pelo seu App Token do InfinitePay
+        environment: 'sandbox', // 'sandbox' para teste, 'production' para produção
         currency: 'BRL'
     },
     

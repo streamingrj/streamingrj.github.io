@@ -17,8 +17,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- SDK Mercado Pago -->
-    <script src="https://sdk.mercadopago.com/js/v2"></script>
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
     <script>
@@ -347,16 +345,38 @@
                     <div class="payment-area cartao-area">
                         <div class="cartao-container">
                             <h4><i class="fas fa-credit-card"></i> Dados do Cartão</h4>
-                            <div id="form-mp"></div>
-                            <div class="parcelas-container">
-                                <label for="parcelas">Parcelas:</label>
-                                <select id="parcelas" name="parcelas">
-                                    <option value="1">1x sem juros</option>
-                                    <option value="2">2x sem juros</option>
-                                    <option value="3">3x sem juros</option>
-                                    <option value="6">6x sem juros</option>
-                                    <option value="12">12x sem juros</option>
-                                </select>
+                            <div class="card-form">
+                                <div class="form-group">
+                                    <label for="card-number">Número do Cartão</label>
+                                    <input type="text" id="card-number" name="card-number" placeholder="0000 0000 0000 0000" maxlength="19" autocomplete="cc-number">
+                                </div>
+                                <div class="form-group">
+                                    <label for="card-name">Nome do Titular</label>
+                                    <input type="text" id="card-name" name="card-name" placeholder="Nome como está no cartão" autocomplete="cc-name">
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="card-expiry">Validade</label>
+                                        <input type="text" id="card-expiry" name="card-expiry" placeholder="MM/AA" maxlength="5" autocomplete="cc-exp">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="card-cvv">CVV</label>
+                                        <input type="text" id="card-cvv" name="card-cvv" placeholder="123" maxlength="4" autocomplete="cc-csc">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="installments">Parcelas</label>
+                                                                         <select id="installments" name="installments">
+                                        <option value="1">1x de R$ <span class="installment-value">0,00</span> sem juros</option>
+                                        <option value="2">2x de R$ <span class="installment-value">0,00</span> sem juros</option>
+                                        <option value="3">3x de R$ <span class="installment-value">0,00</span> sem juros</option>
+                                        <option value="6">6x de R$ <span class="installment-value">0,00</span> sem juros</option>
+                                        <option value="12">12x de R$ <span class="installment-value">0,00</span> sem juros</option>
+                                    </select>
+                                </div>
+                                <button type="button" class="btn-processar-cartao" onclick="processarPagamentoCartao()">
+                                    <i class="fas fa-credit-card"></i> Processar Pagamento
+                                </button>
                             </div>
                         </div>
                     </div>
