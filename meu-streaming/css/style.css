@@ -1,0 +1,233 @@
+/* Cores da Marca */
+:root {
+    --verde-rj: #00a859;
+    --azul-rj: #0055a4;
+    --branco: #ffffff;
+    --fundo-escuro: #0f1a2a;
+    --fundo-card: #1a2a3a;
+}
+
+body {
+    background-color: var(--fundo-escuro);
+    color: var(--branco);
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Cabeçalho */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    margin-bottom: 30px;
+}
+
+.logo h1 {
+    font-size: 2.2rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.rj {
+    color: var(--verde-rj);
+}
+
+.streaming {
+    color: var(--azul-rj);
+}
+
+.slogan {
+    color: #aaa;
+    font-style: italic;
+}
+
+.destaque-header {
+    display: flex;
+    gap: 20px;
+}
+
+.destaque-header p {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Cards */
+.planos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.card {
+    background: var(--fundo-card);
+    border-radius: 8px;
+    padding: 25px;
+    position: relative;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card.destaque {
+    border: 2px solid var(--verde-rj);
+}
+
+.tag-promo {
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background: var(--verde-rj);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.preco {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin: 15px 0;
+    color: var(--azul-rj);
+}
+
+.preco small {
+    font-size: 1rem;
+    color: #aaa;
+}
+
+.info-promo {
+    color: var(--verde-rj);
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+ul {
+    list-style: none;
+    margin: 20px 0;
+}
+
+ul li {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.fa-check {
+    color: var(--verde-rj);
+}
+
+.fa-futbol, .fa-crown, .fa-gem {
+    color: var(--azul-rj);
+}
+
+.btn-assinar {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(to right, var(--verde-rj), var(--azul-rj));
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 15px;
+}
+
+.btn-assinar:hover {
+    opacity: 0.9;
+    transform: scale(1.02);
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-conteudo {
+    background: var(--fundo-card);
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+}
+
+.fechar {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #aaa;
+}
+
+.fechar:hover {
+    color: white;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+form input, form select {
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(0,0,0,0.2);
+    color: white;
+}
+
+form button {
+    background: linear-gradient(to right, var(--verde-rj), var(--azul-rj));
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .planos {
+        grid-template-columns: 1fr;
+    }
+}
