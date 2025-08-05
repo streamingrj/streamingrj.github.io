@@ -4,12 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="RJ TV Premium - A experiência definitiva em streaming com tecnologia TurboX">
+    <meta name="keywords" content="IPTV, streaming, canais premium, TV online, Rio de Janeiro, TurboX">
+    <meta name="author" content="RJ TV Premium">
+    <meta property="og:title" content="RJ TV Premium - Streaming de Alta Performance">
+    <meta property="og:description" content="Mais de 2.000 canais premium com qualidade HD e tecnologia TurboX PRO">
+    <meta property="og:type" content="website">
     <title>RJ TV Premium - Streaming de Alta Performance</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
@@ -33,8 +38,9 @@
             <h2><i class="fas fa-play-circle"></i> Quem usa recomenda</h2>
             <div class="video-grid">
                 <div class="video-card">
-                    <video controls poster="img/thumbnail1.jpg">
+                    <video controls poster="img/thumbnail1.jpg" aria-label="Depoimento da cliente Mariana Silva sobre o RJ TV Premium">
                         <source src="videos/videoCliente.mp4" type="video/mp4">
+                        <p>Seu navegador não suporta reprodução de vídeo.</p>
                     </video>
                     <div class="video-info">
                         <h3>Mariana Silva <span>- São Paulo</span></h3>
@@ -50,8 +56,9 @@
                 </div>
 
                 <div class="video-card">
-                    <video controls poster="img/thumbnail2.jpg">
+                    <video controls poster="img/thumbnail2.jpg" aria-label="Depoimento do cliente Marcos Oliveira sobre o RJ TV Premium">
                         <source src="videos/VideoCliente2.mp4" type="video/mp4">
+                        <p>Seu navegador não suporta reprodução de vídeo.</p>
                     </video>
                     <div class="video-info">
                         <h3>Marcos Oliveira <span>- Niterói</span></h3>
@@ -140,10 +147,17 @@
                     <h2><span class="rj">RJ</span> <span class="tv">TV</span> <span class="premium">PREMIUM</span></h2>
                 </div>
                 <form id="form-assinatura">
-                    <input type="text" name="nome" placeholder="Nome completo" required>
-                    <input type="email" name="email" placeholder="E-mail" required>
-                    <input type="tel" name="whatsapp" placeholder="WhatsApp (21) XXXXX-XXXX" required>
-                    <select name="plano" required>
+                    <label for="nome-input" class="sr-only">Nome completo</label>
+                    <input type="text" id="nome-input" name="nome" placeholder="Nome completo" required aria-describedby="nome-help">
+                    
+                    <label for="email-input" class="sr-only">E-mail</label>
+                    <input type="email" id="email-input" name="email" placeholder="E-mail" required aria-describedby="email-help">
+                    
+                    <label for="whatsapp-input" class="sr-only">WhatsApp</label>
+                    <input type="tel" id="whatsapp-input" name="whatsapp" placeholder="WhatsApp (21) XXXXX-XXXX" required aria-describedby="whatsapp-help">
+                    
+                    <label for="plano-select" class="sr-only">Plano de assinatura</label>
+                    <select id="plano-select" name="plano" required aria-describedby="plano-help">
                         <option value="">Selecione o plano</option>
                         <option value="mensal">Mensal - R$35</option>
                         <option value="trimestral">Trimestral (+15 dias) - R$75</option>
@@ -175,6 +189,6 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <script src="js/main.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
