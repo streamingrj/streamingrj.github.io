@@ -4,7 +4,7 @@ Uma landing page profissional para serviços de IPTV com sistema completo de pag
 
 ## 🚀 Funcionalidades Implementadas
 
-### ✅ Gateway de Pagamento (Mercado Pago)
+### ✅ Gateway de Pagamento (InfinitePay)
 - Integração completa com SDK oficial
 - Pagamento via cartão de crédito
 - Parcelamento em até 12x sem juros
@@ -48,17 +48,17 @@ Uma landing page profissional para serviços de IPTV com sistema completo de pag
 
 ## 🛠️ Configuração
 
-### 1. Mercado Pago
+### 1. InfinitePay
 
-1. Acesse o [Mercado Pago Developers](https://www.mercadopago.com.br/developers)
-2. Crie uma aplicação
-3. Copie sua chave pública
+1. Acesse o [InfinitePay](https://www.infinitepay.io) ou entre em contato para criar sua conta
+2. Obtenha suas credenciais de API
+3. Copie seu App Token
 4. Edite o arquivo `config.js`:
 
 ```javascript
-mercadoPago: {
-    publicKey: 'TEST-12345678-abcd-1234-abcd-123456789012', // Sua chave aqui
-    sandbox: false, // true para teste, false para produção
+infinitePay: {
+    appToken: 'YOUR-INFINITEPAY-APP-TOKEN-HERE', // Seu App Token aqui
+    environment: 'sandbox', // 'sandbox' para teste, 'production' para produção
     currency: 'BRL'
 }
 ```
@@ -194,7 +194,7 @@ planos: {
 
 1. Configure todas as chaves nos arquivos
 2. Teste em ambiente de sandbox
-3. Mude `sandbox: false` no Mercado Pago
+3. Mude `environment: 'production'` no InfinitePay
 4. Faça upload para seu servidor
 5. Configure SSL (obrigatório para pagamentos)
 
