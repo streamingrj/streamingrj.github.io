@@ -1,3 +1,10 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 /* Cores da Marca */
 :root {
     --verde-rj: #00a859;
@@ -202,6 +209,18 @@ form input, form select {
     border: 1px solid rgba(255,255,255,0.1);
     background: rgba(0,0,0,0.2);
     color: white;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+form input:focus, form select:focus {
+    outline: none;
+    border-color: var(--verde-rj);
+    box-shadow: 0 0 0 2px rgba(0, 168, 89, 0.2);
+}
+
+form input::placeholder {
+    color: rgba(255,255,255,0.6);
 }
 
 form button {
