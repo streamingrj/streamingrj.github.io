@@ -845,7 +845,7 @@ footer {
   box-shadow: 0 7px 15px rgba(106, 17, 203, 0.4);
 }
 
-/* Barra Já Paguei */
+/* Barra Já Paguei - CORREÇÃO */
 .paid-bar {
   position: fixed;
   bottom: 0;
@@ -853,9 +853,14 @@ footer {
   background: linear-gradient(45deg, var(--primary), var(--secondary));
   text-align: center;
   padding: 15px;
-  z-index: 1000;
+  z-index: 3000; /* Z-index aumentado */
   box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
   animation: pulse 1.5s infinite;
+  display: none; /* Inicialmente oculto */
+}
+
+.paid-bar.show {
+  display: block; /* Exibir quando tiver a classe 'show' */
 }
 
 .paid-bar button {
