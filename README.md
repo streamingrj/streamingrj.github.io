@@ -1,207 +1,203 @@
-# RJ TV Premium - Landing Page Completa
+# RJ TV Streaming
 
-Uma landing page profissional para serviços de IPTV com sistema completo de pagamentos, analytics e conversão.
+![RJ TV Streaming](https://img.shields.io/badge/Status-Ativo-brightgreen) ![Version](https://img.shields.io/badge/Version-1.0.0-blue) ![License](https://img.shields.io/badge/License-Proprietário-red)
 
-## 🚀 Funcionalidades Implementadas
+## 📺 Sobre o Projeto
 
-### ✅ Gateway de Pagamento (InfinitePay)
-- Integração completa com SDK oficial
-- Pagamento via cartão de crédito
-- Parcelamento em até 12x sem juros
-- Processamento seguro
+RJ TV Streaming é uma plataforma completa para venda de serviços de streaming premium. O site oferece uma experiência moderna e responsiva para clientes que desejam acessar mais de 500 canais de TV, filmes e séries em qualidade Full HD.
 
-### ✅ Sistema PIX
-- QR Code dinâmico
-- Código copia e cola
-- Desconto de 5% automático
-- Confirmação em tempo real
+### ✨ Principais Características
 
-### ✅ Checkout Otimizado
-- 3 etapas intuitivas (Dados → Pagamento → Confirmação)
-- Validação em tempo real
-- Máscaras automáticas (CPF, telefone)
-- UX/UI moderna e responsiva
+- **Design Moderno**: Interface moderna com gradientes e animações suaves
+- **Responsivo**: Funciona perfeitamente em todos os dispositivos
+- **Sistema de Pagamento**: Integração com InfinitePay para processamento seguro
+- **WhatsApp Integration**: Comunicação direta com clientes via WhatsApp
+- **Video Carousel**: Depoimentos de clientes em formato de carrossel
+- **Modal de Compra**: Sistema completo de seleção e customização de planos
 
-### ✅ Upsell Estratégico
-- Oferta de canais adultos premium
-- Aparece dinamicamente baseado no plano
-- Tracking de conversão
-- Design persuasivo
+## 🚀 Funcionalidades
 
-### ✅ Sistema Anti-Fraude
-- Análise comportamental
-- Verificação de navegador
-- Score de confiabilidade
-- Bloqueio automático de bots
+### 🎯 Seções Principais
+- **Hero Section**: Apresentação impactante com call-to-action
+- **Canais**: Showcase das categorias de conteúdo disponível
+- **Planos**: 4 opções de assinatura (Mensal, Trimestral, Semestral, Anual)
+- **Depoimentos**: Carrossel de vídeos de clientes
+- **FAQ**: Perguntas frequentes com sistema expansível
+- **Contadores Dinâmicos**: Estatísticas em tempo real
 
-### ✅ Selos de Segurança
-- SSL Secure
-- Reclame Aqui (nota 9.2/10)
-- Compra Segura
-- PIX Disponível
+### 💰 Sistema de Planos
+- **Mensal**: R$ 35,00/mês
+- **Trimestral**: R$ 75,00 (economia de R$ 30)
+- **Semestral**: R$ 159,90 (economia de R$ 50)
+- **Anual**: R$ 249,90 (economia de R$ 170)
 
-### ✅ Analytics Completo
-- Google Analytics 4
-- Facebook Pixel
-- Tracking de eventos personalizados
-- Funil de conversão completo
+### 🛒 Recursos de Compra
+- Seleção de dispositivo principal
+- Telas adicionais (R$ 2,00 cada)
+- Conteúdo adulto opcional (+R$ 15,00)
+- Cálculo automático de totais
+- Integração com gateway de pagamento
 
-## 🛠️ Configuração
+## 🛠️ Tecnologias Utilizadas
 
-### 1. InfinitePay
+- **HTML5**: Estrutura semântica moderna
+- **CSS3**: Animações, gradientes e layout responsivo
+- **JavaScript ES6**: Funcionalidades interativas
+- **Font Awesome**: Iconografia profissional
+- **InfinitePay**: Gateway de pagamento
+- **WhatsApp API**: Integração para comunicação
 
-1. Acesse o [InfinitePay](https://www.infinitepay.io) ou entre em contato para criar sua conta
-2. Obtenha suas credenciais de API
-3. Copie seu App Token
-4. Edite o arquivo `config.js`:
+## 📁 Estrutura do Projeto
+
+```
+rj-tv-streaming/
+├── index.html          # Página principal
+├── css/
+│   └── style.css       # Estilos principais
+├── js/
+│   └── main.js         # Scripts e funcionalidades
+├── videos/             # Vídeos de depoimentos
+│   ├── cliente1.mp4
+│   ├── cliente2.mp4
+│   ├── thumb1.jpg
+│   └── thumb2.jpg
+└── README.md           # Documentação
+```
+
+## 🎨 Paleta de Cores
+
+```css
+--primary: #6a11cb      /* Roxo principal */
+--secondary: #2575fc    /* Azul secundário */
+--accent: #00bfa5       /* Verde destaque */
+--dark: #121212         /* Fundo escuro */
+--darker: #0a0a0a       /* Fundo mais escuro */
+```
+
+## ⚙️ Configuração e Instalação
+
+### Pré-requisitos
+- Servidor web (Apache, Nginx ou similar)
+- Navegador moderno com suporte a ES6
+- Conexão com internet para CDNs externos
+
+### Instalação
+1. Clone ou baixe os arquivos do projeto
+2. Configure seu servidor web para servir os arquivos
+3. Verifique se todos os caminhos de arquivos estão corretos
+4. Configure os links de pagamento no arquivo `main.js`
+
+### Configuração dos Pagamentos
+No arquivo `main.js`, atualize o objeto `PAYMENT_LINKS` com seus próprios links:
 
 ```javascript
-infinitePay: {
-    appToken: 'YOUR-INFINITEPAY-APP-TOKEN-HERE', // Seu App Token aqui
-    environment: 'sandbox', // 'sandbox' para teste, 'production' para produção
-    currency: 'BRL'
+const PAYMENT_LINKS = {
+  'Mensal_false': 'seu-link-aqui',
+  'Mensal_true': 'seu-link-aqui',
+  // ... outros links
+};
+```
+
+## 📱 Funcionalidades Mobile
+
+- **Menu Hambúrguer**: Navegação otimizada para mobile
+- **Touch Gestures**: Suporte a gestos em carrosseis
+- **Máscaras de Input**: Formatação automática de telefone
+- **Layout Responsivo**: Adaptação automática para diferentes telas
+
+## 🔧 Personalização
+
+### Alterando Cores
+Modifique as variáveis CSS no arquivo `style.css`:
+```css
+:root {
+  --primary: sua-cor-aqui;
+  --secondary: sua-cor-aqui;
+  /* ... */
 }
 ```
 
-### 2. Google Analytics
+### Adicionando Novos Planos
+1. Adicione o HTML no arquivo `index.html`
+2. Configure os preços no JavaScript
+3. Adicione o link de pagamento correspondente
 
-1. Crie uma propriedade no [Google Analytics](https://analytics.google.com)
-2. Copie o Measurement ID (formato: G-XXXXXXXXXX)
-3. Atualize o `config.js`:
+### Modificando Conteúdo
+- Textos: Edite diretamente no arquivo `index.html`
+- Imagens: Substitua os arquivos na pasta correspondente
+- Vídeos: Adicione novos vídeos na pasta `videos/`
 
-```javascript
-googleAnalytics: {
-    measurementId: 'G-XXXXXXXXXX', // Seu ID aqui
-    enabled: true
-}
-```
+## 📊 Analytics e Tracking
 
-4. Atualize também no `index.html` (linha 22):
+### Contadores Dinâmicos
+- Visitantes online (atualizado a cada 5 segundos)
+- Assinantes ativos (números simulados)
+- Conteúdos disponíveis (valor fixo)
 
-```html
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-```
+### Eventos Trackáveis
+- Cliques em planos
+- Submissões de formulário
+- Aberturas de modal
+- Clicks no WhatsApp
 
-### 3. Facebook Pixel
+## 🔒 Segurança
 
-1. Crie um pixel no [Facebook Business](https://business.facebook.com)
-2. Copie o Pixel ID
-3. Atualize o `config.js`:
+### Medidas Implementadas
+- Validação de formulários no frontend
+- Sanitização de inputs de telefone
+- Links de pagamento seguros
+- Comunicação via HTTPS recomendada
 
-```javascript
-facebookPixel: {
-    pixelId: '1234567890123456', // Seu Pixel ID aqui
-    enabled: true
-}
-```
+## 🌐 Compatibilidade
 
-4. Atualize também no `index.html` (linha 35):
+### Navegadores Suportados
+- Chrome 70+
+- Firefox 60+
+- Safari 12+
+- Edge 79+
 
-```javascript
-fbq('init', '1234567890123456'); // Seu Pixel ID aqui
-```
-
-### 4. Configuração PIX
-
-Atualize os dados da sua empresa no `config.js`:
-
-```javascript
-pix: {
-    desconto: 0.05, // 5% de desconto
-    chavePixEmpresa: 'sua-chave@empresa.com',
-    nomeEmpresa: 'SUA EMPRESA LTDA',
-    cidadeEmpresa: 'SUA CIDADE'
-}
-```
-
-### 5. WhatsApp
-
-Atualize o número do WhatsApp no `config.js`:
-
-```javascript
-whatsapp: {
-    number: '5511999999999', // Seu número com código do país
-    defaultMessage: 'Olá! Tenho interesse no RJ TV Premium.'
-}
-```
-
-## 📊 Eventos de Analytics Rastreados
-
-### Eventos Padrão:
-- `page_view` - Visualização da página
-- `begin_checkout` - Início do checkout
-- `proceed_to_payment` - Prosseguir para pagamento
-- `purchase` - Compra realizada
-- `upsell_shown` - Upsell exibido
-- `upsell_accepted` - Upsell aceito
-- `payment_method_selected` - Método de pagamento selecionado
-- `pix_payment_initiated` - Pagamento PIX iniciado
-- `card_payment_initiated` - Pagamento cartão iniciado
-- `pix_code_copied` - Código PIX copiado
-- `fraud_detected` - Fraude detectada
-- `plans_section_viewed` - Seção de planos visualizada
-- `testimonials_viewed` - Depoimentos visualizados
-
-## 🔒 Sistema Anti-Fraude
-
-O sistema coleta automaticamente:
-- User Agent do navegador
-- Timezone do usuário
-- Idioma do navegador
-- Resolução da tela
-- Tempo de sessão
-- Número de cliques
-- Verificação WebGL
-- Detecção de bots
-
-Score mínimo padrão: 60/100 (configurável no `config.js`)
-
-## 💰 Preços dos Planos (Configurável)
-
-```javascript
-planos: {
-    mensal: { valor: 35.00, nome: 'Plano Mensal' },
-    trimestral: { valor: 75.00, nome: 'Plano Trimestral' },
-    semestral: { valor: 159.90, nome: 'Plano Semestral' },
-    anual: { valor: 249.90, nome: 'Plano Anual VIP' }
-}
-```
-
-## 🎯 Funil de Conversão
-
-1. **Landing Page** - Apresentação dos planos
-2. **Formulário** - Captura de dados
-3. **Upsell** - Oferta estratégica
-4. **Pagamento** - PIX ou Cartão
-5. **Confirmação** - Página de sucesso
-6. **WhatsApp** - Entrega do produto
-
-## 📱 Responsividade
-
-- Layout otimizado para mobile
-- Checkout adaptativo
-- Botões touch-friendly
-- Formulários responsivos
-
-## 🔧 Arquivos Principais
-
-- `index.html` - Estrutura principal
-- `style.css` - Estilos e responsividade
-- `main.js` - Lógica do checkout e pagamentos
-- `config.js` - Configurações personalizáveis
-
-## 🚀 Deploy
-
-1. Configure todas as chaves nos arquivos
-2. Teste em ambiente de sandbox
-3. Mude `environment: 'production'` no InfinitePay
-4. Faça upload para seu servidor
-5. Configure SSL (obrigatório para pagamentos)
+### Dispositivos Testados
+- Desktop (1920x1080 e superiores)
+- Tablet (768px - 1024px)
+- Mobile (320px - 768px)
 
 ## 📞 Suporte
 
-Para dúvidas sobre implementação, entre em contato através do WhatsApp configurado na página.
+### Contatos de Suporte
+- **WhatsApp**: (21) 97731-7084
+- **Email**: streamingtvrj@gmail.com
+- **Horário**: 24 horas por dia
+
+### Problemas Conhecidos
+- Vídeos podem não carregar em conexões lentas
+- Formulário requer JavaScript ativado
+- Alguns recursos podem não funcionar no IE
+
+## 🚦 Status do Projeto
+
+- ✅ **Funcional**: Site totalmente operacional
+- ✅ **Responsivo**: Adaptado para todos os dispositivos
+- ✅ **Integrado**: Pagamentos e WhatsApp funcionando
+- 🔄 **Em Desenvolvimento**: Novos recursos sendo adicionados
+
+## 📈 Roadmap Futuro
+
+- [ ] Painel administrativo
+- [ ] Sistema de cupons de desconto
+- [ ] Chat online integrado
+- [ ] App mobile nativo
+- [ ] Dashboard de cliente
+
+## 🤝 Contribuição
+
+Este é um projeto proprietário. Para sugestões ou melhorias, entre em contato através dos canais de suporte.
+
+## 📄 Licença
+
+Este projeto é propriedade exclusiva da RJ TV Streaming. Todos os direitos reservados.
 
 ---
 
-**Desenvolvido com foco em conversão e performance ⚡**
+**Desenvolvido com ❤️ para RJ TV Streaming**
+
+*Última atualização: Janeiro 2025*
