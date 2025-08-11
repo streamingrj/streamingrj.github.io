@@ -984,3 +984,39 @@ footer {
     height: 250px;
   }
 }
+/* 🆕 Animação para badges da base */
+@keyframes badgePulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Animação suave para todas as badges */
+.bottom-badge {
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+}
+
+/* Efeito de entrada quando o plano fica visível */
+.plan-card.in-view .bottom-badge {
+  animation: slideUpBadge 0.5s ease-out;
+}
+
+@keyframes slideUpBadge {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
