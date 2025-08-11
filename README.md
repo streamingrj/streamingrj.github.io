@@ -4,7 +4,7 @@
 
 ## 📺 Sobre o Projeto
 
-RJ TV Streaming é uma plataforma completa para venda de serviços de streaming premium. O site oferece uma experiência moderna e responsiva para clientes que desejam acessar mais de 500 canais de TV, filmes e séries em qualidade Full HD.
+RJ TV Streaming é uma plataforma completa para venda de serviços de streaming premium. O site oferece uma experiência moderna e responsiva para clientes que desejam acessar mais de 10.000 canais de TV, filmes e séries em qualidade Full HD.
 
 ### ✨ Principais Características
 
