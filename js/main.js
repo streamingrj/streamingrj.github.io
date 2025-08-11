@@ -194,3 +194,20 @@ window.addEventListener('click', function(e) {
     closeModal();
   }
 });
+// FAQ Accordion Functionality - ADICIONAR NO MAIN.JS
+document.querySelectorAll('.faq-question').forEach(question => {
+  question.addEventListener('click', function() {
+    const faqCard = this.parentElement;
+    const isActive = faqCard.classList.contains('active');
+    
+    // Fechar todas as outras FAQs
+    document.querySelectorAll('.faq-card').forEach(card => {
+      card.classList.remove('active');
+    });
+    
+    // Abrir/fechar a FAQ clicada
+    if (!isActive) {
+      faqCard.classList.add('active');
+    }
+  });
+});
