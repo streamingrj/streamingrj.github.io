@@ -9,6 +9,7 @@ const PAYMENT_LINKS = {
   'Anual_true': 'https://invoice.infinitepay.io/plans/rjtv_streaming/1VlkshE9nr'
 };
 
+
 let selectedPlan = '';
 
 // Menu Mobile
@@ -71,7 +72,7 @@ function calculateTotal() {
   document.getElementById('totalSummary').innerText = `Total: R$${total.toFixed(2)}`;
 }
 
-// Form Submission
+// Form Submission - CORREÇÃO IMPLEMENTADA
 document.getElementById('purchaseForm').addEventListener('submit', function(e) {
   e.preventDefault();
   
@@ -102,10 +103,20 @@ document.getElementById('purchaseForm').addEventListener('submit', function(e) {
   }));
   
   const key = `${selectedPlan}_${upsell}`;
-  window.open(PAYMENT_LINKS[key], '_blank');
+  const paymentWindow = window.open(PAYMENT_LINKS[key], '_blank');
   
+  // Fechar modal
   closeModal();
-  document.getElementById('paidBar').style.display = 'block';
+  
+  // Exibir a barra "Já paguei" após 1 segundo
+  setTimeout(() => {
+    document.getElementById('paidBar').classList.add('show');
+  }, 1000);
+  
+  // Focar na nova janela
+  if (paymentWindow) {
+    paymentWindow.focus();
+  }
 });
 
 // WhatsApp Integration
@@ -164,9 +175,6 @@ function prevVideo() {
 // Event listeners para os controles
 document.querySelector('.carousel-prev').addEventListener('click', prevVideo);
 document.querySelector('.carousel-next').addEventListener('click', nextVideo);
-
-// Auto-advance (opcional)
-// setInterval(nextVideo, 10000);
 
 // Inicializar o primeiro vídeo
 showVideo(0);
