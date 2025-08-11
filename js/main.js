@@ -1,12 +1,12 @@
 const PAYMENT_LINKS = {
-  'Mensal_false': '#LINK_MENSAL',
-  'Mensal_true': '#LINK_MENSAL_UPSELL',
-  'Trimestral_false': '#LINK_TRIMESTRAL',
-  'Trimestral_true': '#LINK_TRIMESTRAL_UPSELL',
-  'Semestral_false': '#LINK_SEMESTRAL',
-  'Semestral_true': '#LINK_SEMESTRAL_UPSELL',
-  'Anual_false': '#LINK_ANUAL',
-  'Anual_true': '#LINK_ANUAL_UPSELL'
+  'Mensal_false': 'https://invoice.infinitepay.io/plans/rjtv_streaming/ffqmT1haP',
+  'Mensal_true': 'https://invoice.infinitepay.io/plans/rjtv_streaming/211e8ae50p',
+  'Trimestral_false': 'https://invoice.infinitepay.io/plans/rjtv_streaming/ksqiMKaBH',
+  'Trimestral_true': 'https://invoice.infinitepay.io/plans/rjtv_streaming/VFudGM6Tb',
+  'Semestral_false': 'https://invoice.infinitepay.io/plans/rjtv_streaming/634s4LkRYB',
+  'Semestral_true': 'https://invoice.infinitepay.io/plans/rjtv_streaming/634zeY0p6B',
+  'Anual_false': 'https://invoice.infinitepay.io/plans/rjtv_streaming/CVA6Gru1n',
+  'Anual_true': 'https://invoice.infinitepay.io/plans/rjtv_streaming/1VlkshE9nr'
 };
 
 let selectedPlan = '';
