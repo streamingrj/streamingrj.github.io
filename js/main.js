@@ -211,3 +211,41 @@ document.querySelectorAll('.faq-question').forEach(question => {
     }
   });
 });
+// ✨ Animação das badges na base dos planos
+document.addEventListener('DOMContentLoaded', function() {
+  // Animar badges quando elas aparecem na tela
+  const observerOptions = {
+    threshold: 0.5,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const badgeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.animation = 'badgePulse 0.6s ease-out';
+      }
+    });
+  }, observerOptions);
+
+  // Observar todas as badges da base
+  document.querySelectorAll('.bottom-badge').forEach(badge => {
+    badgeObserver.observe(badge);
+  });
+
+  // Adicionar efeito de hover aprimorado
+  document.querySelectorAll('.plan-card').forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      const badge = this.querySelector('.bottom-badge');
+      if (badge) {
+        badge.style.transform = 'translateY(-2px) scale(1.02)';
+      }
+    });
+
+    card.addEventListener('mouseleave', function() {
+      const badge = this.querySelector('.bottom-badge');
+      if (badge) {
+        badge.style.transform = 'translateY(0) scale(1)';
+      }
+    });
+  });
+});
