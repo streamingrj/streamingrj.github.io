@@ -51,7 +51,7 @@ function closeModal() {
   document.body.style.overflow = 'auto';
 }
 
-// Função para calcular o total
+// ✅ FUNÇÃO SIMPLIFICADA SEM TELAS ADICIONAIS
 function calculateTotal() {
   const planPrices = {
     'Mensal': 35.00,
@@ -60,26 +60,24 @@ function calculateTotal() {
     'Anual': 249.90
   };
   
-  const additionalScreens = parseInt(document.getElementById('additionalScreens').value);
-  const additionalPrice = additionalScreens * 2;
   const basePrice = planPrices[selectedPlan];
   const upsell = document.getElementById('upsellAdult').checked;
   const upsellPrice = upsell ? 15.00 : 0;
-  const total = basePrice + additionalPrice + upsellPrice;
+  const total = basePrice + upsellPrice;
   
-  document.getElementById('screensSummary').innerText = `Telas Adicionais: ${additionalScreens} (R$${additionalPrice.toFixed(2)})`;
+  // 🚫 LINHA DAS TELAS REMOVIDA
   document.getElementById('adultSummary').innerText = upsell ? `Conteúdo Adulto: Sim (R$15,00)` : `Conteúdo Adulto: Não`;
   document.getElementById('totalSummary').innerText = `Total: R$${total.toFixed(2)}`;
 }
 
 // Form Submission - CORREÇÃO IMPLEMENTADA
+// ✅ DEPOIS (sem telas):
 document.getElementById('purchaseForm').addEventListener('submit', function(e) {
   e.preventDefault();
   
   const name = document.getElementById('clientName').value;
   const phone = document.getElementById('clientPhone').value;
   const device = document.getElementById('clientDevice').value;
-  const additionalScreens = parseInt(document.getElementById('additionalScreens').value);
   const upsell = document.getElementById('upsellAdult').checked;
   
   // Simple Validation
@@ -98,7 +96,6 @@ document.getElementById('purchaseForm').addEventListener('submit', function(e) {
     phone, 
     device, 
     plan: selectedPlan, 
-    additionalScreens,
     upsell: upsell 
   }));
   
@@ -129,7 +126,6 @@ function sendWhatsApp() {
   
   const message = `Olá! Já paguei.\n\n` +
                  `*Plano:* ${order.plan}\n` +
-                 `*Telas Adicionais:* ${order.additionalScreens}\n` +
                  `*Conteúdo Adulto:* ${order.upsell ? 'Sim' : 'Não'}\n` +
                  `*Nome:* ${order.name}\n` +
                  `*WhatsApp:* ${order.phone}\n` +
