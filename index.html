@@ -1,389 +1,290 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>RJ TV Streaming | TV Premium por Streaming</title>
-  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Analytics leve (Plausible) - troque data-domain se desejar -->
+  <script async defer data-domain="rjtvstreaming.com" src="https://plausible.io/js/script.js"></script>
 </head>
 <body>
-  <!-- Menu de Navegação -->
-  <nav class="navbar">
-    <div class="container">
-      <a href="#" class="logo">RJ TV <span>Streaming</span></a>
-      <div class="menu-toggle">
-        <i class="fas fa-bars"></i>
+  <!-- NAV -->
+  <nav class="navbar" aria-label="Navegação principal">
+    <div class="container nav-inner">
+      <a href="#home" class="logo">RJ TV <span>Streaming</span></a>
+      <div class="nav-actions">
+        <button id="menuToggle" class="menu-toggle" aria-label="Abrir menu"><i class="fa fa-bars"></i></button>
+        <button id="themeToggle" class="theme-toggle" aria-label="Trocar tema"><i class="fa fa-moon"></i></button>
       </div>
-      <ul class="nav-links">
-        <li><a href="#home">Início</a></li>
-        <li><a href="#channels">Canais</a></li>
-        <li><a href="#plans">Planos</a></li>
-        <li><a href="#videos">Vídeos</a></li>
-        <li><a href="#faq">Dúvidas</a></li>
-      </ul>
+      <div id="navLinks" class="nav-links">
+        <a href="#home">Início</a>
+        <a href="#channels">Canais</a>
+        <a href="#plans">Planos</a>
+        <a href="#videos">Vídeos</a>
+        <a href="#faq">Dúvidas</a>
+      </div>
     </div>
   </nav>
 
-  <!-- Hero Section -->
+  <!-- HERO -->
   <header id="home" class="hero">
-    <div class="overlay">
-      <div class="hero-content">
-        <h1>TV Premium por Streaming</h1>
-        <p class="subtitle">Mais de 1.000 filmes, séries e canais ao vivo em Full HD</p>
-        <div class="hero-badges">
-          <span><i class="fas fa-tv"></i> Assista em qualquer dispositivo</span>
-          <span><i class="fas fa-sync-alt"></i> Atualização diária de conteúdo</span>
-          <span><i class="fas fa-headset"></i> Suporte 24h</span>
-        </div>
-        <a href="#plans" class="cta-btn pulse">
-          <i class="fas fa-play-circle"></i> Comece a assistir agora
-        </a>
+    <div class="hero-inner container">
+      <h1>TV Premium por Streaming</h1>
+      <p>Mais de 1.000 canais, filmes e séries em Full HD. Suporte humano 24/7 e atualizações diárias.</p>
+      <div class="hero-ctas">
+        <button id="ctaOpen" class="btn primary"><i class="fa fa-play-circle"></i> Começar agora</button>
+        <a class="btn ghost" href="#plans">Ver planos</a>
       </div>
     </div>
   </header>
-  
-  <!-- Canal Section -->
-  <section id="channels" class="channels-section">
-    <div class="container">
-      <h2 class="section-title">Nossos Canais</h2>
-      <p class="section-subtitle">Mais de 1.000 canais incluídos em todos os planos</p>
-      
-      <div class="channels-grid">
-        <div class="channel-card">
-          <div class="channel-logo">
-            <i class="fas fa-futbol"></i>
-          </div>
-          <h3>Esportes</h3>
-          <p>Premier League, F1, UFC, NBA e todos os campeonatos</p>
-        </div>
-        
-        <div class="channel-card">
-          <div class="channel-logo">
-            <i class="fas fa-film"></i>
-          </div>
-          <h3>Filmes & Séries</h3>
-          <p>HBO, Netflix, Disney+, Amazon Prime e muito mais</p>
-        </div>
-        
-        <div class="channel-card">
-          <div class="channel-logo">
-            <i class="fas fa-child"></i>
-          </div>
-          <h3>Infantil</h3>
-          <p>Conteúdo educativo e entretenimento para crianças</p>
-        </div>
-        
-        <div class="channel-card">
-          <div class="channel-logo">
-            <i class="fas fa-globe-americas"></i>
-          </div>
-          <h3>Internacional</h3>
-          <p>Canais de mais de 30 países diferentes</p>
-        </div>
+
+  <!-- CANAIS -->
+  <section id="channels" class="container section">
+    <h2 class="section-title">Nossos Canais</h2>
+    <p class="section-subtitle">Seleção para todos os gostos: esportes, filmes e muito mais.</p>
+
+    <div class="channels-grid">
+      <article class="channel-card" data-tags="esportes futebol nba">
+        <div class="logo-circle"><i class="fa fa-futbol"></i></div>
+        <h3>Esportes</h3>
+        <p>Premier League, F1, NBA e mais.</p>
+      </article>
+
+      <article class="channel-card" data-tags="filmes series">
+        <div class="logo-circle"><i class="fa fa-film"></i></div>
+        <h3>Filmes & Séries</h3>
+        <p>Lançamentos e clássicos.</p>
+      </article>
+
+      <article class="channel-card" data-tags="infantil kids">
+        <div class="logo-circle"><i class="fa fa-child"></i></div>
+        <h3>Infantil</h3>
+        <p>Segurança e diversão para crianças.</p>
+      </article>
+
+      <article class="channel-card" data-tags="internacional noticias">
+        <div class="logo-circle"><i class="fa fa-globe"></i></div>
+        <h3>Internacional</h3>
+        <p>Canais de vários países.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- PLANS -->
+  <section id="plans" class="container section">
+    <h2 class="section-title">Planos</h2>
+    <p class="section-subtitle">Escolha a duração ideal — depois confirme no formulário.</p>
+
+    <div class="plans-grid">
+      <div class="plan-card">
+        <h3>Mensal</h3>
+        <div class="price">R$40,00 <span class="period">/ mês</span></div>
+        <ul class="plan-features">
+          <li>1.000+ canais</li>
+          <li>Suporte 24h</li>
+        </ul>
+        <button class="plan-btn" data-plan="Mensal">Quero este</button>
+      </div>
+
+      <div class="plan-card highlight">
+        <div class="badge">ECONÔMICO</div>
+        <h3>Trimestral</h3>
+        <div class="price">R$75,00 <span class="period">/ 3 meses</span></div>
+        <ul class="plan-features">
+          <li>Suporte prioritário</li>
+        </ul>
+        <button class="plan-btn" data-plan="Trimestral">Ver condições</button>
+      </div>
+
+      <div class="plan-card">
+        <h3>Semestral</h3>
+        <div class="price">R$159,90 <span class="period">/ 6 meses</span></div>
+        <ul class="plan-features">
+          <li>Suporte VIP</li>
+        </ul>
+        <button class="plan-btn" data-plan="Semestral">Quero este</button>
+      </div>
+
+      <div class="plan-card highlight">
+        <div class="badge">MELHOR CUSTO</div>
+        <h3>Anual</h3>
+        <div class="price">R$249,90 <span class="period">/ ano</span></div>
+        <ul class="plan-features">
+          <li>60 dias grátis + VIP</li>
+        </ul>
+        <button class="plan-btn" data-plan="Anual">Ver detalhes</button>
       </div>
     </div>
   </section>
 
-  <!-- Planos Section -->
-  <section id="plans" class="plans-section">
-    <div class="container">
-      <h2 class="section-title">Planos</h2>
-      <p class="section-subtitle">Escolha o plano ideal para você</p>
-      
-      <div class="plans-grid">
-        <div class="plan-card">
-          <div class="plan-header">
-            <h3>Mensal</h3>
-          </div>
-          <div class="plan-price">
-            <span class="price">R$35,00</span>
-            <span class="period">por mês</span>
-          </div>
-          <ul class="plan-features">
-            <li><i class="fas fa-check"></i> 1.000+ canais</li>
-            <li><i class="fas fa-check"></i> Suporte 24h</li>
-          </ul>
-          <button onclick="openModal('Mensal')" class="plan-btn">
-            <i class="fas fa-shopping-cart"></i> Assinar
-          </button>
+  <!-- VÍDEOS -->
+  <section id="videos" class="container section">
+    <h2 class="section-title">Nossos Clientes</h2>
+    <p class="section-subtitle">Depoimentos em vídeo</p>
+
+    <div class="video-carousel">
+      <div class="video-wrap">
+        <div class="video-slide active">
+          <video controls poster="videos/thumb1.jpg"><source src="videos/videoCliente.mp4" type="video/mp4"></video>
         </div>
-        
-        <div class="plan-card highlight">
-          <div class="plan-header">
-            <h3>Trimestral</h3>
-          </div>
-          <div class="plan-price">
-            <span class="price">R$75,00</span>
-            <span class="period">cada 3 meses</span>
-            <div class="economy">Economize R$30</div>
-          </div>
-          <ul class="plan-features">
-            <li><i class="fas fa-check"></i> 1.000+ canais</li>
-            <li><i class="fas fa-check"></i> Suporte prioritário</li>
-          </ul>
-          <div class="plan-badge bottom-badge">ECONÔMICO</div>
-          <button onclick="openModal('Trimestral')" class="plan-btn highlight-btn">
-            <i class="fas fa-bolt"></i> Mais Popular
-          </button>
+        <div class="video-slide">
+          <video controls poster="videos/thumb2.jpg"><source src="videos/VideoCliente2.mp4" type="video/mp4"></video>
         </div>
-        
-        <div class="plan-card">
-          <div class="plan-header">
-            <h3>Semestral</h3>
-          </div>
-          <div class="plan-price">
-            <span class="price">R$159,90</span>
-            <span class="period">cada 6 meses</span>
-            <div class="economy">Economize R$50</div>
-          </div>
-          <ul class="plan-features">
-            <li><i class="fas fa-check"></i> 1.000+ canais</li>
-            <li><i class="fas fa-check"></i> Suporte VIP</li>
-          </ul>
-          <button onclick="openModal('Semestral')" class="plan-btn">
-            <i class="fas fa-shopping-cart"></i> Assinar
-          </button>
-        </div>
-        
-        <div class="plan-card highlight">
-          <div class="plan-header">
-            <h3>Anual</h3>
-          </div>
-          <div class="plan-price">
-            <span class="price">R$249,90</span>
-            <span class="period">por ano</span>
-            <div class="economy">Economize R$170</div>
-          </div>
-          <ul class="plan-features">
-            <li><i class="fas fa-check"></i> 1.000+ canais</li>
-            <li><i class="fas fa-check"></i> 60 dias grátis</li>
-            <li><i class="fas fa-check"></i> Suporte VIP 24/7</li>
-          </ul>
-           <div class="plan-badge bottom-badge">MELHOR CUSTO-BENEFÍCIO</div>
-          <button onclick="openModal('Anual')" class="plan-btn highlight-btn">
-            <i class="fas fa-crown"></i> Mais Economia
-          </button>
-        </div>
+      </div>
+      <div class="video-controls">
+        <button id="prevVideo" class="ctrl"><i class="fa fa-chevron-left"></i></button>
+        <button id="nextVideo" class="ctrl"><i class="fa fa-chevron-right"></i></button>
       </div>
     </div>
   </section>
 
-  <!-- Vídeos Section -->
-  <section id="videos" class="videos-section">
-    <div class="container">
-      <h2 class="section-title">Nossos Clientes</h2>
-      <p class="section-subtitle">Veja o que nossos assinantes estão dizendo</p>
-      
-      <div class="video-carousel">
-        <div class="video-wrapper">
-          <!-- Vídeo 1 -->
-          <div class="video-item active">
-            <video controls poster="videos/thumb1.jpg">
-              <source src="videos/videoCliente.mp4" type="video/mp4">
-              Seu navegador não suporta o elemento de vídeo.
-            </video>
-          </div>
-          <!-- Vídeo 2 -->
-          <div class="video-item">
-            <video controls poster="videos/thumb2.jpg">
-              <source src="videos/VideoCliente2.mp4" type="video/mp4">
-              Seu navegador não suporta o elemento de vídeo.
-            </video>
-          </div>
-          <!-- Vídeo 3 (Espaço para futuro) -->
-          <div class="video-item">
-            <div class="placeholder">
-              <i class="fas fa-plus-circle"></i>
-              <p>Novo vídeo em breve</p>
-            </div>
-          </div>
-        </div>
-        <!-- Controles do carrossel -->
-        <button class="carousel-prev"><i class="fas fa-chevron-left"></i></button>
-        <button class="carousel-next"><i class="fas fa-chevron-right"></i></button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contadores -->
+  <!-- CONTADORES -->
   <section class="counters">
-    <div class="container">
-      <div class="counter-box">
-        <i class="fas fa-users"></i>
-        <h3 id="visitors">0</h3>
-        <p>Visitantes Online</p>
+    <div class="container counter-grid">
+      <div class="counter"><i class="fa fa-users"></i><h3 id="visitors">0</h3><p>Visitantes</p></div>
+      <div class="counter"><i class="fa fa-tv"></i><h3 id="subscribers">0</h3><p>Assinantes</p></div>
+      <div class="counter"><i class="fa fa-film"></i><h3>10.000+</h3><p>Conteúdos</p></div>
+      <div class="counter"><i class="fa fa-headset"></i><h3>24/7</h3><p>Suporte</p></div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="container section">
+    <h2 class="section-title">Perguntas Frequentes</h2>
+    <p class="section-subtitle">Clique para ver a resposta</p>
+
+    <div class="faq-grid">
+      <div class="faq-card">
+        <button class="faq-q"><i class="fa fa-question-circle"></i> Como faço para instalar?</button>
+        <div class="faq-a">Após confirmarmos seu pedido via WhatsApp, enviamos o app e instruções por dispositivo.</div>
       </div>
-      <div class="counter-box">
-        <i class="fas fa-tv"></i>
-        <h3 id="subscribers">0</h3>
-        <p>Assinantes Ativos</p>
+
+      <div class="faq-card">
+        <button class="faq-q"><i class="fa fa-question-circle"></i> Quais dispositivos são compatíveis?</button>
+        <div class="faq-a">Smart TV, Celular (Android/iOS), TV Box, Tablet e Computador.</div>
       </div>
-      <div class="counter-box">
-        <i class="fas fa-film"></i>
-        <h3>10.000+</h3>
-        <p>Conteúdos Disponíveis</p>
+
+      <div class="faq-card">
+        <button class="faq-q"><i class="fa fa-question-circle"></i> Posso assistir em mais de um dispositivo?</button>
+        <div class="faq-a">Sim — dependendo do plano, 2 a 4 telas simultâneas.</div>
       </div>
-      <div class="counter-box">
-        <i class="fas fa-headset"></i>
-        <h3>24/7</h3>
-        <p>Suporte Técnico</p>
+
+      <div class="faq-card">
+        <button class="faq-q"><i class="fa fa-question-circle"></i> Como funciona o teste?</button>
+        <div class="faq-a">Você pode solicitar um teste de 3 horas no formulário (etapa 2).</div>
       </div>
     </div>
   </section>
 
-  <!-- FAQ Section -->
-  <section id="faq" class="faq-section">
-    <div class="container">
-      <h2 class="section-title">Perguntas Frequentes</h2>
-      
-      <div class="faq-grid">
-        <div class="faq-card">
-          <div class="faq-question">
-            <i class="fas fa-question-circle"></i>
-            Como faço para instalar?
-          </div>
-          <div class="faq-answer">
-            Após a confirmação do pagamento, enviaremos um email com o aplicativo e instruções de instalação para seu dispositivo.
-          </div>
-        </div>
-        
-        <div class="faq-card">
-          <div class="faq-question">
-            <i class="fas fa-question-circle"></i>
-            Quais dispositivos são compatíveis?
-          </div>
-          <div class="faq-answer">
-            Funciona em Smart TVs (Android TV, Samsung, LG), celulares (Android/iOS), tablets, computadores e boxes (Chromecast, Firestick, etc).
-          </div>
-        </div>
-        
-        <div class="faq-card">
-          <div class="faq-question">
-            <i class="fas fa-question-circle"></i>
-            Posso assistir em mais de um dispositivo?
-          </div>
-          <div class="faq-answer">
-            Sim, cada plano permite de 2 a 4 conexões simultâneas dependendo do plano escolhido.
-          </div>
-        </div>
-        
-        <div class="faq-card">
-          <div class="faq-question">
-            <i class="fas fa-question-circle"></i>
-            Como funciona o período de teste?
-          </div>
-          <div class="faq-answer">
-            Oferecemos de 7 a 60 dias grátis conforme o plano. Se não gostar, devolvemos seu dinheiro.
-          </div>
-        </div>
+  <!-- FOOTER -->
+  <footer class="container">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h4>RJ TV Streaming</h4>
+        <p>Suporte 24h • Full HD</p>
       </div>
-    </div>
-  </section>
 
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-column">
-          <h4>RJ TV Streaming</h4>
-          <p>A melhor experiência em streaming com qualidade Full HD e suporte 24 horas.</p>
-          <div class="social-icons">
-            <a href="https://www.instagram.com/riotvstreaming/"><i class="fab fa-instagram"></i></a>
-            <a href="https://wa.me/5521977317084?text=Olá! Gostaria de mais informações"><i class="fab fa-whatsapp"></i></a>
-          </div>
-        </div>
-        
-        <div class="footer-column">
-          <h4>Links Rápidos</h4>
-          <ul>
-            <li><a href="#home">Início</a></li>
-            <li><a href="#channels">Canais</a></li>
-            <li><a href="#plans">Planos</a></li>
-            <li><a href="#videos">Vídeos</a></li>
-            <li><a href="#faq">Dúvidas</a></li>
-          </ul>
-        </div>
-        
-        <div class="footer-column">
-          <h4>Suporte</h4>
-          <ul>
-            <li><i class="fas fa-headset"></i> WhatsApp: (21) 97731-7084</li>
-            <li><i class="fas fa-envelope"></i> streamingtvrj@gmail.com</li>
-            <li><i class="fas fa-clock"></i> Atendimento 24 horas</li>
-          </ul>
-        </div>
-      </div>
-      
-      <div class="copyright">
-        <p>© 2025 RJ TV Streaming - Todos os direitos reservados.</p>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <p>WhatsApp: (21) 97731-7084<br>streamingtvrj@gmail.com</p>
       </div>
     </div>
+    <div class="copyright">© 2025 RJ TV Streaming</div>
   </footer>
 
-  <!-- Modal -->
-  <div id="purchaseModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <h2><i class="fas fa-shopping-cart"></i> Resumo da Compra</h2>
-      <form id="purchaseForm">
-        <div class="form-group">
-          <label><i class="fas fa-user"></i> Nome Completo:</label>
-          <input type="text" id="clientName" required>
-        </div>
-        
-        <div class="form-group">
-          <label><i class="fas fa-phone"></i> WhatsApp:</label>
-          <input type="text" id="clientPhone" placeholder="(21) 99999-9999" required>
-          <div class="hint">Enviaremos o acesso por WhatsApp</div>
-        </div>
-        
-        <div class="form-group">
-          <label><i class="fas fa-tv"></i> Aparelho Principal:</label>
-          <select id="clientDevice" required>
-            <option value="">Selecione seu dispositivo</option>
-            <option value="Android TV">Android TV</option>
-            <option value="Samsung Smart TV">Samsung Smart TV</option>
-            <option value="LG Smart TV">LG Smart TV</option>
-            <option value="Fire TV Stick">Fire TV Stick</option>
-            <option value="Chromecast">Chromecast</option>
-            <option value="Celular/Tablet">Celular/Tablet</option>
-            <option value="Computador">Computador</option>
-          </select>
+  <!-- FABs -->
+  <div class="fab">
+    <a class="fab-whats" href="https://wa.me/5521977317084?text=Olá!%20Quero%20mais%20informações" target="_blank" aria-label="WhatsApp">
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    <button id="toTop" title="Voltar ao topo" aria-label="Voltar ao topo"><i class="fa fa-arrow-up"></i></button>
+  </div>
+
+  <!-- LEAD MODAL (2 ETAPAS) -->
+  <div id="leadModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <button class="modal-close" aria-label="Fechar">×</button>
+
+      <div class="modal-steps">
+        <div class="dot active" data-step="1">1</div>
+        <div class="line"></div>
+        <div class="dot" data-step="2">2</div>
+      </div>
+
+      <h2>Solicitar Atendimento</h2>
+
+      <!-- ETAPA 1 -->
+      <div class="step step-1 active" aria-live="polite">
+        <label for="fullName">Nome Completo</label>
+        <input id="fullName" type="text" placeholder="Ex: João da Silva" required>
+
+        <label for="whats">WhatsApp</label>
+        <input id="whats" type="tel" placeholder="(21) 99999-9999" required>
+
+        <label for="device">Qual aparelho vai usar?</label>
+        <select id="device" required>
+          <option value="">Selecione</option>
+          <option>Smart TV</option>
+          <option>Celular</option>
+          <option>TV Box</option>
+          <option>Tablet</option>
+          <option>Computador</option>
+          <option>Outro</option>
+        </select>
+
+        <div id="smartTvFields" class="conditional" style="display:none;">
+          <label for="tvBrand">Marca da Smart TV</label>
+          <input id="tvBrand" type="text" placeholder="Ex: Samsung">
+
+          <label for="tvModel">Modelo da Smart TV</label>
+          <input id="tvModel" type="text" placeholder="Ex: UN50...">
         </div>
 
-        <div class="upsell-container">
-          <label class="upsell-label">
-            <input type="checkbox" id="upsellAdult" onchange="calculateTotal()"> 
-            <i class="fas fa-plus-circle"></i> Adicionar conteúdo adulto (+R$15)
-          </label>
-          <div class="upsell-description">Canais adultos com acesso restrito por senha</div>
+        <div id="phoneFields" class="conditional" style="display:none;">
+          <label>Sistema do Celular</label>
+          <div class="inline-options">
+            <label class="chip"><input type="radio" name="phoneOS" value="Android"> Android</label>
+            <label class="chip"><input type="radio" name="phoneOS" value="iOS"> iOS</label>
+          </div>
         </div>
 
-        <div class="summary-box">
-          <p id="planSummary"></p>
-          <p id="adultSummary"></p>
-          <p id="totalSummary" style="font-weight: bold; font-size: 1.2rem;"></p>
+        <div class="modal-actions">
+          <button class="btn" id="btnContinue">Continuar</button>
         </div>
-        
-        <div class="alert">
-          <i class="fas fa-info-circle"></i> Após pagar, volte e clique em <b>Já paguei</b> para confirmar.
+      </div>
+
+      <!-- ETAPA 2 -->
+      <div class="step step-2" aria-live="polite">
+        <label>O que deseja?</label>
+        <div class="inline-options">
+          <label class="chip"><input type="radio" name="intent" value="Teste" checked> Teste de 3 horas</label>
+          <label class="chip"><input type="radio" name="intent" value="Assinar"> Assinar agora</label>
         </div>
-        
-        <button type="submit" class="confirm-btn">
-          <i class="fas fa-lock"></i> Confirmar e Pagar
-        </button>
-      </form>
+
+        <label>Planos disponíveis <small>(taxa de ativação R$15–R$20, 1x ao ano)</small></label>
+        <div class="plan-choices">
+          <label class="plan-chip"><input type="radio" name="plan" value="Mensal" data-price="40.00" disabled> Mensal • R$40,00</label>
+          <label class="plan-chip"><input type="radio" name="plan" value="Trimestral" data-price="75.00" disabled> Trimestral • R$75,00</label>
+          <label class="plan-chip"><input type="radio" name="plan" value="Semestral" data-price="159.90" disabled> Semestral • R$159,90</label>
+          <label class="plan-chip"><input type="radio" name="plan" value="Anual" data-price="249.90" disabled> Anual • R$249,90</label>
+        </div>
+
+        <div class="modal-actions">
+          <button class="btn ghost" id="btnBack">Voltar</button>
+          <button class="btn primary" id="btnSend">Enviar pelo WhatsApp</button>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- Barra Já Paguei -->
-  <div id="paidBar" class="paid-bar">
-    <button onclick="sendWhatsApp()">
-      <i class="fab fa-whatsapp"></i> ✅ Já paguei – Enviar meus dados via WhatsApp
-    </button>
-  </div>
-
+  <!-- JS -->
   <script src="js/main.js"></script>
 </body>
 </html>
