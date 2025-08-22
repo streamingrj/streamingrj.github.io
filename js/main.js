@@ -1,247 +1,269 @@
-const PAYMENT_LINKS = {
-  'Mensal_false': 'https://invoice.infinitepay.io/plans/rjtv_streaming/ffqmT1haP',
-  'Mensal_true': 'https://invoice.infinitepay.io/plans/rjtv_streaming/211e8ae50p',
-  'Trimestral_false': 'https://invoice.infinitepay.io/plans/rjtv_streaming/ksqiMKaBH',
-  'Trimestral_true': 'https://invoice.infinitepay.io/plans/rjtv_streaming/VFudGM6Tb',
-  'Semestral_false': 'https://invoice.infinitepay.io/plans/rjtv_streaming/634s4LkRYB',
-  'Semestral_true': 'https://invoice.infinitepay.io/plans/rjtv_streaming/634zeY0p6B',
-  'Anual_false': 'https://invoice.infinitepay.io/plans/rjtv_streaming/CVA6Gru1n',
-  'Anual_true': 'https://invoice.infinitepay.io/plans/rjtv_streaming/1VlkshE9nr'
-};
+// js/main.js
+document.addEventListener('DOMContentLoaded', () => {
+  // Elements
+  const leadModal = document.getElementById('leadModal');
+  const modalClose = leadModal.querySelector('.modal-close');
+  const btnContinue = document.getElementById('btnContinue');
+  const btnBack = document.getElementById('btnBack');
+  const btnSend = document.getElementById('btnSend');
+  const ctaOpen = document.getElementById('ctaOpen');
+  const planButtons = Array.from(document.querySelectorAll('.plan-btn'));
+  const dots = Array.from(document.querySelectorAll('.modal-steps .dot'));
+  const steps = Array.from(document.querySelectorAll('.step'));
+  const deviceSelect = document.getElementById('device');
+  const smartTvFields = document.getElementById('smartTvFields');
+  const phoneFields = document.getElementById('phoneFields');
+  const fullName = document.getElementById('fullName');
+  const whatsInput = document.getElementById('whats');
 
+  let preselectedPlan = ''; // Mantém plano quando clicam no card
 
-let selectedPlan = '';
+  // Utility: open/close modal and set step
+  function openLeadModal(step = 1, plan = '') {
+    preselectedPlan = plan || '';
+    showStep(1); // Sempre abrir na ETAPA 1 por padrão
+    leadModal.classList.add('open');
+    leadModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
 
-// Menu Mobile
-document.querySelector('.menu-toggle').addEventListener('click', function() {
-  document.querySelector('.nav-links').classList.toggle('active');
-});
-
-// Máscara de Telefone
-const phoneInput = document.getElementById('clientPhone');
-phoneInput.addEventListener('input', function() {
-  let value = phoneInput.value.replace(/\D/g, '');
-  
-  if (value.length > 11) {
-    value = value.slice(0, 11);
+    // foco para campo nome:
+    setTimeout(() => { try { fullName.focus(); } catch (e) {} }, 120);
   }
-  
-  if (value.length > 2) {
-    value = `(${value.slice(0,2)}) ${value.slice(2)}`;
+
+  function closeLeadModal() {
+    leadModal.classList.remove('open');
+    leadModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = 'auto';
+    preselectedPlan = ''; // limpar seleção ao fechar
   }
-  
-  if (value.length > 10) {
-    value = `${value.slice(0,10)}-${value.slice(10)}`;
-  }
-  
-  phoneInput.value = value;
-});
 
-// Modal Functions
-function openModal(plan) {
-  selectedPlan = plan;
-  document.getElementById('planSummary').innerText = `Plano: ${plan}`;
-  document.getElementById('purchaseModal').style.display = 'block';
-  document.body.style.overflow = 'hidden';
-  calculateTotal(); // Inicializar o cálculo
-}
-
-function closeModal() {
-  document.getElementById('purchaseModal').style.display = 'none';
-  document.body.style.overflow = 'auto';
-}
-
-// ✅ FUNÇÃO SIMPLIFICADA SEM TELAS ADICIONAIS
-function calculateTotal() {
-  const planPrices = {
-    'Mensal': 35.00,
-    'Trimestral': 75.00,
-    'Semestral': 159.90,
-    'Anual': 249.90
-  };
-  
-  const basePrice = planPrices[selectedPlan];
-  const upsell = document.getElementById('upsellAdult').checked;
-  const upsellPrice = upsell ? 15.00 : 0;
-  const total = basePrice + upsellPrice;
-  
-  // 🚫 LINHA DAS TELAS REMOVIDA
-  document.getElementById('adultSummary').innerText = upsell ? `Conteúdo Adulto: Sim (R$15,00)` : `Conteúdo Adulto: Não`;
-  document.getElementById('totalSummary').innerText = `Total: R$${total.toFixed(2)}`;
-}
-
-// Form Submission - CORREÇÃO IMPLEMENTADA
-// ✅ DEPOIS (sem telas):
-document.getElementById('purchaseForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  
-  const name = document.getElementById('clientName').value;
-  const phone = document.getElementById('clientPhone').value;
-  const device = document.getElementById('clientDevice').value;
-  const upsell = document.getElementById('upsellAdult').checked;
-  
-  // Simple Validation
-  if (!name || !phone || !device) {
-    alert('Por favor, preencha todos os campos obrigatórios.');
-    return;
-  }
-  
-  if (phone.replace(/\D/g, '').length < 11) {
-    alert('Por favor, insira um número de WhatsApp válido.');
-    return;
-  }
-  
-  localStorage.setItem('orderData', JSON.stringify({ 
-    name, 
-    phone, 
-    device, 
-    plan: selectedPlan, 
-    upsell: upsell 
-  }));
-  
-  const key = `${selectedPlan}_${upsell}`;
-  const paymentWindow = window.open(PAYMENT_LINKS[key], '_blank');
-  
-  // Fechar modal
-  closeModal();
-  
-  // Exibir a barra "Já paguei" após 1 segundo
-  setTimeout(() => {
-    document.getElementById('paidBar').classList.add('show');
-  }, 1000);
-  
-  // Focar na nova janela
-  if (paymentWindow) {
-    paymentWindow.focus();
-  }
-});
-
-// WhatsApp Integration
-function sendWhatsApp() {
-  const order = JSON.parse(localStorage.getItem('orderData'));
-  if (!order) {
-    alert('Nenhum pedido encontrado. Por favor, complete a compra primeiro.');
-    return;
-  }
-  
-  const message = `Olá! Já paguei.\n\n` +
-                 `*Plano:* ${order.plan}\n` +
-                 `*Conteúdo Adulto:* ${order.upsell ? 'Sim' : 'Não'}\n` +
-                 `*Nome:* ${order.name}\n` +
-                 `*WhatsApp:* ${order.phone}\n` +
-                 `*Aparelho Principal:* ${order.device}\n\n` +
-                 `Por favor, ative meu acesso.`;
-  
-  window.open(`https://wa.me/5521977317084?text=${encodeURIComponent(message)}`, '_blank');
-}
-
-// Video Carousel
-let currentVideoIndex = 0;
-const videoItems = document.querySelectorAll('.video-item');
-const totalVideos = videoItems.length;
-
-function showVideo(index) {
-  // Pausar todos os vídeos antes de mudar
-  document.querySelectorAll('.video-item video').forEach(video => {
-    video.pause();
-  });
-  
-  // Remover classe ativa de todos os itens
-  videoItems.forEach(item => {
-    item.classList.remove('active');
-  });
-  
-  // Adicionar classe ativa ao item atual
-  videoItems[index].classList.add('active');
-  currentVideoIndex = index;
-}
-
-function nextVideo() {
-  let nextIndex = currentVideoIndex + 1;
-  if (nextIndex >= totalVideos) nextIndex = 0;
-  showVideo(nextIndex);
-}
-
-function prevVideo() {
-  let prevIndex = currentVideoIndex - 1;
-  if (prevIndex < 0) prevIndex = totalVideos - 1;
-  showVideo(prevIndex);
-}
-
-// Event listeners para os controles
-document.querySelector('.carousel-prev').addEventListener('click', prevVideo);
-document.querySelector('.carousel-next').addEventListener('click', nextVideo);
-
-// Inicializar o primeiro vídeo
-showVideo(0);
-
-// Contadores fake
-function updateCounters() {
-  document.getElementById('visitors').innerText = Math.floor(Math.random() * 100) + 150;
-  document.getElementById('subscribers').innerText = Math.floor(Math.random() * 1000) + 2500;
-}
-setInterval(updateCounters, 5000);
-updateCounters();
-
-// Close modal when clicking outside
-window.addEventListener('click', function(e) {
-  const modal = document.getElementById('purchaseModal');
-  if (e.target === modal) {
-    closeModal();
-  }
-});
-// FAQ Accordion Functionality - ADICIONAR NO MAIN.JS
-document.querySelectorAll('.faq-question').forEach(question => {
-  question.addEventListener('click', function() {
-    const faqCard = this.parentElement;
-    const isActive = faqCard.classList.contains('active');
-    
-    // Fechar todas as outras FAQs
-    document.querySelectorAll('.faq-card').forEach(card => {
-      card.classList.remove('active');
+  function showStep(n) {
+    steps.forEach((s, idx) => {
+      const stepIndex = idx + 1;
+      if (stepIndex === n) s.classList.add('active'); else s.classList.remove('active');
     });
-    
-    // Abrir/fechar a FAQ clicada
-    if (!isActive) {
-      faqCard.classList.add('active');
+    dots.forEach(d => d.classList.toggle('active', Number(d.dataset.step) === n));
+  }
+
+  // Validate Step 1 before proceeding
+  function validateStep1() {
+    const name = fullName.value.trim();
+    const phoneDigits = whatsInput.value.replace(/\D/g, '');
+    const device = deviceSelect.value;
+
+    if (!name) { alert('Por favor informe seu nome completo.'); fullName.focus(); return false; }
+    if (phoneDigits.length < 10) { alert('Informe um número de WhatsApp válido (DDD + número).'); whatsInput.focus(); return false; }
+    if (!device) { alert('Selecione o aparelho que vai usar.'); deviceSelect.focus(); return false; }
+
+    if (device === 'Smart TV') {
+      const brand = document.getElementById('tvBrand')?.value?.trim() || '';
+      const model = document.getElementById('tvModel')?.value?.trim() || '';
+      if (!brand || !model) { alert('Para Smart TV, informe marca e modelo.'); document.getElementById('tvBrand')?.focus(); return false; }
+    } else if (device === 'Celular') {
+      const os = document.querySelector('input[name="phoneOS"]:checked');
+      if (!os) { alert('Selecione se o celular é Android ou iOS.'); return false; }
     }
-  });
-});
-// ✨ Animação das badges na base dos planos
-document.addEventListener('DOMContentLoaded', function() {
-  // Animar badges quando elas aparecem na tela
-  const observerOptions = {
-    threshold: 0.5,
-    rootMargin: '0px 0px -50px 0px'
-  };
 
-  const badgeObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.animation = 'badgePulse 0.6s ease-out';
-      }
+    // Store basic info locally (light)
+    try {
+      localStorage.setItem('lead:name', name);
+      localStorage.setItem('lead:phone', whatsInput.value);
+    } catch (e) { /* ignore */ }
+
+    return true;
+  }
+
+  // Apply conditional fields on device change
+  function updateConditionalFields() {
+    const val = deviceSelect.value;
+    smartTvFields.style.display = val === 'Smart TV' ? '' : 'none';
+    phoneFields.style.display = val === 'Celular' ? '' : 'none';
+  }
+
+  // Mask WhatsApp input (Brazilian style)
+  function maskWhats() {
+    let v = whatsInput.value.replace(/\D/g, '');
+    if (v.length > 11) v = v.slice(0, 11);
+    if (v.length > 2) v = `(${v.slice(0, 2)}) ${v.slice(2)}`;
+    if (v.length > 10) v = `${v.slice(0, 10)}-${v.slice(10)}`;
+    whatsInput.value = v;
+  }
+
+  // Intent behavior: enable/disable plans
+  function applyIntentBehavior() {
+    const intent = document.querySelector('input[name="intent"]:checked')?.value || 'Teste';
+    const planRadios = document.querySelectorAll('input[name="plan"]');
+    planRadios.forEach(r => {
+      r.disabled = intent === 'Teste';
+      r.closest('.plan-chip')?.classList.toggle('disabled', intent === 'Teste');
+      if (intent === 'Teste') r.checked = false;
     });
-  }, observerOptions);
+    // if intent is Assinar and preselectedPlan exists, mark it
+    if (intent === 'Assinar' && preselectedPlan) preselectPlanChip(preselectedPlan);
+  }
 
-  // Observar todas as badges da base
-  document.querySelectorAll('.bottom-badge').forEach(badge => {
-    badgeObserver.observe(badge);
+  function preselectPlanChip(planName) {
+    const radios = Array.from(document.querySelectorAll('input[name="plan"]'));
+    const target = radios.find(r => r.value === planName);
+    if (target && !target.disabled) target.checked = true;
+  }
+
+  // Build message and send to WhatsApp
+  function sendLeadToWhatsApp() {
+    if (!validateStep1()) return;
+    const name = fullName.value.trim();
+    const phone = whatsInput.value.trim();
+    const device = deviceSelect.value;
+    let details = '';
+
+    if (device === 'Smart TV') {
+      const brand = document.getElementById('tvBrand').value.trim();
+      const model = document.getElementById('tvModel').value.trim();
+      details = `Marca: ${brand}\nModelo: ${model}`;
+    } else if (device === 'Celular') {
+      const os = document.querySelector('input[name="phoneOS"]:checked')?.value || '';
+      details = `Sistema: ${os}`;
+    }
+
+    const intent = document.querySelector('input[name="intent"]:checked')?.value || 'Teste';
+    let planText = '';
+    if (intent === 'Assinar') {
+      const selected = document.querySelector('input[name="plan"]:checked');
+      if (!selected) { alert('Escolha um plano para continuar.'); return; }
+      planText = `Plano: ${selected.value} • R$${Number(selected.dataset.price).toFixed(2)}`;
+    }
+
+    const message = [
+      'Olá! Quero atendimento.',
+      '',
+      `Nome: ${name}`,
+      `WhatsApp: ${phone}`,
+      `Aparelho: ${device}`,
+      details ? `Detalhes: ${details}` : null,
+      `Ação: ${intent}`,
+      planText ? planText : null,
+      '',
+      'Observação: Estou ciente da taxa de R$15 a R$20 para ativação (1x ao ano).'
+    ].filter(Boolean).join('\n');
+
+    const url = 'https://wa.me/5521977317084?text=' + encodeURIComponent(message);
+    window.open(url, '_blank');
+    closeLeadModal();
+  }
+
+  // Attach events
+  // open by CTA (this will open step 1)
+  ctaOpen?.addEventListener('click', () => openLeadModal(1, ''));
+
+  // plan buttons: store plan & open modal in step1 (do NOT jump to step2)
+  planButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const plan = btn.dataset.plan || '';
+      openLeadModal(1, plan); // abre ETAPA 1 sempre, com preselectedPlan guardado
+    });
   });
 
-  // Adicionar efeito de hover aprimorado
-  document.querySelectorAll('.plan-card').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-      const badge = this.querySelector('.bottom-badge');
-      if (badge) {
-        badge.style.transform = 'translateY(-2px) scale(1.02)';
-      }
-    });
-
-    card.addEventListener('mouseleave', function() {
-      const badge = this.querySelector('.bottom-badge');
-      if (badge) {
-        badge.style.transform = 'translateY(0) scale(1)';
-      }
-    });
+  // close modal
+  modalClose.addEventListener('click', closeLeadModal);
+  leadModal.addEventListener('click', (e) => {
+    if (e.target === leadModal) closeLeadModal();
   });
+
+  // continue to step 2 (after validation)
+  btnContinue.addEventListener('click', () => {
+    if (!validateStep1()) return;
+    // if preselectedPlan exists, set intent=Assinar
+    if (preselectedPlan) {
+      const intendAssinar = document.querySelector('input[name="intent"][value="Assinar"]');
+      if (intendAssinar) intendAssinar.checked = true;
+    }
+    applyIntentBehavior();
+    // if there is a preselected plan and intent is Assinar, preselect after enabling
+    if (preselectedPlan) preselectPlanChip(preselectedPlan);
+    showStep(2);
+  });
+
+  btnBack.addEventListener('click', () => {
+    showStep(1);
+  });
+
+  btnSend.addEventListener('click', sendLeadToWhatsApp);
+
+  // device conditional fields
+  deviceSelect.addEventListener('change', updateConditionalFields);
+
+  // mask WhatsApp input
+  whatsInput.addEventListener('input', maskWhats);
+
+  // intent change
+  document.querySelectorAll('input[name="intent"]').forEach(r => r.addEventListener('change', applyIntentBehavior));
+
+  // init: load saved values
+  try {
+    const savedName = localStorage.getItem('lead:name');
+    const savedPhone = localStorage.getItem('lead:phone');
+    if (savedName) fullName.value = savedName;
+    if (savedPhone) whatsInput.value = savedPhone;
+  } catch (e) { /* ignore */ }
+
+  // NAV menu toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  }
+
+  // FAQ toggles
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => q.closest('.faq-card').classList.toggle('open'));
+  });
+
+  // Video carousel simple
+  const slides = Array.from(document.querySelectorAll('.video-slide'));
+  let slideIndex = 0;
+  function showSlide(i) {
+    slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
+    // pause all videos
+    document.querySelectorAll('.video-slide video').forEach(v => v.pause());
+  }
+  document.getElementById('nextVideo')?.addEventListener('click', () => { slideIndex = (slideIndex + 1) % slides.length; showSlide(slideIndex); });
+  document.getElementById('prevVideo')?.addEventListener('click', () => { slideIndex = (slideIndex - 1 + slides.length) % slides.length; showSlide(slideIndex); });
+
+  // Counters fake
+  function updateCounters() {
+    document.getElementById('visitors').innerText = Math.floor(Math.random() * 100) + 150;
+    document.getElementById('subscribers').innerText = Math.floor(Math.random() * 1000) + 2500;
+  }
+  updateCounters();
+  setInterval(updateCounters, 5000);
+
+  // Back to top
+  const toTop = document.getElementById('toTop');
+  window.addEventListener('scroll', () => {
+    toTop.classList.toggle('show', window.scrollY > 600);
+  });
+  toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // Theme toggle (persist)
+  const themeToggle = document.getElementById('themeToggle');
+  const root = document.documentElement;
+  const applyTheme = (t) => root.setAttribute('data-theme', t);
+  const savedTheme = localStorage.getItem('rj_theme');
+  if (savedTheme) applyTheme(savedTheme);
+  themeToggle?.addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    applyTheme(next);
+    localStorage.setItem('rj_theme', next);
+  });
+
+  // ---------------------------
+  // AUTOPLAY: abrir modal automaticamente na ETAPA 1 no carregamento
+  // (pequeno delay para não assustar o usuário)
+  // ---------------------------
+  setTimeout(() => {
+    // Se o usuário já tem o modal aberto escondido por algum motivo, não forçar
+    if (!leadModal.classList.contains('open')) {
+      openLeadModal(1, '');
+    }
+  }, 900);
 });
